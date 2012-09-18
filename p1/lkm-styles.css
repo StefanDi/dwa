@@ -1,0 +1,53 @@
+/*LKM Styles*/
+
+html {
+	color: #666666;
+	font-family: Century Gothic, sans-serif;
+}
+
+.red {
+	color: red;
+}
+
+.ul-basic {
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
+}
+
+a:link, a:visited {
+	color: red;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #666666;
+}
+
+.nav {
+	float: left;
+	font-size: 1.5em;
+}
+
+.content {
+	float: left;
+	height: 120px;
+	margin-left: 50px;
+	overflow: hidden;
+	width: 400px;
+}
+
+h1 {
+	font-size: 2.2em;
+	margin: 0;
+}
+
+h2 {
+	font-size: 1.7em;
+	margin: 0;
+	margin-top: 50px;
+}
+
+.h2-top{
+	margin-top: 0;
+}

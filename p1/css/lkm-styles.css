@@ -1,50 +1,98 @@
 /*LKM Styles*/
-/*LESS test*/
-.arts {
-  color: #999999;
-}
+/*LKM color palette*/
 html {
-  color: #666667;
+  color: #333333;
   font-family: Century Gothic, sans-serif;
 }
+body {
+  height: 100%;
+}
 .red {
-  color: red;
+  color: #ff0000;
 }
 .ul-basic {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
+ul.ul-inline > li {
+  display: inline;
+  margin-right: 10px;
+}
 a:link,
 a:visited {
-  color: red;
+  color: #ff0000;
   text-decoration: none;
 }
 a:hover {
-  color: #666666;
+  color: #333333;
+}
+.wrapper {
+  background-image: url('../images/04_unknowing_lkm.jpg');
+  background-position: 15% 45%;
+  background-repeat: no-repeat;
+  border: solid 1px #333333;
+  height: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 940px;
 }
 .nav {
-  float: left;
+  background-color: #ffffff;
+  border-bottom: dotted 1px #333333;
+  border-top: dotted 1px green;
+  filter: alpha(opacity=80);
+  /* For IE8 and earlier */
+
   font-size: 1.3em;
+  opacity: 0.8;
+  padding-bottom: 10px;
+  padding-left: 5px;
+  padding-top: 10px;
 }
 .content {
-  /*border: solid 1px green;*/
+  background-color: #ffffff;
+  border-bottom: solid 1px #333333;
+  filter: alpha(opacity=80);
+  /* For IE8 and earlier */
 
-  float: left;
   height: 64px;
-  margin-left: 50px;
+  opacity: 0.8;
   overflow: hidden;
-  width: 900px;
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 930px;
+}
+.footer {
+  background-color: #ffffff;
+  top: 807px;
+  filter: alpha(opacity=80);
+  /* For IE8 and earlier */
+
+  font-size: .8em;
+  opacity: 0.8;
+  padding-right: 5px;
+  position: relative;
+  text-align: right;
 }
 h1 {
+  background-color: #ffffff;
+  border-top: solid 1px #333333;
+  filter: alpha(opacity=80);
+  /* For IE8 and earlier */
+
   font-size: 2.2em;
   margin: 0;
+  margin-top: 20px;
+  opacity: 0.8;
+  padding-left: 5px;
 }
 h2 {
   font-size: 1.7em;
   margin: 0;
-  margin-top: 0px;
   margin-bottom: 10px;
+  margin-top: 0px;
 }
 p {
   margin: 0;

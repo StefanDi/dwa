@@ -4,13 +4,19 @@
 
 <head>
 	<?php
-	$age = 10;
+	$age = 23;
 	
-	if($age <= 18) {
+	if($age < 12) {
 		$person_type = "kiddo";
 	}
-	else {
+	elseif($age > 12 AND $age <= 19) {
+		$person_type = "teenager";
+	}
+	elseif($age > 19 AND $age <= 80) {
 		$person_type = "adult";
+	}
+	else {
+		$person_type = "super wise person";
 	}
 	?>
 </head>

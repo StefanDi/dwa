@@ -15,7 +15,16 @@
 
 	<?php
 
-		$logged_in = false;
+		$logged_in = true;
+
+		if($logged_in == true) {
+			// hide 'log-in.php' etc.
+			//show 'my-feed.php'
+		}
+		else {
+			//hide 'my-feed.php' etc.
+			//show 'log-in.php'
+		}
 
 	?>
 
@@ -28,18 +37,43 @@
 	<h1><a href="index.php">MicroBlog</a></h1>
 </div>
 
-
 <div id="main-container">
 
-<!--This page will fill with the login guts if they are logged out, or their main feed if they are logged in.-->
-
-	<? if($logged_in == true) {
-			include 'my-feed.php';
-		}
-		else {
-			include 'log-in.php';
-		}
-	?>
+	<div id="nav" class="hidden">
+		<? include 'nav.php'; ?> 
+	</div>
+	
+	<div id="tab-guts">
+	
+		<div id="login-container" class="hidden">
+			<? include 'log-in.php'; ?>
+		</div>
+		
+		<div id="my-feed-container" class="hidden">
+			<? include 'my-feed.php'; ?>
+		</div>
+		
+		<div id="my-posts-container" class="hidden">
+		</div>
+		
+		<div id="my-posts-container" class="hidden">
+		</div>
+		
+		<div id="all-users-container" class="hidden">
+		</div>
+		
+		<div id="customize-container" class="hidden">
+		</div>
+		<!--This div will fill with the login guts if they are logged out, or their main feed if they are logged in.-->
+	
+		<? //if($logged_in == true) {
+				//include 'my-feed.php';
+			//}
+			//else {
+				//include 'log-in.php';
+			//}
+		?>
+	</div>
 
 </div>
 

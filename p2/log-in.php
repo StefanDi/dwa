@@ -36,7 +36,7 @@
 		</ul>
 	</form>
 	
-	Don't have an account yet? <a id="register-link">Register</a>
+	Don't have an account yet? <a id="register-link" href="">Register</a>
 	
 	<div id="registration-container" class="hidden"> <!--consider factoring out the guts of this div-->
 		

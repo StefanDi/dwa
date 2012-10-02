@@ -11,20 +11,11 @@
 	<link rel="stylesheet" type="text/css" href="css/lkm-styles.css" />
 	<script type="text/javascript" src="js/jquery-ui-1.8.24.custom/js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.24.custom/js/jquery-ui-1.8.24.custom.min.js"></script>
-	<script type="text/javascript" src="js/p2-functions.js"></script>
-
+	<script type="text/javascript" src="js/p2-functions.js"></script>	
+	
 	<?php
 
 		$logged_in = true;
-
-		if($logged_in == true) {
-			// hide 'log-in.php' etc.
-			//show 'my-feed.php'
-		}
-		else {
-			//hide 'my-feed.php' etc.
-			//show 'log-in.php'
-		}
 
 	?>
 
@@ -35,44 +26,52 @@
 
 <div id="header">
 	<h1><a href="index.php">MicroBlog</a></h1>
+	<div id="sign-out-container">
+		Welcome lmiddleton!
+		Sign Out
+	</div>
 </div>
 
 <div id="main-container">
 
-	<div id="nav" class="hidden">
-		<? include 'nav.php'; ?> 
+	<div id="nav" class="">
+		
+		<? if($logged_in == true) {
+				include 'nav.php';
+			}
+		?>
+		
 	</div>
 	
-	<div id="tab-guts">
+	<div id="tab-guts-container">
 	
-		<div id="login-container" class="hidden">
-			<? include 'log-in.php'; ?>
+		<div id="my-feed-container" class="tab-guts">
+			<!--This div will fill with the login guts if they are logged out, or their main feed if they are logged in.-->
+			<? if($logged_in == true) {
+				include 'my-feed.php';
+				}	
+				else {
+					include 'log-in.php';
+				}
+			?>
 		</div>
 		
-		<div id="my-feed-container" class="hidden">
-			<? include 'my-feed.php'; ?>
+		<div id="my-posts-container" class="tab-guts hidden">
+			<? include 'my-posts.php'; ?>
 		</div>
 		
-		<div id="my-posts-container" class="hidden">
+		<div id="my-follows-container" class="tab-guts hidden">
+			<? include 'my-follows.php'; ?>
 		</div>
 		
-		<div id="my-posts-container" class="hidden">
+		<div id="all-users-container" class="tab-guts hidden">
+			<? include 'all-users.php'; ?>
 		</div>
 		
-		<div id="all-users-container" class="hidden">
+		<div id="customize-container" class="tab-guts hidden">
+			<? include 'customize.php'; ?>
 		</div>
 		
-		<div id="customize-container" class="hidden">
-		</div>
-		<!--This div will fill with the login guts if they are logged out, or their main feed if they are logged in.-->
-	
-		<? //if($logged_in == true) {
-				//include 'my-feed.php';
-			//}
-			//else {
-				//include 'log-in.php';
-			//}
-		?>
 	</div>
 
 </div>

@@ -11,7 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="css/lkm-styles.css" />
 	<script type="text/javascript" src="js/jquery-ui-1.8.24.custom/js/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.24.custom/js/jquery-ui-1.8.24.custom.min.js"></script>
-	<script type="text/javascript" src="js/p2-functions.js"></script>	
+	<script type="text/javascript" src="js/p2-main.js"></script>
+	<script type="text/javascript" src="js/p2-nav-helper-functions.js"></script>	
 	
 	<?php
 
@@ -24,62 +25,62 @@
 <body>
 
 
-<div id="header">
-	<h1><a href="index.php">MicroBlog</a></h1>
-	<div id="sign-out-container">
-		Welcome lmiddleton!
-		Sign Out
-	</div>
-</div>
-
-<div id="main-container">
-
-	<div id="nav" class="">
-		
-		<? if($logged_in == true) {
-				include 'nav.php';
-			}
-		?>
-		
+	<div id="header">
+		<h1><a href="index.php">MicroBlog</a></h1>
+		<div id="sign-out-container">
+			Welcome lmiddleton!
+			Sign Out
+		</div>
 	</div>
 	
-	<div id="tab-guts-container">
+	<div id="main-container">
 	
-		<div id="my-feed-container" class="tab-guts">
-			<!--This div will fill with the login guts if they are logged out, or their main feed if they are logged in.-->
+		<div id="nav" class="">
+			
 			<? if($logged_in == true) {
-				include 'my-feed.php';
-				}	
-				else {
-					include 'log-in.php';
+					include 'nav.php';
 				}
 			?>
+			
 		</div>
 		
-		<div id="my-posts-container" class="tab-guts hidden">
-			<? include 'my-posts.php'; ?>
-		</div>
+		<div id="tab-guts-container">
 		
-		<div id="my-follows-container" class="tab-guts hidden">
-			<? include 'my-follows.php'; ?>
+			<div id="my-feed-container" class="tab-guts">
+				<!--This div will fill with the login guts if they are logged out, or their main feed if they are logged in.-->
+				<? if($logged_in == true) {
+					include 'my-feed.php';
+					}	
+					else {
+						include 'log-in.php';
+					}
+				?>
+			</div>
+			
+			<div id="my-posts-container" class="tab-guts hidden">
+				<? include 'my-posts.php'; ?>
+			</div>
+			
+			<div id="my-follows-container" class="tab-guts hidden">
+				<? include 'my-follows.php'; ?>
+			</div>
+			
+			<div id="all-users-container" class="tab-guts hidden">
+				<? include 'all-users.php'; ?>
+			</div>
+			
+			<div id="customize-container" class="tab-guts hidden">
+				<? include 'customize.php'; ?>
+			</div>
+			
 		</div>
-		
-		<div id="all-users-container" class="tab-guts hidden">
-			<? include 'all-users.php'; ?>
-		</div>
-		
-		<div id="customize-container" class="tab-guts hidden">
-			<? include 'customize.php'; ?>
-		</div>
-		
+	
 	</div>
-
-</div>
-
-<div id="footer">
-	<span id="version-number">version 1.0</span>
-	<span id="copyright">&copy2012 LKM</span>
-</footer>
+	
+	<div id="footer">
+		<span id="version-number">version 1.0</span>
+		<span id="copyright">&copy2012 LKM</span>
+	</footer>
 
 </body>
 

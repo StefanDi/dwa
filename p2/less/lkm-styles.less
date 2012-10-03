@@ -77,7 +77,6 @@ a:hover {
 
 ul.nav {
 	border-left: solid 1px green;
-	border-right: solid 1px green;
 	border-top: solid 1px green;
 	width: 200px;
 }
@@ -85,9 +84,16 @@ ul.nav {
 .nav-link {
 	background-color: pink;
 	border-bottom: solid 1px green;
+	border-right: solid 1px green;
+	padding: 10px;
 }
 
 .nav-link-hover {
 	background-color: white;
 	cursor: pointer;
+}
+
+.nav-link-selected {
+	background-color: white;
+	border-right: none;
 }

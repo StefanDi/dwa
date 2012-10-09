@@ -49,11 +49,11 @@ class User {
 																			
 			# Configure user's avatar (if they're logged in)
 				if($this->_user) {
-					if(!$this->_user->avatar) 
+					if(@!$this->_user->avatar) 
 						$this->_user->avatar = PLACE_HOLDER_IMAGE;
 					else 
 						$this->_user->avatar = AVATAR_PATH.$this->_user->avatar;	
-									
+												
 					$this->_user->avatar_small  = Utils::postfix("_200_200", $this->_user->avatar);
 					$this->_user->avatar_medium = Utils::postfix("_600_400", $this->_user->avatar);
 				}
@@ -88,9 +88,16 @@ class User {
 		# See if we can login
 		$token = DB::instance(DB)->select_field("SELECT token FROM users WHERE email = '".$email."' AND password = '".$password."'");	
 			
-		# If we get a token back, we were successful - set cookie
+		# If we get a token back, we were successful...
 		if($token) {
+			
+			# Set cookie
 			$this->__set_login_cookie($token);
+			
+			# Update their timezone on login
+			if(@$_POST['timezone'])
+				DB::instance(DB)->update("users", Array("timezone" => $_POST['timezone']), "WHERE token = '".$token."'");
+		
 			return $token;
 		}
 		# Failed
@@ -201,7 +208,7 @@ class User {
 		$imgObj->save_image($thumb_filename, 100);
 	
 		# Update the database
-		DB::instance(DB)->update("users", Array("avatar" => $user_id."png"), "WHERE user_id = ".$user_id);
+		DB::instance(DB)->update("users", Array("avatar" => $user_id.".png"), "WHERE user_id = ".$user_id);
 	
 	}
 	

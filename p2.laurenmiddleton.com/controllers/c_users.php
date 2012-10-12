@@ -12,20 +12,42 @@ class users_controller extends base_controller {
 	}
 	
 	public function signup() {
-		echo "display the signup page";
+		echo "This is the signup page";
 	}
 	
-	public function login() {
-		echo "display the login page";
+	public function login($login_success = NULL) { //this logic doesn't work right, needs to get fixed
+		if($login_success == false) {
+			$this->template->content = View::instance('v_log_in');
+			$this->template->title = "Login";
+			echo $this->template;
+		}
+		else {
+			$this->template->content = View::instance('v_my_feed');
+			$this->template->title = "My Feed";
+			echo $this->template;
+		}
+		
 	}
 	
 	public function logout() {
-		echo "display the logout page";
+		echo "This is the logout page";
 	}
 	
-	public function profile($user_name) {
-		//need to add an if statement in to handle cases of no user/nonexistant user entered
-		echo "this is the profile of ".$user_name; //to pass the parameter (user name) in, tack it on to your url command (in order)
+	public function profile($user_name = NULL) {
+		
+		if($user_name == NULL) {
+			echo "No user specified";
+		}
+		else {
+			echo "This is the profile of ".$user_name; //to pass the parameter (user name) in, tack it on to your url command (in order)
+		}
+	}
+	
+	//displays All Users view
+	public function allUsers() {
+		$this->template->content = View::instance('v_all_users');
+		$this->template->title = "All Users";
+		echo $this->template;
 	}
 	
 }

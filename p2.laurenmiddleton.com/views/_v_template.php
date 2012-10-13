@@ -26,11 +26,8 @@
 
 	<?=$header;?>
 
-
 	<?=$content;?>
-	
-	<?=$mainContent;?>
-	
+		
 	<?=$footer;?>
 
 </body>

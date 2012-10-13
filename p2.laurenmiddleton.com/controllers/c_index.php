@@ -31,6 +31,12 @@ class index_controller extends base_controller {
 
 	}
 	
+	public function loginSuccess() {
+		$this->template->content = View::instance('v_main_content');
+		$this->template->title = "Welcome!";
+		echo $this->template;
+	}
+	
 	
 	
 		

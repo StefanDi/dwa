@@ -5,6 +5,8 @@ class users_controller extends base_controller {
 	public function __construct() { //two underscores indicate this is a "magic" method
 		parent::__construct(); //this calls construct on the base
 		//methods included here will get called with every users method
+		$this->template->header = View::instance('v_header');
+		$this->template->footer = View::instance('v_footer');
 	}
 	
 	public function index() { //calls users without specifying a method
@@ -22,9 +24,12 @@ class users_controller extends base_controller {
 			echo $this->template;
 		}
 		else {
-			$this->template->content = View::instance('v_my_feed');
+			$this->template->content = View::instance('_v_main_content');
+			$this->content_template->nav = View::instance('v_nav');
+			$this->content_template->tabGuts = View::instance('v_my_feed');
 			$this->template->title = "My Feed";
 			echo $this->template;
+			echo $this->content_template;
 		}
 		
 	}
@@ -43,11 +48,5 @@ class users_controller extends base_controller {
 		}
 	}
 	
-	//displays All Users view
-	public function allUsers() {
-		$this->template->content = View::instance('v_all_users');
-		$this->template->title = "All Users";
-		echo $this->template;
-	}
 	
 }

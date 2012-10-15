@@ -1,5 +1,4 @@
-
-<div id="login-left">
+<div id="login-left" style="clear: left;">
 
 	<h2>Features</h2>
 	<ul>

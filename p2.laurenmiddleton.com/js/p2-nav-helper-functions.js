@@ -30,6 +30,12 @@ function switchNavTabs() {
 	});
 	
 	$("#my-posts-link").click(function(event) {
+		var URL = "/nav/showMyPosts";
+		$.ajax({
+			url: URL,
+			type: 'GET',
+		});
+		
 		$(".tab-guts").hide();
 		$("#my-posts-container").show();
 	});

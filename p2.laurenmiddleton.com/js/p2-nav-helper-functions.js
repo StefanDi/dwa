@@ -30,14 +30,17 @@ function switchNavTabs() {
 	});
 	
 	$("#my-posts-link").click(function(event) {
-		var URL = "/nav/showMyPosts";
 		$.ajax({
-			url: URL,
-			type: 'GET',
+			type: 'POST',
+			url: '/nav/showMyPosts/',
+			beforeSend: function() {
+			},
+			success: function(response) {
+				$('#tab-guts-container').html(response);
+			},
+			data: {
+			},
 		});
-		
-		$(".tab-guts").hide();
-		$("#my-posts-container").show();
 	});
 	
 	$("#my-follows-link").click(function(event) {

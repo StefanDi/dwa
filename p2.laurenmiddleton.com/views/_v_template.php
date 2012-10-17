@@ -20,6 +20,7 @@
 	<!-- Controller Specific JS/CSS -->
 	<?php echo @$client_files; ?>
 	
+	
 </head>
 
 <body>	

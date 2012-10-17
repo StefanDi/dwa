@@ -22,13 +22,23 @@ function styleClickedNavTab() {
 
 //switch tab content
 function switchNavTabs() {
+	
+	//show My Feed content
 	$("#my-feed-link").click(function(event) {
-		//hide all with tab-guts class
-		$(".tab-guts").hide();
-		//show the target div
-		$("#my-feed-container").show();
+		$.ajax({
+			type: 'POST',
+			url: '/nav/showMyFeed/',
+			beforeSend: function() {
+			},
+			success: function(response) {
+				$('#tab-guts-container').html(response);
+			},
+			data: {
+			},
+		});
 	});
 	
+	//show My Posts content
 	$("#my-posts-link").click(function(event) {
 		$.ajax({
 			type: 'POST',
@@ -43,18 +53,49 @@ function switchNavTabs() {
 		});
 	});
 	
+	//show My Follows content
 	$("#my-follows-link").click(function(event) {
-		$(".tab-guts").hide();
-		$("#my-follows-container").show();
+		$.ajax({
+			type: 'POST',
+			url: '/nav/showMyFollows/',
+			beforeSend: function() {
+			},
+			success: function(response) {
+				$('#tab-guts-container').html(response);
+			},
+			data: {
+			},
+		});
 	});
 	
+	//show All Users content
 	$("#all-users-link").click(function(event) {
-		$(".tab-guts").hide();
-		$("#all-users-container").show();
+		$.ajax({
+			type: 'POST',
+			url: '/nav/showAllUsers/',
+			beforeSend: function() {
+			},
+			success: function(response) {
+				$('#tab-guts-container').html(response);
+			},
+			data: {
+			},
+		});
 	});
 	
+	//show Customize content
 	$("#customize-link").click(function(event) {
-		$(".tab-guts").hide();
-		$("#customize-container").show();
+		$.ajax({
+			type: 'POST',
+			url: '/nav/showCustomize/',
+			beforeSend: function() {
+			},
+			success: function(response) {
+				$('#tab-guts-container').html(response);
+			},
+			data: {
+			},
+		});
 	});
+
 }

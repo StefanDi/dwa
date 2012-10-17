@@ -17,25 +17,12 @@ class users_controller extends base_controller {
 		echo "This is the signup page";
 	}
 	
-	public function login($login_success = true) { //this logic doesn't work right, needs to get fixed
-		if($login_success == false) {
+	public function login() { //this logic doesn't work right, needs to get fixed
+		
 			$this->template->content = View::instance('v_log_in');
 			$this->template->title = "Login";
 			echo $this->template;
-		}
-		else {
-			//load My Feed
-			$this->template->content = View::instance('v_main_content');
-			$this->template->content->nav = View::instance('v_nav');
-			$this->template->content->tabGuts = View::instance('v_tab_guts');
-			$this->template->content->tabGuts->myFeed = View::instance('v_my_feed');
-			$this->template->content->tabGuts->myPosts = View::instance('v_my_posts');
-			$this->template->content->tabGuts->myFollows = View::instance('v_my_follows');
-			$this->template->content->tabGuts->allUsers = View::instance('v_all_users');
-			$this->template->content->tabGuts->customize = View::instance('v_customize');
-			$this->template->title = "My Feed";
-			echo $this->template;
-		}
+		
 		
 	}
 	

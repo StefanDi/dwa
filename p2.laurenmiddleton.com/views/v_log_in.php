@@ -41,7 +41,7 @@
 		
 		<h2>Register</h2>
 			
-		<form id="registration-form" method="POST" action="log-in.php">
+		<form id="registration-form" method="POST" action="/users/p_signup"> <!--this naming convention means it's the processing end of a form with the same name - should put rhe register form in its own view fragment-->
 			<ul class="ul-basic">
 				<li>
 					<label for="username-register">Create Username:</label>
@@ -49,11 +49,11 @@
 				</li>
 				<li>
 					<label for="password1-register">Create Password:</label>
-					<input id="password1-register" type="text" name="password1" />
+					<input id="password1-register" type="password" name="password1" />
 				</li>
 				<li>
 					<label for="password2-register">Re-enter Password:</label>
-					<input id="password2-register" type="text" name="password2" />
+					<input id="password2-register" type="password" name="password2" />
 				</li>
 				<li class="success-message">
 					Registration successful! Please log in above.

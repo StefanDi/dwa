@@ -17,13 +17,28 @@ class users_controller extends base_controller {
 		echo "This is the signup page";
 	}
 	
-	public function login() { //this logic doesn't work right, needs to get fixed
+	//submits the registration form
+	public function p_signup() {
 		
+		//prints what data was submitted to the page
+		print_r($_POST);
+		
+		//encrypts password before sending to DB
+		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+		
+		$_POST['created'] = Time::now(); //this returns the current timestamp
+		$_POST['modified'] = Time::now();
+		
+		$_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+		
+		//put the registration data in the database
+		DB::instance(DB_NAME)->insert('users', $_POST);
+	}
+	
+	public function login() { //this logic doesn't work right, needs to get fixed
 			$this->template->content = View::instance('v_log_in');
 			$this->template->title = "Login";
 			echo $this->template;
-		
-		
 	}
 	
 	public function logout() {

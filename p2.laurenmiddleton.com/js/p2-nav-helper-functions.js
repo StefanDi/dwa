@@ -23,6 +23,21 @@ function styleClickedNavTab() {
 //switch tab content
 function switchNavTabs() {
 	
+	//show My Profile content
+	$("#my-profile-link").click(function(event) {
+		$.ajax({
+			type: 'POST',
+			url: '/nav/showMyProfile/',
+			beforeSend: function() {
+			},
+			success: function(response) {
+				$('#tab-guts-container').html(response);
+			},
+			data: {
+			},
+		});
+	});
+	
 	//show My Feed content
 	$("#my-feed-link").click(function(event) {
 		$.ajax({

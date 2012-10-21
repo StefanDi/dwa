@@ -8,15 +8,22 @@ class nav_controller extends base_controller {
 		
 	}
 	
-	//initializes the nav to My Feed
+	//initializes the nav to My Profile
 	public function index() {
 		$this->template->header = View::instance('v_header');
 		$this->template->footer = View::instance('v_footer');
 		$this->template->content = View::instance('v_main_content');
 		$this->template->content->nav = View::instance('v_nav');
-		$this->template->content->tabGuts = View::instance('v_my_feed');
-		$this->template->title = "My Feed";
+		$this->template->content->tabGuts = View::instance('v_my_profile');
+		$this->template->title = "My Profile";
 		echo $this->template;
+	}
+	
+	//displays My Profile View
+	public function showMyProfile() {
+		//creates a new blank template just for this method
+		$template = View::instance('v_my_profile');
+		echo $template;
 	}
 	
 	//displays My Feed View

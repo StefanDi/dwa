@@ -57,22 +57,6 @@
 				?>
 			</div>
 			
-			<div id="my-posts-container" class="tab-guts hidden">
-				<? include 'my-posts.php'; ?>
-			</div>
-			
-			<div id="my-follows-container" class="tab-guts hidden">
-				<? include 'my-follows.php'; ?>
-			</div>
-			
-			<div id="all-users-container" class="tab-guts hidden">
-				<? include 'all-users.php'; ?>
-			</div>
-			
-			<div id="customize-container" class="tab-guts hidden">
-				<? include 'customize.php'; ?>
-			</div>
-			
 		</div>
 	
 	</div>

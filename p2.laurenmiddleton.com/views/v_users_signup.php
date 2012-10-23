@@ -3,19 +3,19 @@
 <form method="POST" action="/users/p_signup"> <!--this naming convention means it's the processing end of a form with the same name - should put the register form in its own view fragment-->
 	<ul class="ul-basic">
 		<li>
-			<label for="first-name-register">First Name:</label>
+			<label for="first-name-register" class="login-label">First Name:</label>
 			<input id="first-name-register" type="text" name="first_name" /> <!--name should match DB column name-->
 		</li>
 		<li>
-			<label for="last-name-register">Last Name:</label>
+			<label for="last-name-register" class="login-label">Last Name:</label>
 			<input id="last-name-register" type="text" name="last_name" />
 		</li>
 		<li>
-			<label for="email-register">Email:</label>
+			<label for="email-register" class="login-label">Email:</label>
 			<input id="email-register" type="text" name="email" />
 		</li>
 		<li>
-			<label for="password-register">Password:</label>
+			<label for="password-register" class="login-label">Password:</label>
 			<input id="password-register" type="password" name="password">
 		</li>
 		<li class="success-message">

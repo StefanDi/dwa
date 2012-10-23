@@ -79,8 +79,7 @@ class users_controller extends base_controller {
 			@setcookie("token", $token, strtotime('+1 year'), '/');
 			
 			//send them to their profile
-			Router::redirect("/nav/index");
-		}
+			Router::redirect("/nav/index");		}
 	}
 	
 	public function logout() {

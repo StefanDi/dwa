@@ -77,6 +77,10 @@ a:hover {
   border: solid 1px green;
   float: right;
 }
+.login-label {
+  display: inline-block;
+  width: 90px;
+}
 ul.nav {
   border-left: solid 1px green;
   border-top: solid 1px green;

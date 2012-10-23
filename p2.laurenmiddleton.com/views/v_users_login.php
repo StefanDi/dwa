@@ -18,11 +18,11 @@
 	<form method="POST" action="/users/p_login">
 		<ul class="ul-basic">
 			<li>
-				<label for="email-login">Email:</label>
+				<label for="email-login" class="login-label">Email:</label>
 				<input id="email-login" type="text" name="email" />
 			</li>
 			<li>
-				<label for="password-login">Password:</label>
+				<label for="password-login" class="login-label">Password:</label>
 				<input id="password-login" type="password" name="password" />
 			</li>
 			<li class="error-message"> <!--only appears when error is thrown. consider separate file for all possible error messages, correct one gets plunked in-->

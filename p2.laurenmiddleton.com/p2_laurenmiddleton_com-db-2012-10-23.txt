@@ -1,0 +1,44 @@
+-- phpMyAdmin SQL Dump
+-- version 3.5.1
+-- http://www.phpmyadmin.net
+--
+-- Host: localhost
+-- Generation Time: Oct 23, 2012 at 05:06 PM
+-- Server version: 5.5.25
+-- PHP Version: 5.4.4
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+--
+-- Database: `p2_laurenmiddleton_com`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL AUTO_INCREMENT,
+  `created` int(11) NOT NULL,
+  `modified` int(11) NOT NULL,
+  `token` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user_id`, `created`, `modified`, `token`, `password`, `email`, `first_name`, `last_name`) VALUES
+(1, 0, 0, '771ddc5b402bbb5ab3ef2feef27334120901d786', '4190lkm', 'lulumidds@lulu.com', 'Lulu', 'Midds'),
+(2, 0, 0, '771ddc5b402bbb5ab3ef2feef27334120901d786', '445fe3bc3aa6c9f45ff438f384ac332877d0bd2d', 'lolomidds@yourmom.com', 'Lolo', 'Middle'),
+(3, 1350780532, 1350780532, 'ef15e00e0c205f4409c6581a1113c7a3ba3eb48e', '445fe3bc3aa6c9f45ff438f384ac332877d0bd2d', 'alex@alex.com', 'Alex', 'Wenchel'),
+(4, 1350784531, 1350784531, 'f05c1fc26c55e083c9fb4a142b0243b61ee17447', '445fe3bc3aa6c9f45ff438f384ac332877d0bd2d', 'info@laurenmiddleton.com', 'Lauren', 'Middleton'),
+(5, 1350784616, 1350784616, '9200b30d3dedace5dbe3cf1d99ddbc90788b4ed7', '445fe3bc3aa6c9f45ff438f384ac332877d0bd2d', 'me@me.com', '', '');

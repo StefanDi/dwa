@@ -22,6 +22,10 @@ h2 {
 	margin: 0;
 }
 
+.hidden { /*hides elements*/
+	display: none;
+}
+
 .off-screen { /*hides elements, but keeps accessible to screen readers*/
 	height: 1px;
 	left: -10000px;
@@ -29,10 +33,6 @@ h2 {
 	position: absolute;
 	top: auto;
 	width: 1px;
-}
-
-.hidden { /*hides elements*/
-	display: none;
 }
 
 a:link, a:visited {
@@ -99,6 +99,12 @@ a:hover {
 ul.nav {
 	border-left: solid 1px green;
 	border-top: solid 1px green;
+	width: 200px;
+}
+
+.nav-bottom {
+	border-right: solid 1px green;
+	height: 350px;
 	width: 200px;
 }
 

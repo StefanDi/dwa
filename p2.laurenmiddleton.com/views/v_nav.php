@@ -7,3 +7,6 @@
 	<li id="all-users-link" class="nav-link">All Users</li>
 	<li id="customize-link" class="nav-link">Customize</li>
 </ul>
+
+<div class="nav-bottom">
+</div>

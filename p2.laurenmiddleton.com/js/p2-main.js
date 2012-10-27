@@ -11,4 +11,20 @@ $(document).ready(function() {
 	});
 	
 	
+	//refresh only My Profile guts when post is added
+$("#add-post-submit").click(function(event) {
+		$.ajax({
+			type: 'POST',
+			url: '/nav/my_profile/',
+			beforeSend: function() {
+			},
+			success: function(response) {
+				$('#tab-guts-container').html(response);
+			},
+			data: {
+			},
+		});
+	});
+	
+	
 });

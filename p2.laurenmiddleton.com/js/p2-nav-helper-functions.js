@@ -27,7 +27,7 @@ function switchNavTabs() {
 	$("#my-profile-link").click(function(event) {
 		$.ajax({
 			type: 'POST',
-			url: '/nav/showMyProfile/',
+			url: '/nav/my_profile/',
 			beforeSend: function() {
 			},
 			success: function(response) {
@@ -42,7 +42,7 @@ function switchNavTabs() {
 	$("#my-feed-link").click(function(event) {
 		$.ajax({
 			type: 'POST',
-			url: '/nav/showMyFeed/',
+			url: '/nav/my_feed/',
 			beforeSend: function() {
 			},
 			success: function(response) {
@@ -57,7 +57,7 @@ function switchNavTabs() {
 	$("#my-posts-link").click(function(event) {
 		$.ajax({
 			type: 'POST',
-			url: '/nav/showMyPosts/',
+			url: '/nav/my_posts/',
 			beforeSend: function() {
 			},
 			success: function(response) {
@@ -72,7 +72,7 @@ function switchNavTabs() {
 	$("#my-follows-link").click(function(event) {
 		$.ajax({
 			type: 'POST',
-			url: '/nav/showMyFollows/',
+			url: '/nav/my_follows/',
 			beforeSend: function() {
 			},
 			success: function(response) {
@@ -87,7 +87,7 @@ function switchNavTabs() {
 	$("#all-users-link").click(function(event) {
 		$.ajax({
 			type: 'POST',
-			url: '/nav/showAllUsers/',
+			url: '/nav/all_users/',
 			beforeSend: function() {
 			},
 			success: function(response) {
@@ -102,7 +102,7 @@ function switchNavTabs() {
 	$("#customize-link").click(function(event) {
 		$.ajax({
 			type: 'POST',
-			url: '/nav/showCustomize/',
+			url: '/nav/customize/',
 			beforeSend: function() {
 			},
 			success: function(response) {

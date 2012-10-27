@@ -9,7 +9,17 @@ class users_controller extends base_controller {
 	}
 	
 	public function index() { //calls users without specifying a method
-		echo "Welcome to the users department";
+		//if user is blank, they're not logged in; redirect to login/registration page
+		if(!$this->user) {
+			Router::redirect("/users/login");
+			
+			//return will force this method to exit here so the rest of the code won't be executed and the profile view won't be displayed
+			return false;
+		}
+		
+		//they are logged in, bring them to their profile
+		Router::redirect("/nav/index");
+		
 	}
 	
 	public function signup() {
@@ -71,7 +81,7 @@ class users_controller extends base_controller {
 		//if we didn't get a token back, login failed
 		if(!$token) {
 			//send them back to the login page (change to show div w/ error)
-			Router::redirect("/users/login/");
+			Router::redirect("/users/login");
 			
 		//but if we did, login succeeded!
 		} else {
@@ -94,29 +104,23 @@ class users_controller extends base_controller {
 		DB::instance(DB_NAME)->update("users", $data, "WHERE token = '".$this->user->token."'");
 		
 		//delete their token cookie - effectively logging them out
-		setcookie("token", "", strtotime('-1 year'), '/');
+		setcookie("token", "", strtotime('-1 week'), '/');
 		
 		echo "You have been logged out.";
 	}
 	
 	public function profile() {
-		//if user is blank, they're not logged in, show message and don't do anything else
+		//if user is blank, they're not logged in; redirect to login/registration page
 		if(!$this->user) {
-			echo "Members only.";
+			Router::redirect("/users/login");
 			
 			//return will force this method to exit here so the rest of the code won't be executed and the profile view won't be displayed
 			return false;
 		}
 		
-		//setup view
-		$this->template->header = View::instance('v_header');
-		$this->template->footer = View::instance('v_footer');
-		$this->template->content = View::instance('v_main_content');
-		$this->template->content->nav = View::instance('v_nav');
-		$this->template->content->tabGuts = View::instance('v_my_profile');
-		//render template
-		echo $this->template;
-	}
+		//they are logged in, bring them to their profile
+		Router::redirect("/nav/index");
+		}
 	
 	
 }

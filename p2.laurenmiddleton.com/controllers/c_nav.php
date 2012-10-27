@@ -16,50 +16,52 @@ class nav_controller extends base_controller {
 		$this->template->footer = View::instance('v_footer');
 		$this->template->content = View::instance('v_main_content');
 		$this->template->content->nav = View::instance('v_nav');
-		$this->template->content->tabGuts = View::instance('v_my_profile');
+		$this->template->content->tabGuts = View::instance('v_nav_my_profile');
+		$this->template->content->tabGuts->addPost = View::instance('v_posts_add');
 		$this->template->title = "My Profile";
 		echo $this->template;
 	}
 	
 	//displays My Profile View
-	public function showMyProfile() {
+	public function my_profile() {
 		//creates a new blank template just for this method
-		$template = View::instance('v_my_profile');
+		$template = View::instance('v_nav_my_profile');
+		$template->addPost = View::instance('v_posts_add');
 		echo $template;
 	}
 	
 	//displays My Feed View
-	public function showMyFeed() {
+	public function my_feed() {
 		//creates a new blank template just for this method
-		$template = View::instance('v_my_feed');
+		$template = View::instance('v_nav_my_feed');
 		echo $template;
 	}
 	
 	//displays My Posts View
-	public function showMyPosts() {
+	public function my_posts() {
 		//creates a new blank template just for this method
-		$template = View::instance('v_my_posts');
+		$template = View::instance('v_nav_my_posts');
 		echo $template;
 	}
 	
 	//displays My Follows View
-	public function showMyFollows() {
+	public function my_follows() {
 		//creates a new blank template just for this method
-		$template = View::instance('v_my_follows');
+		$template = View::instance('v_nav_my_follows');
 		echo $template;
 	}
 	
 	//displays All Users view
-	public function showAllUsers() {
+	public function all_users() {
 		//creates a new blank template just for this method
-		$template = View::instance('v_all_users');
+		$template = View::instance('v_nav_all_users');
 		echo $template;
 	}
 	
 	//displays Customize view
-	public function showCustomize() {
+	public function customize() {
 		//creates a new blank template just for this method
-		$template = View::instance('v_customize');
+		$template = View::instance('v_nav_customize');
 		echo $template;
 	}
 	

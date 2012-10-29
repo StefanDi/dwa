@@ -1,9 +1,8 @@
 <form method='POST' action='/posts/p_add'>
 
-	<strong>New Post:</strong><br>
-	<textarea name='content'></textarea>
+	<label for='add-post-input' class='off-screen'>Enter a new post</label>
+	<textarea id='add-post-input' name='content'></textarea>
 	
-	<br><br>
-	<input id="add-post-submit" type='submit'>
+	<input id="add-post-submit" type='submit' value='Post!'>
 
 </form>

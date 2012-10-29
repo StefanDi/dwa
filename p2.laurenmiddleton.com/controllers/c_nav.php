@@ -18,6 +18,7 @@ class nav_controller extends base_controller {
 		$this->template->content->nav = View::instance('v_nav');
 		$this->template->content->tabGuts = View::instance('v_nav_my_profile');
 		$this->template->content->tabGuts->addPost = View::instance('v_posts_add');
+		$this->template->content->tabGuts->myPosts = View::instance('v_posts_my_posts');
 		$this->template->title = "My Profile";
 		echo $this->template;
 	}
@@ -27,9 +28,11 @@ class nav_controller extends base_controller {
 		//creates a new blank template just for this method
 		$template = View::instance('v_nav_my_profile');
 		$template->addPost = View::instance('v_posts_add');
+		$template->myPosts = View::instance('v_posts_my_posts');
 		echo $template;
 	}
 	
+	//don't need this anymore
 	//displays My Feed View
 	public function my_feed() {
 		//creates a new blank template just for this method

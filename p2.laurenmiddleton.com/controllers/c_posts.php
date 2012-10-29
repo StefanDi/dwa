@@ -12,21 +12,63 @@ class posts_controller extends base_controller {
 		
 	}
 	
+	//spits out posts of users followed by this user
 	public function index() {
 	
 		#Set up view
 		$this->template->content = View::instance('v_posts_index');
-		$this->template->title   = "Posts";
 		
-		#Build our query
+		#Build a query of the users this user is following
+		$q = "SELECT *
+			FROM users_users
+			WHERE user_id = ".$this->user->user_id;
+			
+		#Execute our query, storing the results in a variable $connections
+		$connections = DB::instance(DB_NAME)->select_rows($q);
+		
+		#In order to query for the posts we need, we're going to need a string of user id's, separated by commas
+		#To create this, loop through our connections array
+		$connections_string = "";
+		foreach($connections as $connection) {
+			$connections_string .=$connection['user_id_followed'].",";
+		}
+		
+		#Remove the final comma
+		$connections_string = substr($connections_string, 0, -1);
+		
+		#Build our query to grab the posts
 		$q = "SELECT *
 			FROM posts
-			JOIN users USING (user_id)";
+			JOIN users USING (user_id)
+			WHERE posts.user_id IN (".$connections_string.")"; #This is where we use that string of user_ids we created
 			
-		#Run our query, grabbing all the posts and joining in the users
+		#Run our query, store the results in the variable $posts
 		$posts = DB::instance(DB_NAME)->select_rows($q);
 		
 		#Pass data to the view
+		$this->template->content->posts = $posts;
+		
+		#Render view
+		echo $this->template;
+	
+	}
+	
+	//spits out posts added by this user
+	public function my_posts() {
+	
+		#Set up view
+		$this->template->content = View::instance('v_posts_my_posts');
+		
+		//Builds a query to grab all posts by this user
+		$q = "SELECT *
+			FROM posts
+			JOIN users USING (user_id)
+			WHERE user_id = ".$this->user->user_id;
+			
+		//Run the query, storing the results in the variable $posts
+		$posts = DB::instance(DB_NAME)->select_rows($q);
+		
+		//Pass data to the View
 		$this->template->content->posts = $posts;
 		
 		#Render view
@@ -67,6 +109,7 @@ class posts_controller extends base_controller {
 			
 	}
 	
+	//spits out list of all users w/ follow/unfollow buttons
 	public function users() {
 	
 		#Set up the view

@@ -36,13 +36,25 @@ function switchNavTabs() {
 			data: {
 			},
 		});
+		
+		$.ajax({
+			type: 'POST',
+			url: '/posts/my_posts',
+			beforeSend: function() {
+			},
+			success: function(response) {
+				$('#my-posts-container').html(response);
+			},
+			data: {
+			},
+		});
 	});
 	
 	//show My Feed content
 	$("#my-feed-link").click(function(event) {
 		$.ajax({
 			type: 'POST',
-			url: '/nav/my_feed/',
+			url: '/posts/index',
 			beforeSend: function() {
 			},
 			success: function(response) {
@@ -57,7 +69,7 @@ function switchNavTabs() {
 	$("#my-posts-link").click(function(event) {
 		$.ajax({
 			type: 'POST',
-			url: '/nav/my_posts/',
+			url: '/posts/my_posts',
 			beforeSend: function() {
 			},
 			success: function(response) {
@@ -87,7 +99,7 @@ function switchNavTabs() {
 	$("#all-users-link").click(function(event) {
 		$.ajax({
 			type: 'POST',
-			url: '/nav/all_users/',
+			url: '/posts/users',
 			beforeSend: function() {
 			},
 			success: function(response) {

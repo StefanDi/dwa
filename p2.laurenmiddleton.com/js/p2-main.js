@@ -10,6 +10,21 @@ $(document).ready(function() {
 		$("#registration-container").show();
 	});
 	
+	$(".follow-link").click(function(event) {
+		//event.preventDefault(); //prevents reloading of the page
+		$.ajax({
+			type: 'POST',
+			url: '/posts/users',
+			beforeSend: function() {
+			},
+			success: function(response) {
+				$('#tab-guts-container').html(response);
+			},
+			data: {
+			},
+		});
+	});
+	
 	
 	//refresh only My Profile guts when post is added
 $("#add-post-submit").click(function(event) {

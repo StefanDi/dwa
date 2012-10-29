@@ -3,12 +3,24 @@ html {
   color: #333333;
   font-family: "Arial", "Helvetica", sans-serif;
 }
+body {
+  background-color: #ffe4e1;
+  margin-left: auto;
+  margin-right: auto;
+  width: 700px;
+}
 h1 {
   float: left;
   font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
+  margin-left: 10px;
 }
 h2 {
   font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
+  margin: 0px;
+}
+h3 {
+  font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
+  margin: 0px;
 }
 .ul-basic {
   list-style-type: none;
@@ -39,57 +51,88 @@ a:hover {
   color: #333333;
 }
 #header {
-  border: solid 1px red;
+  background-color: #fffafa;
+  border: dotted 1px #333333;
   height: 75px;
   width: 100%;
 }
 #main-container {
-  border: solid 1px red;
-  height: 600px;
+  background-color: white;
+  border: dotted 1px #333333;
+  border-top: none;
+  height: 400px;
   width: 100%;
 }
-#nav {
-  clear: both;
-  float: left;
-  font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
-}
-#tab-guts-container {
-  border-top: solid 1px green;
-  float: left;
-  padding: 20px;
-  width: 70%;
-}
-#footer {
-  border: solid 1px red;
-  float: left;
+#login-container {
+  border: dotted 1px #333333;
+  border-top: none;
+  background-color: white;
+  height: 400px;
   width: 100%;
-}
-#sign-out-container {
-  border: solid 1px pink;
-  float: right;
-  height: 50px;
 }
 #login-left {
-  border: solid 1px green;
+  background-color: white;
+  padding: 10px;
   float: left;
 }
 #login-right {
-  border: solid 1px green;
+  background-color: white;
+  padding: 10px;
   float: right;
 }
 .login-label {
   display: inline-block;
   width: 90px;
 }
+#nav {
+  clear: both;
+  float: left;
+  font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
+  font-size: .8em;
+}
+#tab-guts-container {
+  border-top: solid 1px green;
+  float: left;
+  height: 300px;
+  overflow: auto;
+  padding: 20px;
+  width: 450px;
+}
+#footer {
+  background-color: #fffafa;
+  border: dotted 1px #333333;
+  border-top: none;
+  float: left;
+  font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
+  font-size: .6em;
+  width: 100%;
+}
+#footer-guts-parent {
+  padding: 3px;
+}
+#copyright {
+  float: left;
+}
+#version-number {
+  float: right;
+}
+#sign-out-container {
+  border: solid 1px #fffafa;
+  font-size: .8em;
+  float: right;
+  height: auto;
+  margin-right: 10px;
+  margin-top: 30px;
+}
 ul.nav {
   border-left: solid 1px green;
   border-top: solid 1px green;
-  width: 200px;
+  width: 160px;
 }
 .nav-bottom {
   border-right: solid 1px green;
-  height: 350px;
-  width: 200px;
+  height: 100px;
+  width: 160px;
 }
 .nav-link {
   background-color: pink;
@@ -104,4 +147,34 @@ ul.nav {
 .nav-link-selected {
   background-color: white;
   border-right: none;
+}
+#user-name-container {
+  text-align: right;
+}
+#add-post-input {
+  float: right;
+  height: 50px;
+  margin-top: 20px;
+  width: 100%;
+}
+#add-post-submit {
+  float: right;
+  margin-top: 7px;
+}
+.my-post-parent {
+  background-color: #e6e6fa;
+  border-bottom: dotted 1px #333333;
+  padding: 5px;
+}
+.other-post-parent {
+  background-color: #fffafa;
+  border-bottom: dotted 1px #333333;
+  padding: 5px;
+}
+#my-posts-container {
+  clear: both;
+}
+.user-parent {
+  display: inline-block;
+  width: 150px;
 }

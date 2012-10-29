@@ -25,11 +25,11 @@
 
 <body>	
 
-	<?=$header;?>
+	<?=@$header;?>
 
 	<?=$content;?>
 		
-	<?=$footer;?>
+	<?=@$footer;?>
 
 </body>
 </html>

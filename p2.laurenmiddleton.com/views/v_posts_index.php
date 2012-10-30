@@ -1,4 +1,3 @@
-<? if($posts == ""): ?>
 
 	<? foreach($posts as $post): ?>
 	
@@ -23,6 +22,3 @@
 		
 	<? endforeach; ?>
 	
-<? else: ?>
-You are not following anyone yet!
-<? endif; ?>

@@ -17,6 +17,8 @@ h1 {
 h2 {
   font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
   margin: 0px;
+  margin-bottom: 10px;
+  margin-top: 15px;
 }
 h3 {
   font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
@@ -41,6 +43,14 @@ h3 {
   position: absolute;
   top: auto;
   width: 1px;
+}
+.error-message {
+  color: red;
+  font-size: .7em;
+}
+.success-message {
+  color: green;
+  font-size: .7em;
 }
 a:link,
 a:visited {
@@ -84,6 +94,9 @@ a:hover {
   display: inline-block;
   width: 90px;
 }
+.register-message {
+  font-size: .8em;
+}
 #nav {
   clear: both;
   float: left;
@@ -125,7 +138,7 @@ a:hover {
   margin-top: 30px;
 }
 ul.nav {
-  border-left: solid 1px green;
+  border-left: solid 1px white;
   border-top: solid 1px green;
   width: 160px;
 }
@@ -159,6 +172,7 @@ ul.nav {
 }
 #add-post-submit {
   float: right;
+  margin-bottom: 20px;
   margin-top: 7px;
 }
 .my-post-parent {
@@ -177,4 +191,8 @@ ul.nav {
 .user-parent {
   display: inline-block;
   width: 150px;
+}
+.delete-post-btn {
+  float: right;
+  font-size: .8em;
 }

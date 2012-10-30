@@ -57,7 +57,7 @@ class posts_controller extends base_controller {
 	public function my_posts() {
 	
 		#Set up view
-		$this->template->content = View::instance('v_posts_my_posts');
+		$template = View::instance('v_posts_my_posts');
 		
 		//Builds a query to grab all posts by this user
 		$q = "SELECT *
@@ -69,10 +69,10 @@ class posts_controller extends base_controller {
 		$posts = DB::instance(DB_NAME)->select_rows($q);
 		
 		//Pass data to the View
-		$this->template->content->posts = $posts;
+		$template->posts = $posts;
 		
 		#Render view
-		echo $this->template;
+		echo $template;
 	
 	}
 	
@@ -101,12 +101,14 @@ class posts_controller extends base_controller {
 		#Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
 		DB::instance(DB_NAME)->insert('posts', $_POST);
 		
-		#want this to refresh just the tab contents - need to get this working
-		//creates a new blank template just for this method
-		$template = View::instance('v_nav_my_profile');
-		$template->addPost = View::instance('v_posts_add');
-		echo $template;
+		Router::redirect("/users/profile");
 			
+	}
+	
+	public function delete($id) {
+		//remove the letters in front of the actual id
+		
+		//delete the post with the parameter id out of the database
 	}
 	
 	//spits out list of all users w/ follow/unfollow buttons

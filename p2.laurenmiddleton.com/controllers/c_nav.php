@@ -8,19 +8,8 @@ class nav_controller extends base_controller {
 		
 	}
 	
-	//initializes the nav to My Profile
 	public function index() {
-		$this->template->header = View::instance('v_header');
-		//show logged in header
-		$this->template->header->welcome = View::instance('v_header_welcome');
-		$this->template->footer = View::instance('v_footer');
-		$this->template->content = View::instance('v_main_content');
-		$this->template->content->nav = View::instance('v_nav');
-		$this->template->content->tabGuts = View::instance('v_nav_my_profile');
-		$this->template->content->tabGuts->addPost = View::instance('v_posts_add');
-		$this->template->content->tabGuts->myPosts = View::instance('v_posts_my_posts');
-		$this->template->title = "My Profile";
-		echo $this->template;
+		
 	}
 	
 	//displays My Profile View

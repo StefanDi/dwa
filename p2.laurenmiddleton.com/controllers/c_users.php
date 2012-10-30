@@ -18,7 +18,7 @@ class users_controller extends base_controller {
 		}
 		
 		//they are logged in, bring them to their profile
-		Router::redirect("/nav/index");
+		Router::redirect("/users/profile");
 		
 	}
 	
@@ -88,8 +88,32 @@ class users_controller extends base_controller {
 			//store this token in a cookie
 			@setcookie("token", $token, strtotime('+1 year'), '/');
 			
-			//send them to their profile
-			Router::redirect("/users/profile");		}
+			//they are logged in, bring them to their profile
+		$this->template->header = View::instance('v_header');
+		//show logged in header
+		$this->template->header->welcome = View::instance('v_header_welcome');
+		$this->template->footer = View::instance('v_footer');
+		$this->template->content = View::instance('v_main_content');
+		$this->template->content->nav = View::instance('v_nav');
+		$this->template->content->tabGuts = View::instance('v_nav_my_profile');
+		$this->template->content->tabGuts->addPost = View::instance('v_posts_add');
+		$this->template->content->tabGuts->myPosts = View::instance('v_posts_my_posts');
+		$this->template->title = "MicroBlog";
+		
+		//Builds a query to grab all posts by this user
+		$q = "SELECT *
+			FROM posts
+			JOIN users USING (user_id)
+			WHERE user_id = ".$this->user->user_id;
+			
+		//Run the query, storing the results in the variable $posts
+		$posts = DB::instance(DB_NAME)->select_rows($q);
+		
+		//Pass data to the View
+		$this->template->content->tabGuts->myPosts->posts = $posts;
+		
+		echo $this->template;
+		}
 	}
 	
 	public function logout() {
@@ -106,7 +130,8 @@ class users_controller extends base_controller {
 		//delete their token cookie - effectively logging them out
 		setcookie("token", "", strtotime('-1 week'), '/');
 		
-		echo "You have been logged out.";
+		//send them back to the main login page
+		Router::redirect("/index");
 	}
 	
 	public function profile() {
@@ -145,9 +170,5 @@ class users_controller extends base_controller {
 		
 		echo $this->template;
 		}
-	
-	
-	
-		
 	
 }

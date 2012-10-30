@@ -36,11 +36,19 @@ class posts_controller extends base_controller {
 		#Remove the final comma
 		$connections_string = substr($connections_string, 0, -1);
 		
-		#Build our query to grab the posts
-		$q = "SELECT *
-			FROM posts
-			JOIN users USING (user_id)
-			WHERE posts.user_id IN (".$connections_string.")"; #This is where we use that string of user_ids we created
+		#If user isn't following anyone yet, prevent a SQL error
+		if (empty($connections_string)) {
+			$this->template->content->show_no_posts_message = TRUE;
+		} else {
+			
+			$this->template->content->show_no_posts_message = FALSE;
+			
+			#Build our query to grab the posts
+			$q = "SELECT *
+				FROM posts
+				JOIN users USING (user_id)
+				WHERE posts.user_id IN (".$connections_string.")"; #This is where we use that string of user_ids we created
+		}
 			
 		#Run our query, store the results in the variable $posts
 		$posts = DB::instance(DB_NAME)->select_rows($q);
@@ -67,6 +75,13 @@ class posts_controller extends base_controller {
 			
 		//Run the query, storing the results in the variable $posts
 		$posts = DB::instance(DB_NAME)->select_rows($q);
+		
+		//If $posts is empty, user hasn't made any posts yet
+		if(empty($posts)) {
+			$template->show_no_posts_message = TRUE;
+		} else {
+			$template->show_no_posts_message = FALSE;
+		}
 		
 		//Pass data to the View
 		$template->posts = $posts;
@@ -101,6 +116,7 @@ class posts_controller extends base_controller {
 		#Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
 		DB::instance(DB_NAME)->insert('posts', $_POST);
 		
+		//refreshes the user's profile
 		Router::redirect("/users/profile");
 			
 	}

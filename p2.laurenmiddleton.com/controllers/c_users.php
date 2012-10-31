@@ -88,31 +88,8 @@ class users_controller extends base_controller {
 			//store this token in a cookie
 			@setcookie("token", $token, strtotime('+1 year'), '/');
 			
-			//they are logged in, bring them to their profile
-		$this->template->header = View::instance('v_header');
-		//show logged in header
-		$this->template->header->welcome = View::instance('v_header_welcome');
-		$this->template->footer = View::instance('v_footer');
-		$this->template->content = View::instance('v_main_content');
-		$this->template->content->nav = View::instance('v_nav');
-		$this->template->content->tabGuts = View::instance('v_nav_my_profile');
-		$this->template->content->tabGuts->addPost = View::instance('v_posts_add');
-		$this->template->content->tabGuts->myPosts = View::instance('v_posts_my_posts');
-		$this->template->title = "MicroBlog";
-		
-		//Builds a query to grab all posts by this user
-		$q = "SELECT *
-			FROM posts
-			JOIN users USING (user_id)
-			WHERE user_id = ".$this->user->user_id;
-			
-		//Run the query, storing the results in the variable $posts
-		$posts = DB::instance(DB_NAME)->select_rows($q);
-		
-		//Pass data to the View
-		$this->template->content->tabGuts->myPosts->posts = $posts;
-		
-		echo $this->template;
+			//send them to their profile
+			Router::redirect("/users/profile");
 		}
 	}
 	
@@ -134,6 +111,7 @@ class users_controller extends base_controller {
 		Router::redirect("/index");
 	}
 	
+	
 	public function profile() {
 		//if user is blank, they're not logged in; redirect to login/registration page
 		if(!$this->user) {
@@ -142,7 +120,6 @@ class users_controller extends base_controller {
 			//return will force this method to exit here so the rest of the code won't be executed and the profile view won't be displayed
 			return false;
 		}
-		
 		
 		//they are logged in, bring them to their profile
 		$this->template->header = View::instance('v_header');
@@ -165,10 +142,19 @@ class users_controller extends base_controller {
 		//Run the query, storing the results in the variable $posts
 		$posts = DB::instance(DB_NAME)->select_rows($q);
 		
+		//If $posts is empty, user hasn't made any posts yet
+		if(empty($posts)) {
+			$this->template->content->tabGuts->myPosts->show_no_posts_message = TRUE;
+		} else {
+			$this->template->content->tabGuts->myPosts->show_no_posts_message = FALSE;
+		}
+		
 		//Pass data to the View
 		$this->template->content->tabGuts->myPosts->posts = $posts;
 		
 		echo $this->template;
+		
+		
 		}
 	
 }

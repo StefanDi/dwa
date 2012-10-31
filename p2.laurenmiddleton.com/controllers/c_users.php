@@ -134,7 +134,8 @@ class users_controller extends base_controller {
 		$this->template->title = "MicroBlog";
 		
 		//Builds a query to grab all posts by this user
-		$q = "SELECT *
+		#Selects everything in 'posts' and select fields in 'users' (so 'created' is unambiguous)
+		$q = "SELECT posts.*, users.user_id, users.first_name, users.last_name
 			FROM posts
 			JOIN users USING (user_id)
 			WHERE user_id = ".$this->user->user_id;

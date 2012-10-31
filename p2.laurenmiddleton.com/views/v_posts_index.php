@@ -9,8 +9,12 @@
 	<? if($post['user_id'] == $user->user_id): ?>
 		<div class="my-post-parent">
 			<h3>
-				<?=$post['first_name']?> <?=$post['last_name']?> <span class="post-timestamp">posted <?=Time::display($post['created'], "", "America/New_York")?>:</span>
+				<?=$post['first_name']?> <?=$post['last_name']?>
 			</h3>
+			<span class="post-timestamp">
+				posted <?=Time::display($post['created'], "", "America/New_York")?>
+			</span>
+			<br><br>
 			<?=$post['content']?>
 		</div>
 	
@@ -18,8 +22,12 @@
 	<? else: ?>
 		<div class="other-post-parent">
 			<h3>
-				<?=$post['first_name']?> <?=$post['last_name']?> <span class="post-timestamp">posted <?=Time::time_ago($post['created'], "-1")?>:</span>
+				<?=$post['first_name']?> <?=$post['last_name']?>
 			</h3>
+			<span class="post-timestamp">
+				posted <?=Time::display($post['created'], "", "America/New_York")?>
+			</span>
+			<br><br>
 			<?=$post['content']?>
 		</div>
 	<? endif; ?>

@@ -12,7 +12,7 @@ class posts_controller extends base_controller {
 		
 	}
 	
-	//spits out posts of users followed by this user
+	//spits out posts of users followed by this user (My Feed)
 	public function index() {
 	
 		#Set up view
@@ -44,7 +44,8 @@ class posts_controller extends base_controller {
 			$this->template->content->show_no_posts_message = FALSE;
 			
 			#Build our query to grab the posts
-			$q = "SELECT *
+			#Selects everything in 'posts' and select fields in 'users' (so 'created' is unambiguous)
+			$q = "SELECT posts.*, users.user_id, users.first_name, users.last_name
 				FROM posts
 				JOIN users USING (user_id)
 				WHERE posts.user_id IN (".$connections_string.")"; #This is where we use that string of user_ids we created
@@ -68,7 +69,8 @@ class posts_controller extends base_controller {
 		$template = View::instance('v_posts_my_posts');
 		
 		//Builds a query to grab all posts by this user
-		$q = "SELECT *
+		#Selects everything in 'posts' and select fields in 'users' (so 'created' is unambiguous)
+		$q = "SELECT posts.*, users.user_id, users.first_name, users.last_name
 			FROM posts
 			JOIN users USING (user_id)
 			WHERE user_id = ".$this->user->user_id;

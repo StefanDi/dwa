@@ -6,10 +6,16 @@
 <? foreach($posts as $post): ?>
 
 	<div class="my-post-parent">
+		<span id="pid<?=$post['post_id']?>" class="delete-post-btn">
+			<a href="">x</a>
+		</span>
 		<h3>
-			<?=$post['first_name']?> <?=$post['last_name']?> @ <?=$post['created']?>:
-			<span id="pid<?=$post['post_id']?>" class="delete-post-btn"><a href="">x</a></span>
+			<?=$post['first_name']?> <?=$post['last_name']?>
 		</h3>
+		<span class="post-timestamp">
+			posted <?=Time::display($post['created'], "", "America/New_York")?>
+		</span>
+		<br><br>
 		<?=$post['content']?>
 	</div>
 	

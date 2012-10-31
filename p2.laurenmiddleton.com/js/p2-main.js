@@ -45,7 +45,8 @@ $(document).ready(function() {
 	
 	
 	//refresh only My Profile guts when post is added
-	$("#add-post-submit").click(function(event) {
+	//this isn't currently working properly - maybe I have to remove the url action from the button and put it here in the ajax instead
+	$("#add-post-submit").click(function(event) {	
 		$.ajax({
 			type: 'POST',
 			url: '/posts/my_posts',

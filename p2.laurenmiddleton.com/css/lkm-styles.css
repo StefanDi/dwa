@@ -4,7 +4,7 @@ html {
   font-family: "Arial", "Helvetica", sans-serif;
 }
 body {
-  background-color: #ffe4e1;
+  background-color: #f6ccda;
   margin-left: auto;
   margin-right: auto;
   width: 700px;
@@ -64,6 +64,7 @@ a:hover {
   background-color: #fffafa;
   border: dotted 1px #333333;
   height: 75px;
+  margin-top: 30px;
   width: 100%;
 }
 #main-container {
@@ -104,12 +105,12 @@ a:hover {
   font-size: .8em;
 }
 #tab-guts-container {
-  border-top: solid 1px green;
+  border-top: solid 1px grey;
   float: left;
-  height: 300px;
+  height: 350px;
   overflow: auto;
   padding: 20px;
-  width: 450px;
+  width: 490px;
 }
 #footer {
   background-color: #fffafa;
@@ -139,18 +140,20 @@ a:hover {
 }
 ul.nav {
   border-left: solid 1px white;
-  border-top: solid 1px green;
+  border-top: solid 1px grey;
   width: 160px;
 }
 .nav-bottom {
-  border-right: solid 1px green;
-  height: 100px;
-  width: 160px;
+  background-color: #fffafa;
+  border-left: solid 1px white;
+  border-right: solid 1px grey;
+  height: 169px;
+  width: 159px;
 }
 .nav-link {
-  background-color: pink;
-  border-bottom: solid 1px green;
-  border-right: solid 1px green;
+  background-color: #eed2ee;
+  border-bottom: solid 1px grey;
+  border-right: solid 1px grey;
   padding: 10px;
 }
 .nav-link-hover {

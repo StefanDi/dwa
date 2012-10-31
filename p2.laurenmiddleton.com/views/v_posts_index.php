@@ -1,6 +1,6 @@
 <!--If the user isn't following anyone yet, prevent a SQL error-->
 <? if($show_no_posts_message): ?>
-	You aren't following anyone yet! Find some friends <a href="/posts/users">here</a>.
+	You aren't following anyone yet! Find some friends <a id="all-users-here-link" href="">here</a>.
 <? endif; ?>
 
 <? foreach($posts as $post): ?>

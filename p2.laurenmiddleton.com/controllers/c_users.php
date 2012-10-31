@@ -50,14 +50,19 @@ class users_controller extends base_controller {
 		//put the registration data in the database
 		$user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 		
-		echo "You're signed up";
+		//send them to the login page
+		Router::redirect("/users/login");
 	}
 	
-	public function login() {
+	public function login($error = NULL) {
 		//setup view
 		$this->template->header = View::instance('v_header');
 		$this->template->footer = View::instance('v_footer');
 		$this->template->content = View::instance('v_users_login');
+		
+		//pass data to the view
+		$this->template->content->error = $error;
+		
 		//render template
 		echo $this->template;
 	}
@@ -80,13 +85,13 @@ class users_controller extends base_controller {
 		
 		//if we didn't get a token back, login failed
 		if(!$token) {
-			//send them back to the login page (change to show div w/ error)
-			Router::redirect("/users/login");
+			//send them back to the login page w/ the error parameter
+			Router::redirect("/users/login/error");
 			
 		//but if we did, login succeeded!
 		} else {
 			//store this token in a cookie
-			@setcookie("token", $token, strtotime('+1 year'), '/');
+			@setcookie("token", $token, strtotime('+1 week'), '/');
 			
 			//send them to their profile
 			Router::redirect("/users/profile");

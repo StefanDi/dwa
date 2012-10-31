@@ -26,9 +26,11 @@
 					<label for="password-login" class="login-label">Password:</label>
 					<input id="password-login" type="password" name="password" />
 				</li>
-				<li class="error-message"> <!--only appears when error is thrown. consider separate file for all possible error messages, correct one gets plunked in-->
-					Incorrect email and password combination. Please try again.
-				</li>
+				<? if($error): ?>
+					<li class="error-message"> <!--only appears when error is thrown. consider separate file for all possible error messages, correct one gets plunked in-->
+						Incorrect email and password combination. Please try again.
+					</li>
+				<? endif; ?>
 				<li>
 					<label for="login-submit" class="off-screen">Log In</label> <!--label included for accessiblity, but hidden offscreen-->
 					<input id="login-submit" type="submit" value="Log In" />

@@ -10,6 +10,7 @@ $(document).ready(function() {
 		$("#registration-container").show();
 	});
 	
+	//this isn't working correctly
 	$(".follow-link").click(function(event) {
 		//event.preventDefault(); //prevents reloading of the page
 		$.ajax({
@@ -19,24 +20,6 @@ $(document).ready(function() {
 			},
 			success: function(response) {
 				$('#tab-guts-container').html(response);
-			},
-			data: {
-			},
-		});
-	});
-	
-	$(".delete-post-btn").click(function(event) {
-		event.preventDefault(); //prevents reloading of the page
-		
-		var currentId = $(this).attr('id');
-		
-		$.ajax({
-			type: 'POST',
-			url: '/posts/delete/$currentId',
-			beforeSend: function() {
-			},
-			success: function(response) {
-				$('#my-posts-container').html(response);
 			},
 			data: {
 			},

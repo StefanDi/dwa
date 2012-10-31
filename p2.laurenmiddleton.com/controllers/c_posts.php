@@ -123,11 +123,19 @@ class posts_controller extends base_controller {
 			
 	}
 	
-	public function delete($id) {
-		//remove the letters in front of the actual id
+	#Deletes the post w/ id passed in as a parameter
+	public function delete($post_id_deleted) {
+		#Define the parameters for the query
+		$table = 'posts';
+		$where_condition = "WHERE post_id = ".$post_id_deleted;
+				
+		#Execute the query to delete the post
+		DB::instance(DB_NAME)->delete($table, $where_condition);
 		
-		//delete the post with the parameter id out of the database
+		#Send the user back to their profile
+		Router::redirect('/users/profile');
 	}
+	
 	
 	//spits out list of all users w/ follow/unfollow buttons
 	public function users() {
@@ -176,7 +184,7 @@ class posts_controller extends base_controller {
 		DB::instance(DB_NAME)->insert('users_users', $data);
 		
 		#Send them back
-		Router::redirect("/posts/users");
+		//Router::redirect("/posts/users");
 	
 	}
 	

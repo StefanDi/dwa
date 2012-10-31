@@ -6,8 +6,8 @@
 <? foreach($posts as $post): ?>
 
 	<div class="my-post-parent">
-		<span id="pid<?=$post['post_id']?>" class="delete-post-btn">
-			<a href="">x</a>
+		<span class="delete-post-btn">
+			<a href="/posts/delete/<?=$post['post_id']?>">x</a>
 		</span>
 		<h3>
 			<?=$post['first_name']?> <?=$post['last_name']?>

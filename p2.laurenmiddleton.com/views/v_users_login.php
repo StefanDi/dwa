@@ -63,15 +63,16 @@
 						<input id="password-register" type="password" name="password">
 					</li>
 					
-					<li class="success-message">
-						Registration successful! Please log in above.
-					</li>
-					
+					<? if($signup_success): ?>
+						<li class="success-message">
+							Registration successful! Please log in above.
+						</li>
+					<? endif; ?>					
 					
 					<? if($signup_error): ?>
 						<li class="error-message">
-						This email is already registered. Please use another.
-						</li>
+							This email is already registered. Please use another.
+						</li>	
 					<? endif; ?>
 					
 					

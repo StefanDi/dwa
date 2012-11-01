@@ -21,7 +21,20 @@ class users_controller extends base_controller {
 		
 	}
 	
-	##got rid of 'signup' method b/c it was just a duplicate of the login method view
+	public function signup($signup_error = NULL, $signup_success = NULL, $error = NULL) {
+		//setup view
+		$this->template->header = View::instance('v_header');
+		$this->template->footer = View::instance('v_footer');
+		$this->template->content = View::instance('v_users_login');
+		
+		//pass data to the view
+		$this->template->content->error = $error;
+		$this->template->content->signup_error = $signup_error;
+		$this->template->content->signup_success = $signup_success;
+		
+		//render template
+		echo $this->template;
+	}
 	
 	//submits the registration form
 	public function p_signup() {
@@ -38,39 +51,31 @@ class users_controller extends base_controller {
 		$_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
 		
 		//check to see if email entered matches an email in the DB
-			#Build query to DB for all emails
-			$q = "SELECT users.email
-				FROM users";
+			#Build query to DB to see if there is a matching email
+
+			$q = "SELECT email
+				FROM users
+				WHERE email = '".$_POST['email']."'";
 			
 			#Run query and store in an array
-			$emails = DB::instance(DB_NAME)->select_rows($q);
+			$matches = DB::instance(DB_NAME)->select_rows($q);
 		
-			#For each email, see if it matches email just entered into $_POST
-			#initialize variable
-			$match = FALSE;
-			foreach($emails as $email) {
-				echo $email['email'];
-				if($email == $_POST['email']) {
-					#There is a match
-					$match = TRUE;
-					return false;
-				}
-			}
-			
-			if($match) {
-				//send them back to the login page w/ the error parameter
-				Router::redirect("/users/login/signup_error");
-			}
-					
-				//but if no match, signup succeeds!
+			#If matches is empty, signup succeeds
+			if(empty($matches)) {
 				//put the registration data in the database
 				$user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 			
 				//send them to the login page
-				Router::redirect("/users/login");
+				Router::redirect("/users/signup/signup_success");
+			} else {
+				#Otherwise, there is a match and signup fails
+				//send them back to the login page w/ the error parameter
+				Router::redirect("/users/signup/signup_error");
+			}
+			
 	}
 	
-	public function login($error = NULL, $signup_error = NULL) {
+	public function login($error = NULL, $signup_error = NULL, $signup_success = NULL) {
 		//setup view
 		$this->template->header = View::instance('v_header');
 		$this->template->footer = View::instance('v_footer');
@@ -79,6 +84,7 @@ class users_controller extends base_controller {
 		//pass data to the view
 		$this->template->content->error = $error;
 		$this->template->content->signup_error = $signup_error;
+		$this->template->content->signup_success = $signup_success;
 		
 		//render template
 		echo $this->template;

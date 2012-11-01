@@ -4,8 +4,8 @@
 		<h2>Features</h2>
 		<ul>
 			<li>Create your own account</li>
-			<li>Upload a profile picture</li>
-			<li>Create posts</li>
+			<li>Add and delete posts</li>
+			<li>View your profile</li>
 			<li>Follow your friends' posts</li>
 			<li>Customize your feed</li>
 		</ul>

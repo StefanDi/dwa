@@ -25,6 +25,10 @@ h3 {
   font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
   margin: 0px;
 }
+span.breadcrumb {
+  color: red;
+  font-size: 12px;
+}
 .ul-basic {
   list-style-type: none;
   padding: 0;

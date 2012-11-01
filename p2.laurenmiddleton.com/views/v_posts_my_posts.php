@@ -7,7 +7,7 @@
 
 	<div class="my-post-parent">
 		<span class="delete-post-btn">
-			<a href="/posts/delete/<?=$post['post_id']?>">x</a>
+			<a href="/posts/delete/<?=$post['post_id']?>" title="Delete post">x</a>
 		</span>
 		<h3>
 			<?=$post['first_name']?> <?=$post['last_name']?>

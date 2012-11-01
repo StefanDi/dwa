@@ -1,3 +1,5 @@
+<span class="breadcumb">My Profile</span>
+
 <h2>
 <div id="user-name-container">
 	<?=$user->first_name?> <?=$user->last_name?>

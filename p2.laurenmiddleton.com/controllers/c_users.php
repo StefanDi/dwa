@@ -156,10 +156,10 @@ class users_controller extends base_controller {
 		$this->template->footer = View::instance('v_footer');
 		$this->template->content = View::instance('v_main_content');
 		$this->template->content->nav = View::instance('v_nav');
-		$this->template->content->tabGuts = View::instance('v_nav_my_profile');
+		$this->template->content->tabGuts = View::instance('v_users_profile');
 		$this->template->content->tabGuts->addPost = View::instance('v_posts_add');
 		$this->template->content->tabGuts->myPosts = View::instance('v_posts_my_posts');
-		$this->template->title = "MicroBlog";
+		$this->template->title = "MicroBlog - My Profile";
 		
 		//Builds a query to grab all posts by this user
 		#Selects everything in 'posts' and select fields in 'users' (so 'created' is unambiguous)

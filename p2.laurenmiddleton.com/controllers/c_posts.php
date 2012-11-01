@@ -15,7 +15,14 @@ class posts_controller extends base_controller {
 	public function index() {
 	
 		#Set up view
-		$this->template->content = View::instance('v_posts_index');
+		$this->template->header = View::instance('v_header');
+		//show logged in header
+		$this->template->header->welcome = View::instance('v_header_welcome');
+		$this->template->footer = View::instance('v_footer');
+		$this->template->content = View::instance('v_main_content');
+		$this->template->content->nav = View::instance('v_nav');
+		$this->template->content->tabGuts = View::instance('v_posts_index');
+		$this->template->title = "MicroBlog - My Feed";
 		
 		#Build a query of the users this user is following
 		$q = "SELECT *
@@ -37,10 +44,10 @@ class posts_controller extends base_controller {
 		
 		#If user isn't following anyone yet, prevent a SQL error
 		if (empty($connections_string)) {
-			$this->template->content->show_no_follows_message = TRUE;
+			$this->template->content->tabGuts->show_no_follows_message = TRUE;
 		} else {
 			
-			$this->template->content->show_no_follows_message = FALSE;
+			$this->template->content->tabGuts->show_no_follows_message = FALSE;
 			
 			#Build our query to grab the posts
 			#Selects everything in 'posts' and select fields in 'users' (so 'created' is unambiguous)
@@ -55,14 +62,14 @@ class posts_controller extends base_controller {
 		
 		#If $posts is empty, show a message
 		if(empty($posts)) {
-			$this->template->content->show_no_posts_message = TRUE;
+			$this->template->content->tabGuts->show_no_posts_message = TRUE;
 		} else {
 		
-			$this->template->content->show_no_posts_message = FALSE;
+			$this->template->content->tabGuts->show_no_posts_message = FALSE;
 		}
 		
 		#Pass data to the view
-		$this->template->content->posts = $posts;
+		$this->template->content->tabGuts->posts = $posts;
 		
 		#Render view
 		echo $this->template;
@@ -147,9 +154,15 @@ class posts_controller extends base_controller {
 	//spits out list of all users w/ follow/unfollow buttons
 	public function users() {
 	
-		#Set up the view
-		$this->template->content = View::instance("v_posts_users");
-		$this->template->title   = "Users";
+		#Set up view
+		$this->template->header = View::instance('v_header');
+		//show logged in header
+		$this->template->header->welcome = View::instance('v_header_welcome');
+		$this->template->footer = View::instance('v_footer');
+		$this->template->content = View::instance('v_main_content');
+		$this->template->content->nav = View::instance('v_nav');
+		$this->template->content->tabGuts = View::instance('v_posts_users');
+		$this->template->title = "Microblog - All Users";
 		
 		#Build our query to get all the users
 		$q = "SELECT *
@@ -170,8 +183,8 @@ class posts_controller extends base_controller {
 		$connections = DB::instance(DB_NAME)->select_array($q, 'user_id_followed');
 		
 		#Pass data (users and connections) to the view
-		$this->template->content->users = $users;
-		$this->template->content->connections = $connections;
+		$this->template->content->tabGuts->users = $users;
+		$this->template->content->tabGuts->connections = $connections;
 		
 		#Render the view
 		echo $this->template;

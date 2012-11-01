@@ -18,9 +18,11 @@
 			<label for="password-register" class="login-label">Password:</label>
 			<input id="password-register" type="password" name="password">
 		</li>
-		<li class="success-message">
-			Registration successful! Please log in above.
-		</li>
+		
+			<li class="success-message">
+				Registration successful! Please log in above.
+			</li>
+		
 		<li class="error-message">
 			This email is already registered. Please use another.
 		</li>

@@ -38,9 +38,9 @@
 			</ul>
 		</form>
 		
-		<span class="register-message">Don't have an account yet? <a id="register-link" href="">Register</a></span>
+		<!--<span class="register-message">Don't have an account yet? <a id="register-link" href="">Register</a></span>-->
 		
-		<div id="registration-container" class="hidden"> <!--consider factoring out the guts of this div-->
+		<div id="registration-container"> <!--consider factoring out the guts of this div-->
 			
 			<? include 'v_users_signup.php'; ?>
 			

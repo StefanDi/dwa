@@ -28,25 +28,17 @@ function switchNavTabs() {
 		$.ajax({
 			type: 'POST',
 			url: '/nav/my_profile/',
-			beforeSend: function() {
-			},
 			success: function(response) {
 				$('#tab-guts-container').html(response);
-			},
-			data: {
-			},
+			}
 		});
 		
 		$.ajax({
 			type: 'POST',
 			url: '/posts/my_posts',
-			beforeSend: function() {
-			},
 			success: function(response) {
 				$('#my-posts-container').html(response);
-			},
-			data: {
-			},
+			}
 		});
 	});
 	
@@ -55,13 +47,9 @@ function switchNavTabs() {
 		$.ajax({
 			type: 'POST',
 			url: '/posts/index',
-			beforeSend: function() {
-			},
 			success: function(response) {
 				$('#tab-guts-container').html(response);
-			},
-			data: {
-			},
+			}
 		});
 	});
 	
@@ -70,13 +58,9 @@ function switchNavTabs() {
 		$.ajax({
 			type: 'POST',
 			url: '/posts/my_posts',
-			beforeSend: function() {
-			},
 			success: function(response) {
 				$('#tab-guts-container').html(response);
-			},
-			data: {
-			},
+			}
 		});
 	});
 	
@@ -85,13 +69,9 @@ function switchNavTabs() {
 		$.ajax({
 			type: 'POST',
 			url: '/nav/my_follows/',
-			beforeSend: function() {
-			},
 			success: function(response) {
 				$('#tab-guts-container').html(response);
-			},
-			data: {
-			},
+			}
 		});
 	});
 	
@@ -100,13 +80,9 @@ function switchNavTabs() {
 		$.ajax({
 			type: 'POST',
 			url: '/posts/users',
-			beforeSend: function() {
-			},
 			success: function(response) {
 				$('#tab-guts-container').html(response);
-			},
-			data: {
-			},
+			}
 		});
 	});
 	
@@ -115,12 +91,8 @@ function switchNavTabs() {
 		$.ajax({
 			type: 'POST',
 			url: '/nav/customize/',
-			beforeSend: function() {
-			},
 			success: function(response) {
 				$('#tab-guts-container').html(response);
-			},
-			data: {
 			},
 		});
 	});

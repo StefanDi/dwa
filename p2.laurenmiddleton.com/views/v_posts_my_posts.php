@@ -1,6 +1,6 @@
 <!--If the user hasn't made any posts yet, prevent a SQL error-->
 <? if($show_no_posts_message): ?>
-	You haven't posted anything yet!.
+	You haven't posted anything yet!
 <? endif; ?>
 
 <? foreach($posts as $post): ?>

@@ -97,7 +97,7 @@ class users_controller extends base_controller {
 		}
 	}
 	
-	public function logout() {
+	public function logout($logout_success = NULL) {
 		//generate and save a new token for next login
 		$new_token = sha1(TOKEN_SALT.$this->user->email.Utils::generate_random_string());
 		
@@ -111,8 +111,11 @@ class users_controller extends base_controller {
 		//delete their token cookie - effectively logging them out
 		setcookie("token", "", strtotime('-1 week'), '/');
 		
-		//send them back to the main login page
-		Router::redirect("/index");
+		//pass data to the view
+		$this->template->content->success = $logout_success;
+		
+		//send them back to the main login page w/ success parameter
+		Router::redirect("/index/index/logout_success");
 	}
 	
 	

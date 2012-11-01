@@ -37,10 +37,10 @@ class posts_controller extends base_controller {
 		
 		#If user isn't following anyone yet, prevent a SQL error
 		if (empty($connections_string)) {
-			$this->template->content->show_no_posts_message = TRUE;
+			$this->template->content->show_no_follows_message = TRUE;
 		} else {
 			
-			$this->template->content->show_no_posts_message = FALSE;
+			$this->template->content->show_no_follows_message = FALSE;
 			
 			#Build our query to grab the posts
 			#Selects everything in 'posts' and select fields in 'users' (so 'created' is unambiguous)
@@ -52,6 +52,14 @@ class posts_controller extends base_controller {
 			
 		#Run our query, store the results in the variable $posts
 		$posts = DB::instance(DB_NAME)->select_rows($q);
+		
+		#If $posts is empty, show a message
+		if(empty($posts)) {
+			$this->template->content->show_no_posts_message = TRUE;
+		} else {
+		
+			$this->template->content->show_no_posts_message = FALSE;
+		}
 		
 		#Pass data to the view
 		$this->template->content->posts = $posts;

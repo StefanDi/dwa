@@ -1,6 +1,11 @@
 <!--If the user isn't following anyone yet, prevent a SQL error-->
-<? if($show_no_posts_message): ?>
+<? if($show_no_follows_message): ?>
 	You aren't following anyone yet! Find some friends <a id="all-users-here-link" href="">here</a>.
+<? endif; ?>
+
+<!--If the user's followers haven't made any posts, show a message-->
+<? if($show_no_posts_message): ?>
+	No one has posted yet!
 <? endif; ?>
 
 <? foreach($posts as $post): ?>

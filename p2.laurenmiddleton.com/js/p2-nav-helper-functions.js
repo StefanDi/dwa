@@ -27,7 +27,7 @@ function switchNavTabs() {
 	$("#my-profile-link").click(function(event) {
 		$.ajax({
 			type: 'POST',
-			url: '/nav/my_profile/',
+			url: '/nav/my_profile',
 			success: function(response) {
 				$('#tab-guts-container').html(response);
 			}

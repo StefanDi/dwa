@@ -21,16 +21,7 @@ class users_controller extends base_controller {
 		
 	}
 	
-	public function signup() {
-	
-		//set up view
-		$this->template->header = View::instance('v_header');
-		$this->template->footer = View::instance('v_footer');
-		$this->template->content = View::instance('v_users_login');
-		//render template
-		echo $this -> template;
-		
-	}
+	##got rid of 'signup' method b/c it was just a duplicate of the login method view
 	
 	//submits the registration form
 	public function p_signup() {
@@ -46,14 +37,40 @@ class users_controller extends base_controller {
 		$_POST['modified'] = Time::now();
 		$_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
 		
-		//put the registration data in the database
-		$user_id = DB::instance(DB_NAME)->insert('users', $_POST);
+		//check to see if email entered matches an email in the DB
+			#Build query to DB for all emails
+			$q = "SELECT users.email
+				FROM users";
+			
+			#Run query and store in an array
+			$emails = DB::instance(DB_NAME)->select_rows($q);
 		
-		//send them to the login page
-		Router::redirect("/users/login");
+			#For each email, see if it matches email just entered into $_POST
+			#initialize variable
+			$match = FALSE;
+			foreach($emails as $email) {
+				echo $email['email'];
+				if($email == $_POST['email']) {
+					#There is a match
+					$match = TRUE;
+					return false;
+				}
+			}
+			
+			if($match) {
+				//send them back to the login page w/ the error parameter
+				Router::redirect("/users/login/signup_error");
+			}
+					
+				//but if no match, signup succeeds!
+				//put the registration data in the database
+				$user_id = DB::instance(DB_NAME)->insert('users', $_POST);
+			
+				//send them to the login page
+				Router::redirect("/users/login");
 	}
 	
-	public function login($error = NULL) {
+	public function login($error = NULL, $signup_error = NULL) {
 		//setup view
 		$this->template->header = View::instance('v_header');
 		$this->template->footer = View::instance('v_footer');
@@ -61,6 +78,7 @@ class users_controller extends base_controller {
 		
 		//pass data to the view
 		$this->template->content->error = $error;
+		$this->template->content->signup_error = $signup_error;
 		
 		//render template
 		echo $this->template;
@@ -97,7 +115,7 @@ class users_controller extends base_controller {
 		}
 	}
 	
-	public function logout($logout_success = NULL) {
+	public function logout() {
 		//generate and save a new token for next login
 		$new_token = sha1(TOKEN_SALT.$this->user->email.Utils::generate_random_string());
 		
@@ -111,11 +129,8 @@ class users_controller extends base_controller {
 		//delete their token cookie - effectively logging them out
 		setcookie("token", "", strtotime('-1 week'), '/');
 		
-		//pass data to the view
-		$this->template->content->success = $logout_success;
-		
 		//send them back to the main login page w/ success parameter
-		Router::redirect("/index/index/logout_success");
+		Router::redirect("/index/index");
 	}
 	
 	

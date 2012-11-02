@@ -23,7 +23,7 @@
 	
 </head>
 
-<body class="<?=@$body_class?>">	
+<body>	
 
 		<?=@$header;?>
 	

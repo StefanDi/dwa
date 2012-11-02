@@ -49,6 +49,9 @@ class users_controller extends base_controller {
 		$_POST['modified'] = Time::now();
 		$_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
 		
+		//sanitize the user entered data
+		$_POST = DB::instance(DB_NAME)->sanitize($_POST);
+		
 		//check to see if email entered matches an email in the DB
 			#Build query to DB to see if there is a matching email
 

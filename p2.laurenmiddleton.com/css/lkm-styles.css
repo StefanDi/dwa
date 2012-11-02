@@ -4,11 +4,18 @@ html {
   font-family: "Arial", "Helvetica", sans-serif;
 }
 body {
-  background-color: #f6ccda;
+  /*background-color: @background;*/
+
   box-shadow: 5px 10px 20px 15px #9D6B84;
   margin-left: auto;
   margin-right: auto;
   width: 700px;
+}
+.pink {
+  background-color: pink;
+}
+.green {
+  background-color: green;
 }
 h1 {
   float: left;
@@ -25,9 +32,14 @@ h3 {
   font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
   margin: 0px;
 }
+h4 {
+  font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
+  font-size: .8em;
+}
 span.breadcrumb {
-  color: red;
+  color: #008080;
   font-size: 12px;
+  text-decoration: underline;
 }
 .ul-basic {
   list-style-type: none;
@@ -59,11 +71,14 @@ span.breadcrumb {
 }
 a:link,
 a:visited {
-  color: #60affe;
+  color: #0099CC;
   text-decoration: none;
 }
 a:hover {
   color: #333333;
+}
+.follow-link {
+  font-size: .9em;
 }
 #header {
   background-color: #fffafa;
@@ -152,7 +167,7 @@ ul.nav {
   background-color: #fffafa;
   border-left: solid 1px white;
   border-right: solid 1px grey;
-  height: 169px;
+  height: 240px;
   width: 159px;
 }
 .nav-link {

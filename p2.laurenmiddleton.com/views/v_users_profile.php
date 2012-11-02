@@ -1,4 +1,4 @@
-<span class="breadcumb">My Profile</span>
+<span class="breadcrumb">My Profile</span>
 
 <h2>
 <div id="user-name-container">

@@ -1,4 +1,4 @@
-<span class="breadcumb">My Feed</span><br><br>
+<span class="breadcrumb">My Feed</span><br><br>
 
 <!--If the user isn't following anyone yet, prevent a SQL error-->
 <? if($show_no_follows_message): ?>

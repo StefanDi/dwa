@@ -1,4 +1,4 @@
-<span class="breadcumb">All Users</span><br><br>
+<span class="breadcrumb">All Users</span><br><br>
 
 
 <form method='POST' action='/posts/p_follow'>

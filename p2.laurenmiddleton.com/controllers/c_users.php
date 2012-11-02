@@ -185,5 +185,34 @@ class users_controller extends base_controller {
 		
 		
 		}
+		
+	public function settings($message = NULL) {
+	
+		$this->template->header = View::instance('v_header');
+		//show logged in header
+		$this->template->header->welcome = View::instance('v_header_welcome');
+		$this->template->footer = View::instance('v_footer');
+		$this->template->content = View::instance('v_main_content');
+		$this->template->content->nav = View::instance('v_nav');
+		$this->template->content->tabGuts = View::instance('v_users_settings');
+		$this->template->title = "MicroBlog - Settings";
+		
+		$this->template->content->tabGuts->message = $message;
+		
+		echo $this->template;
+	}
+	
+	public function p_change_password() {
+		#Encrypt the new password
+		$new_password = sha1(PASSWORD_SALT.$_POST['new_password']);
+		
+		$data = Array("password" => $new_password);
+		
+		#Update the DB
+		DB::instance(DB_NAME)->update("users", $data, "WHERE token = '".$this->user->token."'");
+		
+		#Send them back with a message
+		Router::redirect("/users/settings/message");
+	}
 	
 }

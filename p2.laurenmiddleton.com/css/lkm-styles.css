@@ -11,12 +11,6 @@ body {
   margin-right: auto;
   width: 700px;
 }
-.pink {
-  background-color: pink;
-}
-.green {
-  background-color: green;
-}
 h1 {
   float: left;
   font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;

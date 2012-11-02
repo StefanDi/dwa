@@ -4,10 +4,10 @@
 		<h2>Features</h2>
 		<ul>
 			<li>Create your own account</li>
+			<li>Update your password</li>
 			<li>Add and delete posts</li>
 			<li>View your profile</li>
 			<li>Follow your friends' posts</li>
-			<li>Customize your feed</li>
 		</ul>
 	
 	</div>
@@ -62,17 +62,16 @@
 						<label for="password-register" class="login-label">Password:</label>
 						<input id="password-register" type="password" name="password">
 					</li>
+								
 					
-					<? if($signup_success): ?>
+					<? if($message == "signup-error"): ?>
+						<li class="error-message">
+							This email is already registered. Please use another.
+						</li>
+					<? elseif ($message == "signup-success"): ?>
 						<li class="success-message">
 							Registration successful! Please log in above.
 						</li>
-					<? endif; ?>					
-					
-					<? if($signup_error): ?>
-						<li class="error-message">
-							This email is already registered. Please use another.
-						</li>	
 					<? endif; ?>
 					
 					

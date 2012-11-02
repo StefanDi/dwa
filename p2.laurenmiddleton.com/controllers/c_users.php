@@ -21,7 +21,7 @@ class users_controller extends base_controller {
 		
 	}
 	
-	public function signup($signup_error = NULL, $signup_success = NULL, $error = NULL) {
+	public function signup($message = NULL, $error = NULL) {
 		//setup view
 		$this->template->header = View::instance('v_header');
 		$this->template->footer = View::instance('v_footer');
@@ -29,15 +29,14 @@ class users_controller extends base_controller {
 		
 		//pass data to the view
 		$this->template->content->error = $error;
-		$this->template->content->signup_error = $signup_error;
-		$this->template->content->signup_success = $signup_success;
+		$this->template->content->message = $message;
 		
 		//render template
 		echo $this->template;
 	}
 	
 	//submits the registration form
-	public function p_signup() {
+	public function p_signup($error = NULL) {
 		
 		//prints what data was submitted to the page
 		//print_r($_POST);
@@ -65,17 +64,42 @@ class users_controller extends base_controller {
 				//put the registration data in the database
 				$user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 			
-				//send them to the login page
-				Router::redirect("/users/signup/signup_success");
+				//setup view
+				$this->template->header = View::instance('v_header');
+				$this->template->footer = View::instance('v_footer');
+				$this->template->content = View::instance('v_users_login');
+				
+				//pass data to the view
+				$this->template->content->error = $error;
+				$this->template->content->message = "signup-success";
+				
+				//render template
+				echo $this->template;
+			
+				//send them to the login page w/ no message
+				//Router::redirect("/users/signup");
 			} else {
 				#Otherwise, there is a match and signup fails
+				
+				//setup view
+				$this->template->header = View::instance('v_header');
+				$this->template->footer = View::instance('v_footer');
+				$this->template->content = View::instance('v_users_login');
+				
+				//pass data to the view
+				$this->template->content->error = $error;
+				$this->template->content->message = "signup-error";
+				
+				//render template
+				echo $this->template;
+				
 				//send them back to the login page w/ the error parameter
-				Router::redirect("/users/signup/signup_error");
+				//Router::redirect("/users/signup/message");
 			}
 			
 	}
 	
-	public function login($error = NULL, $signup_error = NULL, $signup_success = NULL) {
+	public function login($error = NULL, $message = NULL) {
 		//setup view
 		$this->template->header = View::instance('v_header');
 		$this->template->footer = View::instance('v_footer');
@@ -83,8 +107,7 @@ class users_controller extends base_controller {
 		
 		//pass data to the view
 		$this->template->content->error = $error;
-		$this->template->content->signup_error = $signup_error;
-		$this->template->content->signup_success = $signup_success;
+		$this->template->content->message = $message;
 		
 		//render template
 		echo $this->template;

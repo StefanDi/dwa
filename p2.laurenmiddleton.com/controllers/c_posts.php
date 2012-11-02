@@ -11,12 +11,12 @@ class posts_controller extends base_controller {
 		
 	}
 	
-	//spits out posts of users followed by this user (My Feed)
+	#spits out posts of users followed by this user (My Feed)
 	public function index() {
 	
 		#Set up view
 		$this->template->header = View::instance('v_header');
-		//show logged in header
+		#show logged in header
 		$this->template->header->welcome = View::instance('v_header_welcome');
 		$this->template->footer = View::instance('v_footer');
 		$this->template->content = View::instance('v_main_content');
@@ -76,30 +76,30 @@ class posts_controller extends base_controller {
 	
 	}
 	
-	//spits out posts added by this user
+	#spits out posts added by this user
 	public function my_posts() {
 	
 		#Set up view
 		$template = View::instance('v_posts_my_posts');
 		
-		//Builds a query to grab all posts by this user
+		#Builds a query to grab all posts by this user
 		#Selects everything in 'posts' and select fields in 'users' (so 'created' is unambiguous)
 		$q = "SELECT posts.*, users.user_id, users.first_name, users.last_name
 			FROM posts
 			JOIN users USING (user_id)
 			WHERE user_id = ".$this->user->user_id;
 			
-		//Run the query, storing the results in the variable $posts
+		#Run the query, storing the results in the variable $posts
 		$posts = DB::instance(DB_NAME)->select_rows($q);
 		
-		//If $posts is empty, user hasn't made any posts yet
+		#If $posts is empty, user hasn't made any posts yet
 		if(empty($posts)) {
 			$template->show_no_posts_message = TRUE;
 		} else {
 			$template->show_no_posts_message = FALSE;
 		}
 		
-		//Pass data to the View
+		#Pass data to the View
 		$template->posts = $posts;
 		
 		#Render view
@@ -110,16 +110,13 @@ class posts_controller extends base_controller {
 	public function add() {
 	
 		#Setup view
-		//creates a new blank template just for this method
+		#creates a new blank template just for this method
 		$template = View::instance('v_posts_add');
 		echo $template;
 		
 	}
 	
 	public function p_add() {
-		
-		//prints what data was submitted to the page
-		//print_r($_POST);
 		
 		#Associate this post with this user
 		$_POST['user_id'] = $this->user->user_id;
@@ -132,7 +129,7 @@ class posts_controller extends base_controller {
 		#Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
 		DB::instance(DB_NAME)->insert('posts', $_POST);
 		
-		//refreshes the user's profile
+		#refreshes the user's profile
 		Router::redirect("/users/profile");
 			
 	}
@@ -151,12 +148,12 @@ class posts_controller extends base_controller {
 	}
 	
 	
-	//spits out list of all users w/ follow/unfollow buttons
+	#spits out list of all users w/ follow/unfollow buttons
 	public function users() {
 	
 		#Set up view
 		$this->template->header = View::instance('v_header');
-		//show logged in header
+		#show logged in header
 		$this->template->header->welcome = View::instance('v_header_welcome');
 		$this->template->footer = View::instance('v_footer');
 		$this->template->content = View::instance('v_main_content');

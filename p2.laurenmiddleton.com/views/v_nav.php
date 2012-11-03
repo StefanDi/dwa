@@ -3,7 +3,7 @@
 	<a href="/users/profile"><li id="my-profile-link" class="nav-link">My Profile</li></a>
 	<a href="/posts/index"><li id="my-feed-link" class="nav-link">My Feed</li></a>
 	<a href="/posts/users"><li id="all-users-link" class="nav-link">All Users</li></a>
-	<a href="/users/settings"><li id="customize-link" class="nav-link">Customize</li></a>
+	<a href="/users/settings"><li id="settings-link" class="nav-link">Settings</li></a>
 </ul>
 
 <div class="nav-bottom">

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Class Practice</title>
+	
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+	
+	<script type='text/javascript'>
+		$(document).ready(function() {
+		
+			document.getElementById('lucy').style.width = '500px';
+			document.getElementById('lucy').style.backgroundColor = 'red';
+			$('.ricardo').css('background-color', 'yellow');
+		
+		}); //end document.ready
+	</script>
+	
+	<style type='text/css'>
+		#lucy {
+			border: 1px solid black;
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+	
+</head>
+
+<body>
+	<div id='lucy' class='ricardo'></div>
+	<div id='ricky' class='ricardo'></div>
+</body>
+</html>

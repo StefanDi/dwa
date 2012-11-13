@@ -1,5 +1,8 @@
 $(document).ready(function() {
 	
+	//generate nouns
+	generateNouns();
+	
 	$(".accordion-btn").click(function() {
 		//find and store id of the clicked btn
 		var id = $(this).attr("id");
@@ -12,19 +15,25 @@ $(document).ready(function() {
 	$(".draggable").draggable( {
 		containment: "#container",
 		cursor: "move",
+		start: function() {
+			$(this).addClass("dragging");
+		},
 		stop: function() {
 			$(this).draggable( {
 				containment: "#canvas",
 				cursor: "move",
 			});
 		},
+		revert: "invalid",
 	});
 	
 	$("#canvas").droppable( {
 		accept: ".draggable",
+		activeClass: "ui-state-hover",
+        hoverClass: "ui-state-active",
 		drop: function() {
-			$(".draggable").addClass("dropped").appendTo("#canvas");
-			alert("dropped!");
+			$(".dragging").addClass("dropped").removeClass("dragging").appendTo("#canvas");
+			//alert("dropped!");
 		},
 		tolerance: "fit",
 	});

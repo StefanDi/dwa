@@ -1,7 +1,8 @@
 $(document).ready(function() {
 	
-	//generate nouns
-	generateNouns();
+	//generate words
+	generateNouns(nouns);
+	generateVerbs(verbs);
 	
 	$(".accordion-btn").click(function() {
 		//find and store id of the clicked btn

@@ -5,6 +5,9 @@ html {
 h1 {
   font-size: 2em;
 }
+.hidden {
+  display: none;
+}
 #container {
   background-color: pink;
   height: 800px;
@@ -28,12 +31,22 @@ h1 {
   height: 500px;
   width: 70%;
 }
+.accordion-btn {
+  background-color: pink;
+  cursor: pointer;
+}
+.accordion-content {
+  background-color: white;
+  height: 350px;
+}
 #canvas {
   background-color: white;
   height: 300px;
 }
-#draggable {
-  background-color: blue;
+.noun {
+  background-color: yellow;
+}
+.draggable {
   height: 50px;
   width: 50px;
 }

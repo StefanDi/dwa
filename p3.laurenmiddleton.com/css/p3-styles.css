@@ -33,7 +33,12 @@ h1 {
 }
 .accordion-btn {
   background-color: orange;
+  border-bottom: solid 1px white;
   cursor: pointer;
+  padding: 10px;
+}
+.accordion-btn-hover {
+  background-color: white;
 }
 .accordion-content {
   background-color: white;
@@ -52,6 +57,20 @@ h1 {
 }
 .verb {
   background-color: green;
+  border-bottom: solid 3px black;
+  border-left: solid 1px grey;
+  border-right: solid 3px black;
+  border-top: solid 1px grey;
+}
+.adj {
+  background-color: pink;
+  border-bottom: solid 3px black;
+  border-left: solid 1px grey;
+  border-right: solid 3px black;
+  border-top: solid 1px grey;
+}
+.helper {
+  background-color: red;
   border-bottom: solid 3px black;
   border-left: solid 1px grey;
   border-right: solid 3px black;

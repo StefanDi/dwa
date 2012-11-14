@@ -3,14 +3,31 @@ $(document).ready(function() {
 	//generate words
 	generateNouns(nouns);
 	generateVerbs(verbs);
+	generateAdj(adj);
+	generateHelpers(helpers);
+	
+	$(".accordion-btn").hover(function() {
+		$(this).addClass("accordion-btn-hover");
+	}, function() {
+		$(this).removeClass("accordion-btn-hover");
+	});
 	
 	$(".accordion-btn").click(function() {
 		//find and store id of the clicked btn
 		var id = $(this).attr("id");
-		//hide open content div
-		$(".accordion-content").hide();
-		//show the content div that corresponds to the clicked btn
-		$("#" + id + "-content").show();
+		//store id of clicked buttons content div
+		var content = "#" + id + "-content";
+		console.log(content);
+		var display = $(content).css("display");
+		console.log(display)
+		//if clicked btn's content isn't open already...
+		if(display = "none") { //IF STATEMENT CURRENTLY BROKEN
+			//hide open content div
+			$(".accordion-content").hide("blind", 1000);
+			//show the content div that corresponds to the clicked btn
+			$("#" + id + "-content").show("blind", 1000);
+			console.log("the if statement was run");
+		}
 	});
 	
 	$(".draggable").draggable( {
@@ -26,6 +43,7 @@ $(document).ready(function() {
 			});
 		},
 		revert: "invalid",
+		opacity: 0.35,
 	});
 	
 	$("#canvas").droppable( {
@@ -38,45 +56,5 @@ $(document).ready(function() {
 		},
 		tolerance: "fit",
 	});
-	
-	//$("#word-accordion").accordion();
-	
-	//counter = 0;
-	
-	//$(".word").draggable( {
-	//	//appendTo: "#canvas",
-	//	containment: "#container",
-	//	cursor: "move",
-	//	helper: "clone",
-	//	//snap: true,
-	//	start: function() {
-	//		$(this).addClass("dragged");
-	//	},
-	//	stop: function() {
-	//		//$(this).removeClass("word").addClass("word-clone").appendTo("#canvas");
-	//		$(this).draggable({
-	//			containment: "#canvas",
-	//			cursor: "move",
-	//			stop: function() {
-	//				$(this).addClass("ui.helper").appendTo("#canvas");
-	//			},
-	//		});
-	//	},
-	//});
-	
-	//$(".word-clone").draggable( {
-	//	containment: "#canvas",
-	//	cursor: "move",
-		
-	//});
-	
-	//$("#canvas").droppable( {
-	//	accept: ".word",
-	//	drop: function() {
-	//		$(".dragged").removeClass("word dragged").addClass("word-clone dropped").appendTo("#canvas");
-	//		alert("dropped!");
-	//	},
-	//	tolerance: "fit",
-	//});
 
 }); //end document ready

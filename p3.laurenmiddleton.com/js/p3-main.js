@@ -6,12 +6,16 @@ $(document).ready(function() {
 	generateAdj(adj);
 	generateHelpers(helpers);
 	
+	
+	
+	/*sets accordion hover*/
 	$(".accordion-btn").hover(function() {
 		$(this).addClass("accordion-btn-hover");
 	}, function() {
 		$(this).removeClass("accordion-btn-hover");
 	});
 	
+	/*sets accordion btn click*/
 	$(".accordion-btn").click(function() {
 		//find and store id of the clicked btn
 		var id = $(this).attr("id");
@@ -30,31 +34,64 @@ $(document).ready(function() {
 		}
 	});
 	
-	$(".draggable").draggable( {
-		containment: "#container",
-		cursor: "move",
-		start: function() {
-			$(this).addClass("dragging");
-		},
-		stop: function() {
-			$(this).draggable( {
-				containment: "#canvas",
-				cursor: "move",
-			});
-		},
-		revert: "invalid",
-		opacity: 0.35,
+	/*sets word hover*/
+	//$(".word").hover(function() {
+	//	//store original background color
+	//	var color = $(this).css("background-color");
+	//	console.log (color);
+	//	$(this).css("background-color", "white");
+	//	}, function() {
+	//	$(this).css("background-color", color);
+	//});
+	
+	/*sets word click*/
+	$(".word").click(function() {
+		$(this).appendTo("#canvas").css("position", "absolute").addClass("placed draggable");
+		//enable dragging for the clicked word
+		setDraggable(this);
+		setPendingDelete(this)
 	});
 	
-	$("#canvas").droppable( {
-		accept: ".draggable",
-		activeClass: "ui-state-hover",
-        hoverClass: "ui-state-active",
-		drop: function() {
-			$(".dragging").addClass("dropped").removeClass("dragging").appendTo("#canvas");
-			//alert("dropped!");
-		},
-		tolerance: "fit",
-	});
+	
+	
+	
+	
+	
+	//$("#canvas").droppable( {
+	//	accept: ".word",
+	//	activeClass: "ui-state-hover",
+    //   hoverClass: "ui-state-active",
+	//	drop: function() {
+	//		$(".dragging").addClass("dropped").removeClass("dragging").appendTo("#canvas").css("position", "absolute");
+	//		//alert("dropped!");
+	//	},
+	//	tolerance: "fit",
+	//});
+	
+	//$("#nouns-content").droppable( {
+	//	accept: ".noun",
+	//	activeClass: "ui-state-hover",
+    //    hoverClass: "ui-state-active",
+	//	drop: function() {
+	//		$(".dragging").removeClass("dragging").removeClass("dropped").css("position", "static").appendTo("#nouns-content");
+	//		//alert("dropped!");
+	//	},
+	//	tolerance: "fit",
+	//});
+	
+	//$("#trash").droppable( {
+	//	accept: ".draggable",
+	//	activeClass: "ui-state-hover",
+    //    hoverClass: "ui-state-active",
+	//	drop: function() {
+			//find what type of word it is
+			//var noun = $(".dragging").hasClass("noun");
+			//if(noun) {
+	//			$(".dragging").removeClass("dragging").removeClass("dropped").appendTo("#nouns-content");
+	//			alert("dropped!");
+			//}
+	//	},
+	//	tolerance: "fit",
+	//});
 
 }); //end document ready

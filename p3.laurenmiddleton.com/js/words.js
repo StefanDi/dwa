@@ -67,23 +67,23 @@ function setDraggable(clickedWord) {
 	//});
 }
 
-function setPendingDelete(clickedWord) {
+//function setPendingDelete(clickedWord) {
 	/*sets style of clicked word pending deletion*/
 	//may need to use live click on this one
-	$("#canvas > .placed").click(function() {
-		console.log("placed clicked");
-		$(this).css("border", "solid 3px red");
-		$(this).addClass("pending-delete");
-		setDeselectDelete(this);
-	});
-}
+//	$("#canvas > .placed").click(function() {
+//		console.log("placed clicked");
+//		$(this).css("border", "solid 3px red");
+//		$(this).addClass("pending-delete");
+//		setDeselectDelete(this);
+//	});
+//}
 
-function setDeselectDelete(word) {
-	$(word).click(function() {
-		$(this).css("border", "solid 1px black");
-		//setPendingDelete(word);
-	});
-}
+//function setDeselectDelete(word) {
+//	$(word).click(function() {
+//		$(this).css("border", "solid 1px black");
+//		setPendingDelete(word);
+//	});
+//}
 
 /*find positions of each dropped element and store in an array*/
 function createPositionsArray() {

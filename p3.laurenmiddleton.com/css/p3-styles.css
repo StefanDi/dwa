@@ -93,3 +93,22 @@ h1 {
   padding-top: 7px;
   width: autp;
 }
+#trash {
+  background-color: black;
+  color: white;
+  float: right;
+  height: 100px;
+  width: 100px;
+}
+#print-btn {
+  background-color: pink;
+  display: inline-block;
+  float: left;
+  padding: 5px;
+}
+#clear-btn {
+  background-color: pink;
+  display: inline-block;
+  float: right;
+  padding: 5px;
+}

@@ -46,13 +46,21 @@ $(document).ready(function() {
 	
 	/*sets word click*/
 	$(".word").click(function() {
-		$(this).appendTo("#canvas").css("position", "absolute").addClass("placed draggable");
-		//enable dragging for the clicked word
-		setDraggable(this);
-		setPendingDelete(this)
+		//store a clone of the clicked element
+		var word = $(this).clone();
+		console.log(word);
+		//append the clone to the canvas
+		$(word).appendTo("#canvas").css("position", "absolute").addClass("placed draggable");
+		//enable dragging for the cloned word
+		setDraggable(word);
+		//setPendingDelete(this);
+		//setDeselectDelete(this);
 	});
 	
-	
+	/*sets clear btn*/
+	$("#clear-btn").click(function() {
+		$(".placed").remove();
+	});
 	
 	
 	
@@ -79,19 +87,15 @@ $(document).ready(function() {
 	//	tolerance: "fit",
 	//});
 	
-	//$("#trash").droppable( {
-	//	accept: ".draggable",
-	//	activeClass: "ui-state-hover",
-    //    hoverClass: "ui-state-active",
-	//	drop: function() {
-			//find what type of word it is
-			//var noun = $(".dragging").hasClass("noun");
-			//if(noun) {
-	//			$(".dragging").removeClass("dragging").removeClass("dropped").appendTo("#nouns-content");
-	//			alert("dropped!");
-			//}
-	//	},
-	//	tolerance: "fit",
-	//});
+	$("#trash").droppable( {
+		accept: ".draggable",
+		//activeClass: "ui-state-hover",
+        hoverClass: "ui-state-active",
+		drop: function() {
+			$(".dragging").removeClass("dragging").addClass("dropped").remove();
+			console.log("dropped!");
+		},
+		tolerance: "pointer",
+	});
 
 }); //end document ready

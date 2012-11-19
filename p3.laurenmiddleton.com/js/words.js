@@ -11,28 +11,28 @@ var helpers = ["he", "she", "it", "was", "ing", "in", "at", "when", "is", "ed", 
 function generateNouns(wordList) {
 	$.each(wordList, function(index, value) {
 		//console.log(this);
-		$("#nouns-content").append("<div id='" + value + "' class='word noun'>" + this + "</div>");
+		$("#nouns-content").append("<a id='" + value + "' class='word noun clickable'>" + this + "</a>");
 	});
 }
 
 /*generates verb draggables*/
 function generateVerbs(wordList) {
 	$.each(wordList, function(index, value) {
-		$("#verbs-content").append("<div id='" + value + "' class='word verb'>" + this + "</div>");
+		$("#verbs-content").append("<a id='" + value + "' class='word verb clickable'>" + this + "</a>");
 	});
 }
 
 /*generates adj draggables*/
 function generateAdj(wordList) {
 	$.each(wordList, function(index, value) {
-		$("#adj-content").append("<div id='" + value + "' class='word adj'>" + this + "</div>");
+		$("#adj-content").append("<a id='" + value + "' class='word adj clickable'>" + this + "</a>");
 	});
 }
 
 /*generates helper draggables*/
 function generateHelpers(wordList) {
 	$.each(wordList, function(index, value) {
-		$("#helpers-content").append("<div id='" + value + "' class='word helper'>" + this + "</div>");
+		$("#helpers-content").append("<a id='" + value + "' class='word helper clickable'>" + this + "</a>");
 	});
 }
 
@@ -88,7 +88,7 @@ function setDraggable(clickedWord) {
 /*find positions of each dropped element and store in an array*/
 function createPositionsArray() {
 	//create an array of the ids of the dropped elements
-	var droppedIds = $.map($(".dropped"), function(n, i) {
+	var droppedIds = $.map($(".placed"), function(n, i) {
 		return n.id;
 	});
 	alert(droppedIds);
@@ -102,10 +102,13 @@ function createPositionsArray() {
 		var posTop = pos.top;
 		console.log(posLeft);
 		console.log(posTop);
-		//if position is greater than final
+		//
+		//if(posLeft)
 	});
-	
-	//create an array of the positions of each id in the first array
-	//$(".dropped").index()
-	
+}
+
+function sortWords() {
+	var sort = $(".placed").tsort( {
+	});
+	console.log(sort);
 }

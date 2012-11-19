@@ -44,13 +44,22 @@ $(document).ready(function() {
 	//	$(this).css("background-color", color);
 	//});
 	
+	/*sets noun clickable word hover*/
+	//$(".noun").hover(function() {
+	//	$(this).removeClass("noun");
+	//	$(this).addClass("word-hover");
+	//}, function() {
+	//	$(this).removeClass("word-hover");
+	//	$(this).addClass("noun");
+	//});
+	
 	/*sets word click*/
 	$(".word").click(function() {
 		//store a clone of the clicked element
 		var word = $(this).clone();
 		console.log(word);
 		//append the clone to the canvas
-		$(word).appendTo("#canvas").css("position", "absolute").addClass("placed draggable");
+		$(word).appendTo("#canvas").css("position", "absolute").removeClass("clickable").addClass("placed draggable");
 		//enable dragging for the cloned word
 		setDraggable(word);
 		//setPendingDelete(this);
@@ -97,5 +106,36 @@ $(document).ready(function() {
 		},
 		tolerance: "pointer",
 	});
+	
+	/*set up a printable version of the canvas*/
+	//code modified from Card Generator
+	$("#print-btn").click(function() {
+    	// Setup the window we're about to open            
+        var print_window =  window.open('','_blank','');
+        
+        //hide the trash element
+        $("#trash").hide();
+                    
+        // Grab the contents of our card
+        var content = $('#canvas').html();
+        
+                        
+        // Build the HTML content for that window
+        var html = '<html>';
+        html += '<head>';
+        //html += '<link rel="stylesheet" href="p3-styles.css" type="text/css">';
+        html += '</head>';
+        html += '<body>';
+        html += content;
+        html += '</body>';
+        html += '</html>';
+               
+        // Write to our new window
+        print_window.document.write(html);
+        
+        //show the trash element again
+        $("#trash").show();
+                            
+    });
 
 }); //end document ready

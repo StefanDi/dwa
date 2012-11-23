@@ -82,13 +82,20 @@ h1 {
   border-right: solid 3px black;
   border-top: solid 1px grey;
 }
-a.clickable:hover {
+.punctuation {
+  background-color: indigo;
+  border-bottom: solid 3px black;
+  border-left: solid 1px grey;
+  border-right: solid 3px black;
+  border-top: solid 1px grey;
+}
+a.draggable:hover {
   background-color: white;
   border-bottom: solid 3px black;
   border-left: solid 1px grey;
   border-right: solid 3px black;
   border-top: solid 1px grey;
-  cursor: pointer;
+  cursor: move;
 }
 a.placed:hover {
   cursor: move;

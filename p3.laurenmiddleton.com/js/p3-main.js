@@ -5,7 +5,7 @@ $(document).ready(function() {
 	generateVerbs(verbs);
 	generateAdj(adj);
 	generateHelpers(helpers);
-	
+	generatePunctuation(punctuation);
 	
 	
 	/*sets accordion hover*/
@@ -18,7 +18,7 @@ $(document).ready(function() {
 	/*sets accordion btn click*/
 	$(".accordion-btn").click(function() {
 		//remove all word elements in canvas that still have class temp
-			$(".temp").remove();
+		$(".temp").remove();
 		//find and store id of the clicked btn
 		var id = $(this).attr("id");
 		//store id of clicked buttons content div
@@ -36,70 +36,32 @@ $(document).ready(function() {
 		}
 	});
 	
-	/*sets word hover*/
-	//$(".word").hover(function() {
-	//	//store original background color
-	//	var color = $(this).css("background-color");
-	//	console.log (color);
-	//	$(this).css("background-color", "white");
-	//	}, function() {
-	//	$(this).css("background-color", color);
-	//});
-	
-	/*sets noun clickable word hover*/
-	//$(".noun").hover(function() {
-	//	$(this).removeClass("noun");
-	//	$(this).addClass("word-hover");
-	//}, function() {
-	//	$(this).removeClass("word-hover");
-	//	$(this).addClass("noun");
-	//});
-	
-	/*sets word click*/
-	//$(".word").click(function() {
-		//store a clone of the clicked element
-	//	var word = $(this).clone();
-	//	console.log(word);
-		//append the clone to the canvas
-	//	$(word).appendTo("#canvas").css("position", "absolute").removeClass("clickable").addClass("placed draggable");
-		//enable dragging for the cloned word
-	//	setDraggable(word);
-		//setPendingDelete(this);
-		//setDeselectDelete(this);
-	//});
-	
-	$(".clickable").draggable( {
+	/*sets dragging on accordion words*/
+	$(".draggable").draggable( {
 		containment: "#container",
 		helper: 'clone',
 		start: function(event, ui){
 			//remove all word elements in canvas that still have class temp
 			$(".temp").remove();
+			//add class temp to current clone
 			$(ui.helper).addClass('temp');
 		},
 		stop: function(event, ui) {
-			
-			$(ui.helper).clone(true).removeClass('clickable').addClass('placed draggable').appendTo('#canvas');
-			//setDraggable(ui.helper);
+			//place and append the cloned word
+			$(ui.helper).clone(true).removeClass('draggable').addClass('placed').appendTo('#canvas');
+			/*sets dragging on words placed on canvas*/
 			$(".placed").draggable( {
 				containment: "#canvas",
 				cursor: "move",
-				//helper: "clone",
 				start: function() {
 					//remove all word elements in canvas that still have class temp
 					$(".temp").remove();
+					//make placed + dragged word trashable
 					$(this).addClass("trashable");
 				},
 				stop: function() {
 					$(this).removeClass("trashable");
-					//if(drop == "invalid") {
-					//	$(ui.helper).remove();
-					//}
-					//$(this).draggable( {
-					//	containment: "#canvas",
-					//	cursor: "move",
-					//});
 				},
-				//revert: "invalid",
 				opacity: 0.35,
 			});
 		},
@@ -107,38 +69,20 @@ $(document).ready(function() {
 		opacity: 0.35,
 	});
 	
-	/*sets clear btn*/
-	$("#clear-btn").click(function() {
-		$(".placed").remove();
-	});
-	
-	
-	
-	
+	/*sets dropping on canvas*/
 	$("#canvas").droppable( {
 		accept: ".word",
-		activeClass: "ui-state-hover",
-    //  hoverClass: "ui-state-active",
+		//activeClass: "ui-state-hover",
+     	hoverClass: "ui-state-active",
 		drop: function() {
-	//		$(".dragging").addClass("dropped").removeClass("dragging").appendTo("#canvas").css("position", "absolute");
+			//replace class temp with drop for dropped word
 			$(".temp").addClass("dropped").removeClass("temp");
 			//alert("dropped!");
-			
 		},
 		tolerance: "fit",
 	});
 	
-	//$("#nouns-content").droppable( {
-	//	accept: ".noun",
-	//	activeClass: "ui-state-hover",
-    //    hoverClass: "ui-state-active",
-	//	drop: function() {
-	//		$(".dragging").removeClass("dragging").removeClass("dropped").css("position", "static").appendTo("#nouns-content");
-	//		//alert("dropped!");
-	//	},
-	//	tolerance: "fit",
-	//});
-	
+	/*sets dropping on trash*/
 	$("#trash").droppable( {
 		accept: ".trashable",
 		//activeClass: "ui-state-hover",
@@ -146,29 +90,35 @@ $(document).ready(function() {
 		drop: function() {
 			//remove all word elements in canvas that still have class temp
 			$(".temp").remove();
+			//remove element dropped on trash
 			$(".trashable").remove();
-			console.log("dropped!");
+			//console.log("dropped!");
 		},
 		tolerance: "pointer",
 	});
 	
-	/*set up a printable version of the canvas*/
+	/*sets clear btn*/
+	/*removes all placed elements on click*/
+	$("#clear-btn").click(function() {
+		$(".placed").remove();
+	});
+	
+	/*sets print button*/
 	//code modified from Card Generator
 	$("#print-btn").click(function() {
-		//remove all word elements in canvas that still have class dragging
-			$(".temp").remove();
-	
-    	// Setup the window we're about to open            
+		//remove all word elements in canvas that still have class temp
+		$(".temp").remove();
+    	
+    	// set up blank window            
         var print_window =  window.open('','_blank','');
         
         //hide the trash element
-        $("#trash").hide();
-                    
-        // Grab the contents of the canvas
-        var content = $('#canvas').html();
+        $("#trash").hide();         
         
-                        
-        // Build the HTML content for that window
+        //grab the canvas contents
+        var content = $('#canvas').html(); 
+        
+        //build html for blank window
         var html = '<html>';
         html += '<head>';
         //html += '<link rel="stylesheet" href="p3-styles.css" type="text/css">';
@@ -176,14 +126,13 @@ $(document).ready(function() {
         html += '<body>';
         html += content;
         html += '</body>';
-        html += '</html>';
-               
-        // Write to our new window
+        html += '</html>';     
+        
+        //write the html to the new window
         print_window.document.write(html);
         
         //show the trash element again
-        $("#trash").show();
-                            
+        $("#trash").show();           
     });
 
 }); //end document ready

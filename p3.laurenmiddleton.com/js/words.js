@@ -38,7 +38,7 @@ function generateHelpers(wordList) {
 
 
 /*makes clicked words draggable*/
-function setDraggable(clickedWord) {
+//function setDraggable(clickedWord) {
 	//create array of word children in canvas
 	//var droppedIds = $.map($("#canvas > .placed"), function(n, i) {
 	//	return n.id;
@@ -47,25 +47,25 @@ function setDraggable(clickedWord) {
 	//make those children draggable
 	//$.each(droppedIds, function(index, value) {
 		//console.log(value);
-		$(clickedWord).draggable( {
-			containment: "#canvas",
-			cursor: "move",
+		//$(clickedWord).draggable( {
+			//containment: "#canvas",
+			//cursor: "move",
 			//helper: "clone",
-			start: function() {
-				$(this).addClass("dragging");
-			},
-			stop: function() {
-				$(this).removeClass("dragging");
+			//start: function() {
+			//	$(this).addClass("dragging");
+			//},
+			//stop: function() {
+			//	$(this).removeClass("dragging");
 				//$(this).draggable( {
 				//	containment: "#canvas",
 				//	cursor: "move",
 				//});
-			},
+			//},
 			//revert: "invalid",
-			opacity: 0.35,
-		});
+			//opacity: 0.35,
+		//});
 	//});
-}
+//}
 
 //function setPendingDelete(clickedWord) {
 	/*sets style of clicked word pending deletion*/
@@ -86,29 +86,29 @@ function setDraggable(clickedWord) {
 //}
 
 /*find positions of each dropped element and store in an array*/
-function createPositionsArray() {
+//function createPositionsArray() {
 	//create an array of the ids of the dropped elements
-	var droppedIds = $.map($(".placed"), function(n, i) {
-		return n.id;
-	});
-	alert(droppedIds);
+//	var droppedIds = $.map($(".placed"), function(n, i) {
+//		return n.id;
+//	});
+//	alert(droppedIds);
 	
 	//create empty variable to hold the string to be printed
-	var poem = "";
+//	var poem = "";
 	
-	$.each(droppedIds, function(index, value) {
-		var pos = $("#" + value).position();
-		var posLeft = pos.left;
-		var posTop = pos.top;
-		console.log(posLeft);
-		console.log(posTop);
+//	$.each(droppedIds, function(index, value) {
+//		var pos = $("#" + value).position();
+//		var posLeft = pos.left;
+//		var posTop = pos.top;
+//		console.log(posLeft);
+//		console.log(posTop);
 		//
 		//if(posLeft)
-	});
-}
+//	});
+//}
 
-function sortWords() {
-	var sort = $(".placed").tsort( {
-	});
-	console.log(sort);
-}
+//function sortWords() {
+//	var sort = $(".placed").tsort( {
+//	});
+//	console.log(sort);
+//}

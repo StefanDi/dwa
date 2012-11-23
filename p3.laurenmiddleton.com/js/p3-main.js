@@ -17,6 +17,8 @@ $(document).ready(function() {
 	
 	/*sets accordion btn click*/
 	$(".accordion-btn").click(function() {
+		//remove all word elements in canvas that still have class temp
+			$(".temp").remove();
 		//find and store id of the clicked btn
 		var id = $(this).attr("id");
 		//store id of clicked buttons content div
@@ -54,16 +56,55 @@ $(document).ready(function() {
 	//});
 	
 	/*sets word click*/
-	$(".word").click(function() {
+	//$(".word").click(function() {
 		//store a clone of the clicked element
-		var word = $(this).clone();
-		console.log(word);
+	//	var word = $(this).clone();
+	//	console.log(word);
 		//append the clone to the canvas
-		$(word).appendTo("#canvas").css("position", "absolute").removeClass("clickable").addClass("placed draggable");
+	//	$(word).appendTo("#canvas").css("position", "absolute").removeClass("clickable").addClass("placed draggable");
 		//enable dragging for the cloned word
-		setDraggable(word);
+	//	setDraggable(word);
 		//setPendingDelete(this);
 		//setDeselectDelete(this);
+	//});
+	
+	$(".clickable").draggable( {
+		containment: "#container",
+		helper: 'clone',
+		start: function(event, ui){
+			//remove all word elements in canvas that still have class temp
+			$(".temp").remove();
+			$(ui.helper).addClass('temp');
+		},
+		stop: function(event, ui) {
+			
+			$(ui.helper).clone(true).removeClass('clickable').addClass('placed draggable').appendTo('#canvas');
+			//setDraggable(ui.helper);
+			$(".placed").draggable( {
+				containment: "#canvas",
+				cursor: "move",
+				//helper: "clone",
+				start: function() {
+					//remove all word elements in canvas that still have class temp
+					$(".temp").remove();
+					$(this).addClass("trashable");
+				},
+				stop: function() {
+					$(this).removeClass("trashable");
+					//if(drop == "invalid") {
+					//	$(ui.helper).remove();
+					//}
+					//$(this).draggable( {
+					//	containment: "#canvas",
+					//	cursor: "move",
+					//});
+				},
+				//revert: "invalid",
+				opacity: 0.35,
+			});
+		},
+		revert: "invalid",
+		opacity: 0.35,
 	});
 	
 	/*sets clear btn*/
@@ -74,16 +115,18 @@ $(document).ready(function() {
 	
 	
 	
-	//$("#canvas").droppable( {
-	//	accept: ".word",
-	//	activeClass: "ui-state-hover",
-    //   hoverClass: "ui-state-active",
-	//	drop: function() {
+	$("#canvas").droppable( {
+		accept: ".word",
+		activeClass: "ui-state-hover",
+    //  hoverClass: "ui-state-active",
+		drop: function() {
 	//		$(".dragging").addClass("dropped").removeClass("dragging").appendTo("#canvas").css("position", "absolute");
-	//		//alert("dropped!");
-	//	},
-	//	tolerance: "fit",
-	//});
+			$(".temp").addClass("dropped").removeClass("temp");
+			//alert("dropped!");
+			
+		},
+		tolerance: "fit",
+	});
 	
 	//$("#nouns-content").droppable( {
 	//	accept: ".noun",
@@ -97,11 +140,13 @@ $(document).ready(function() {
 	//});
 	
 	$("#trash").droppable( {
-		accept: ".draggable",
+		accept: ".trashable",
 		//activeClass: "ui-state-hover",
         hoverClass: "ui-state-active",
 		drop: function() {
-			$(".dragging").removeClass("dragging").addClass("dropped").remove();
+			//remove all word elements in canvas that still have class temp
+			$(".temp").remove();
+			$(".trashable").remove();
 			console.log("dropped!");
 		},
 		tolerance: "pointer",
@@ -110,13 +155,16 @@ $(document).ready(function() {
 	/*set up a printable version of the canvas*/
 	//code modified from Card Generator
 	$("#print-btn").click(function() {
+		//remove all word elements in canvas that still have class dragging
+			$(".temp").remove();
+	
     	// Setup the window we're about to open            
         var print_window =  window.open('','_blank','');
         
         //hide the trash element
         $("#trash").hide();
                     
-        // Grab the contents of our card
+        // Grab the contents of the canvas
         var content = $('#canvas').html();
         
                         

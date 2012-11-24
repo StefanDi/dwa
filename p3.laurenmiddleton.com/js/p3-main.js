@@ -19,18 +19,39 @@ $(document).ready(function() {
 	$(".accordion-btn").click(function() {
 		//remove all word elements in canvas that still have class temp
 		$(".temp").remove();
+		
+		//set all btns back to default
+		$(".accordion-btn").removeClass("accordion-btn-clicked accordion-btn-hover").addClass("accordion-btn-default");
+		//set clicked class
+		$(this).removeClass("accordion-btn-default accordion-btn-hover").addClass("accordion-btn-clicked");
+		
 		//find and store id of the clicked btn
 		var id = $(this).attr("id");
-		//store id of clicked buttons content div
+		console.log(id);
+		//store id of clicked button's content div
 		var content = "#" + id + "-content";
-		var display = $(content).css("display");
-		//if clicked btn's content isn't open already...
-		if(display = "none") { //IF STATEMENT CURRENTLY BROKEN
+		console.log(content);
+		
+		//only show accordion pane on click if it isn't already open
+		if(!($(content).css("display") == "none")) {
+			return;
+		}
+		else {
 			//hide open content div
 			$(".accordion-content").hide("blind", 1000);
 			//show the content div that corresponds to the clicked btn
 			$("#" + id + "-content").show("blind", 1000);
 		}
+		
+		
+		//var display = $(content).css("display");
+		////if clicked btn's content isn't open already...
+		//if(display = "none") { //IF STATEMENT CURRENTLY BROKEN
+		//	//hide open content div
+		//	$(".accordion-content").hide("blind", 1000);
+		//	//show the content div that corresponds to the clicked btn
+		//	$("#" + id + "-content").show("blind", 1000);
+		//}
 	});
 	
 	/*sets dragging on accordion words*/
@@ -70,7 +91,7 @@ $(document).ready(function() {
 	$("#canvas").droppable( {
 		accept: ".word",
 		//activeClass: "ui-state-hover",
-     	hoverClass: "ui-state-active",
+     	//hoverClass: "ui-state-active",
 		drop: function() {
 			//replace class temp with drop for dropped word
 			$(".temp").addClass("dropped").removeClass("temp");

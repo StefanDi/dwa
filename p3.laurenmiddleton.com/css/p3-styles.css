@@ -34,7 +34,7 @@ h1 {
   border-bottom: solid 1px grey;
   border-right: solid 1px grey;
   float: left;
-  height: 540px;
+  height: 539px;
   width: 729px;
 }
 #canvas {
@@ -43,11 +43,12 @@ h1 {
   height: 490px;
 }
 #trash {
-  background-color: black;
+  background-color: #efefef;
   color: white;
   float: right;
-  height: 100px;
-  width: 100px;
+  height: 60px;
+  padding: 5px;
+  width: 60px;
 }
 #copyright {
   font-size: 11px;
@@ -73,7 +74,7 @@ a.btn:hover {
   color: black;
   cursor: pointer;
 }
-.accordion-btn {
+.accordion-btn-default {
   background-color: #efefef;
   border: solid 1px grey;
   border-top: none;
@@ -82,7 +83,13 @@ a.btn:hover {
 }
 .accordion-btn-hover {
   background-color: grey;
-  color: white;
+}
+.accordion-btn-clicked {
+  background-color: white;
+  border: solid 1px grey;
+  border-bottom: none;
+  border-top: none;
+  padding: 10px;
 }
 .accordion-content {
   background-color: white;

@@ -27,10 +27,8 @@ $(document).ready(function() {
 		
 		//find and store id of the clicked btn
 		var id = $(this).attr("id");
-		console.log(id);
 		//store id of clicked button's content div
 		var content = "#" + id + "-content";
-		console.log(content);
 		
 		//only show accordion pane on click if it isn't already open
 		if(!($(content).css("display") == "none")) {
@@ -42,16 +40,6 @@ $(document).ready(function() {
 			//show the content div that corresponds to the clicked btn
 			$("#" + id + "-content").show("blind", 1000);
 		}
-		
-		
-		//var display = $(content).css("display");
-		////if clicked btn's content isn't open already...
-		//if(display = "none") { //IF STATEMENT CURRENTLY BROKEN
-		//	//hide open content div
-		//	$(".accordion-content").hide("blind", 1000);
-		//	//show the content div that corresponds to the clicked btn
-		//	$("#" + id + "-content").show("blind", 1000);
-		//}
 	});
 	
 	/*sets dragging on accordion words*/
@@ -110,7 +98,6 @@ $(document).ready(function() {
 			$(".temp").remove();
 			//remove element dropped on trash
 			$(".trashable").remove();
-			//console.log("dropped!");
 		},
 		tolerance: "pointer",
 	});

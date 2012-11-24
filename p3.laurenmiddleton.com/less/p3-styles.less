@@ -15,62 +15,116 @@ h1 {
 }
 
 #container {
-	background-color: pink;
+	background-color: white;
 	height: 600px;
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 50px;
-	width: 1050px;
+	width: 1040px;
 }
 
 #header {
-	background-color: yellow;
+	background-color: white;
+	border: solid 1px grey;
+	/*color: grey;*/
+	padding: 5px;
 }
 
 #left {
-	background-color: green;
+	background-color: white;
 	float: left;
-	height: 500px;
-	width: 30%;
+	height: 540px;
+	width: 310px;
 }
 
 #right {
-	background-color: purple;
-	float: right;
-	height: 500px;
-	width: 70%;
-}
-
-.accordion-btn {
-	background-color: orange;
-	border-bottom: solid 1px white;
-	cursor: pointer;
-	padding: 10px;
-}
-
-.accordion-btn-hover {
 	background-color: white;
-}
-
-.accordion-content {
-	background-color: white;
-	height: 350px;
+	border-bottom: solid 1px grey;
+	border-right: solid 1px grey;
+	float: left;
+	height: 540px;
+	width: 729px;
 }
 
 #canvas {
-	background-color: grey;
-	height: 450px;
+	background-color: @light-grey;
+	border-bottom: solid 1px grey;
+	height: 490px;
 }
 
 #trash {
 	background-color: black;
 	color: white;
-	height: 50px;
-	width: 50px;
+	float: right;
+	height: 100px;
+	width: 100px;
+}
+
+#copyright {
+	font-size: 11px;
+	text-align: right;
+}
+
+#print-btn {
+	float: left;
+	margin: 10px;
+}
+
+#clear-btn {
+	float: right;
+	margin: 10px;
+}
+
+a.btn {
+	background-color: @light-grey;
+	border: solid 1px grey;
+	color: black;
+	display: inline-block;
+	padding: 5px;
+}
+
+a.btn:hover {
+	background-color: grey;
+	color: black;
+	cursor: pointer;
+}
+
+.accordion-btn {
+	background-color: @light-grey;
+	border: solid 1px grey;
+	border-top: none;
+	cursor: pointer;
+	padding: 10px;
+}
+
+.accordion-btn-hover {
+	background-color: grey;
+	color: white;
+}
+
+.accordion-content {
+	background-color: white;
+	border: solid 1px grey;
+	border-top: none;
+	height: 345px;
+	overflow: auto;
+	padding: 5px;
+}
+
+.word {
+	display: inline-block;
+	font-size: 11px;
+	height: auto;
+	margin: 2px;
+	padding-bottom: 7px;
+	padding-left: 5px;
+	padding-right: 5px;
+	padding-top: 7px;
+	width: auto;
 }
 
 .noun {
-	background-color: yellow;
+	background-color: @cotton-candy;
 	border-bottom: solid 3px black;
 	border-left: solid 1px grey;
 	border-right: solid 3px black;
@@ -78,7 +132,7 @@ h1 {
 }
 
 .verb {
-	background-color: green;
+	background-color: @light-green;
 	border-bottom: solid 3px black;
 	border-left: solid 1px grey;
 	border-right: solid 3px black;
@@ -86,7 +140,7 @@ h1 {
 }
 
 .adj {
-	background-color: pink;
+	background-color: @robins-egg;
 	border-bottom: solid 3px black;
 	border-left: solid 1px grey;
 	border-right: solid 3px black;
@@ -94,7 +148,7 @@ h1 {
 }
 
 .helper {
-	background-color: red;
+	background-color: @buttermilk;
 	border-bottom: solid 3px black;
 	border-left: solid 1px grey;
 	border-right: solid 3px black;
@@ -102,7 +156,7 @@ h1 {
 }
 
 .punctuation {
-	background-color: indigo;
+	background-color: @lavender;
 	border-bottom: solid 3px black;
 	border-left: solid 1px grey;
 	border-right: solid 3px black;
@@ -120,38 +174,4 @@ a.draggable:hover {
 
 a.placed:hover {
 	cursor: move;
-}
-
-.word {
-	display: inline-block;
-	font-size: 11px;
-	height: auto;
-	margin: 1px;
-	padding-bottom: 7px;
-	padding-left: 5px;
-	padding-right: 5px;
-	padding-top: 7px;
-	width: autp;
-}
-
-#trash {
-	background-color: black;
-	color: white;
-	float: right;
-	height: 100px;
-	width: 100px;
-}
-
-#print-btn {
-	background-color: pink;
-	display: inline-block;
-	float: left;
-	padding: 5px;
-}
-
-#clear-btn {
-	background-color: pink;
-	display: inline-block;
-	float: right;
-	padding: 5px;
 }

@@ -5,7 +5,7 @@ var verbs = ["cool", "take", "resist", "shatter", "walk", "paint", "carry", "fly
 
 var adj = ["raspberry", "strange", "velvet", "little", "crazy", "northern", "cruel", "silent", "purple", "professional", "sweet", "black", "big", "precious", "orange", "silken", "vitriolic", "happy", "dead", "underwater", "gold", "lost", "close", "red", "good", "peeled", "digital", "immune", "familiar", "secret", "free", "easy", "blue", "framed", "dried", "pretty", "crystalline", "forgotten", "mighty", "real", "alone", "sane", "sharp", "fresh"];
 
-var helpers = ["he", "she", "it", "was", "ing", "in", "at", "when", "is", "ed", "the", "a", "we", "us", "d", "her", "his", "our", "ly", "s", "and", "I", "est", "to", "re", "you", "me"];
+var helpers = ["he", "she", "it", "was", "ing", "in", "at", "when", "is", "ed", "the", "a", "we", "us", "d", "her", "his", "our", "ly", "s", "and", "I", "est", "to", "re", "you", "me", "of"];
 
 var punctuation = [".", ",", "!", "-", ":", ";", "?", "'"];
 

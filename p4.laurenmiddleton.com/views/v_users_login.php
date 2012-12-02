@@ -12,16 +12,20 @@
 </ul>
 
 <h2>Log In</h2>
-<label for="login-email">Email:</label>
-<input id="login-email" name="" type="text" />
-<br />
+<form method="POST" action="/users/p_login">
 
-<label for="login-pw">Password:</label>
-<input id="login-pw" name="" type="password" />
-<br />
-
-<label for="login-submit" class="off-screen">Log In</label> <!--for accessibility-->
-<input id="login-submit" type="submit" value="Log In" />
+	<label for="login-email">Email:</label>
+	<input id="login-email" name="email" type="text" />
+	<br />
+	
+	<label for="login-pw">Password:</label>
+	<input id="login-pw" name="password" type="password" />
+	<br />
+	
+	<label for="login-submit" class="off-screen">Log In</label> <!--for accessibility-->
+	<input id="login-submit" type="submit" value="Log In" />
+	
+</form>
 
 <h2>Register</h2>
 <form method="POST" action="/users/p_signup">

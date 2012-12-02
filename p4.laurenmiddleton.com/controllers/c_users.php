@@ -94,6 +94,40 @@ class users_controller extends base_controller {
 		echo $this->template;
 	}
 	
+	public function p_login() {
+		#hash submitted password so we can compare it against one in the DB
+		$_POST['password'] = sha1(PASSWORD_SALT.$_POST['password']);
+		
+		#sanitize the user entered data to prevent any funny business
+		$_POST = DB::instance(DB_NAME)->sanitize($_POST);
+		
+		#search the db for this email and password
+		#retrieve the token if it's available
+		$q = "SELECT token
+			FROM users
+			WHERE email = '".$_POST['email']."'
+			AND password = '".$_POST['password']."'";
+			
+		$token = DB::instance(DB_NAME)->select_field($q);
+		
+		#if we didn't get a token back, login failed
+		if(!$token) {
+			#setup view
+			$this->template->content = "login failed";
+				
+			#render template
+			echo $this->template;
+			
+		#but if we did, login succeeded!
+		} else {
+			#store this token in a cookie
+			@setcookie("token", $token, strtotime('+1 week'), '/');
+			
+			#send them to their profile
+			Router::redirect("/poems/builder");
+		}
+	}
+	
 	public function logout() {
 	}
 	

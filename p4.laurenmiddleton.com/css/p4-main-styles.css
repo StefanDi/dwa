@@ -1,0 +1,17 @@
+/*P4 main styles*/
+html {
+  color: #333333;
+  font-family: "Arial", "Helvetica", sans-serif;
+}
+h1 {
+  font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
+  font-size: 2em;
+}
+h2 {
+  font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
+  font-size: 1.6em;
+}
+h3 {
+  font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
+  font-size: 1.1em;
+}

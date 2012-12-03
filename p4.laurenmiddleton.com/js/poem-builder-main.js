@@ -121,7 +121,7 @@ $(document).ready(function() {
         $("#trash").hide();         
         
         //grab the canvas contents
-        var content = $('#canvas').html(); 
+        var content = $("#canvas").html(); 
         
         //build html for blank window
         var html = '<html>';
@@ -138,6 +138,24 @@ $(document).ready(function() {
         
         //show the trash element again
         $("#trash").show();           
+    });
+    
+    /*sets publish button*/
+    $("#publish-btn").click(function() {
+    	//grab the canvas contents
+    	var content = $("#canvas").html();
+    	
+    	//send the content to the server via ajax
+    	$.ajax({
+    		type: 'POST',
+    		url: "/poems/publish",
+    		success: function(response) {
+    			$("tabs-2").html(response);
+    		},
+    		data: {
+    			content: content,
+    		},
+    	});
     });
 
 }); //end document ready

@@ -2,6 +2,7 @@ $(document).ready(function() {
 	
 	console.log("it works!");
 	
-	initTabs();
+	createTabs();
+	setTabs();
 
 }); //end document ready

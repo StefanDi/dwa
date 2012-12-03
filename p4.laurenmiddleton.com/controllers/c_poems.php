@@ -34,6 +34,57 @@ class poems_controller extends base_controller {
 		echo $this->template;
 	}
 	
+	public function publish() {
+		#grab the poem data that was sent
+		$poem = $_POST['content'];
+		
+		#Associate this poem with this user
+		$_POST['user_id'] = $this->user->user_id;
+		
+		#Unix timestamp of when this post was created/modified
+		$_POST['created']  = Time::now();
+		$_POST['modified'] = Time::now();
+		
+		#Insert
+		#Note we didn't have to sanitize any of the $_POST data because we're using the insert method which does it for us
+		DB::instance(DB_NAME)->insert('poems', $_POST);
+	}
+	
+	public function my_poems() {
+		#Set up view
+		//$template = View::instance('v_poems_builder');
+		
+		#Builds a query to grab all poems by this user
+		#Selects everything in 'poems' and some fields in 'users' (so 'created' is unambiguous)
+		$q = "SELECT poems.*, users.user_id, users.first_name, users.last_name
+			FROM poems
+			JOIN users USING (user_id)
+			WHERE user_id = ".$this->user->user_id;
+			
+		#Run the query, storing the results in the variable $posts
+		$poems = DB::instance(DB_NAME)->select_rows($q);
+		
+		print_r("test");
+		
+		#If $posts is empty, user hasn't made any posts yet
+		//if(empty($posts)) {
+		//	$template->show_no_posts_message = TRUE;
+		//} else {
+		//	$template->show_no_posts_message = FALSE;
+		//}
+		
+		
+		
+		//need to send the poems variable back to the client side ajax!
+		//return $poems;
+		
+		#Pass data to the View
+		//$template->poems = $poems;
+		
+		#Render view
+		//echo $template;
+	}
+	
 	
 	
 		

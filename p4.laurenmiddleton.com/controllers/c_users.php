@@ -129,6 +129,21 @@ class users_controller extends base_controller {
 	}
 	
 	public function logout() {
+		#generate and save a new token for next login
+		$new_token = sha1(TOKEN_SALT.$this->user->email.Utils::generate_random_string());
+		
+		#create the data array we'll use with the update method
+		#in this case, we're only updating one field, so our array only has one entry
+		$data = Array("token" => $new_token);
+		
+		#do the update
+		DB::instance(DB_NAME)->update("users", $data, "WHERE token = '".$this->user->token."'");
+		
+		#delete their token cookie - effectively logging them out
+		setcookie("token", "", strtotime('-1 week'), '/');
+		
+		#send them somewhere else
+		Router::redirect("/index/index");
 	}
 	
 	

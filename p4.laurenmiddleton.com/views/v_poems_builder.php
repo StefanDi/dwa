@@ -22,7 +22,6 @@
 			<div id="helpers-content" class="accordion-content hidden"></div>
 			<div id="punctuation" class="accordion-btn accordion-btn-default">Punctuation</div>
 			<div id="punctuation-content" class="accordion-content hidden"></div>
-			
 		</div>
 		<div id="right">
 			<div id="canvas">
@@ -30,40 +29,23 @@
 					<img src="../assets/trash.png" alt="Trashcan" />
 				</div>
 			</div>
+			<div id="canvas-temp" class="hidden"></div>
 			<a class="btn" id="print-btn">Print</a>
 			<a class="btn" id="publish-btn">Publish</a>
 			<a class="btn" id="clear-btn">Clear Board</a>
 		</div>
+		</div>
+	<div id="publish-confirm-dialog" class="hidden">
+		Your poem has been published.
 	</div>
     </div>
+    
     <div id="tabs-2">
-        
-        <!--If the user hasn't made any posts yet, prevent a SQL error-->
-<!--<? if($show_no_posts_message): ?>
-	You haven't posted anything yet!
-<? endif; ?>-->
-
-<? foreach($poems as $poem): ?>
-
-	<div class="my-poem-parent">
-		<span class="delete-poem-btn">
-			<a href="/poems/delete/<?=$poem['poem_id']?>" title="Delete poem">x</a>
-		</span>
-		<h3>
-			<?=$poem['first_name']?> <?=$poem['last_name']?>
-		</h3>
-		<span class="poem-timestamp">
-			published <?=Time::display($poem['created'], "", "America/New_York")?>
-		</span>
-		<br><br>
-		<?=$poem['content']?>
-	</div>
-	
-		
-<? endforeach; ?>
-        
+		<div id="my-poems-content"></div>
     </div>
+    
     <div id="tabs-3">
         <p>stream</p>
     </div>
+    
 </div>

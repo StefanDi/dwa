@@ -38,6 +38,8 @@ class poems_controller extends base_controller {
 		#grab the poem data that was sent
 		$poem = $_POST['content'];
 		
+		#stip the content of most styling info, get rid of trash, etc.
+		
 		#Associate this poem with this user
 		$_POST['user_id'] = $this->user->user_id;
 		
@@ -52,7 +54,7 @@ class poems_controller extends base_controller {
 	
 	public function my_poems() {
 		#Set up view
-		//$template = View::instance('v_poems_builder');
+		$template = View::instance('v_poems_my_poems');
 		
 		#Builds a query to grab all poems by this user
 		#Selects everything in 'poems' and some fields in 'users' (so 'created' is unambiguous)
@@ -63,9 +65,7 @@ class poems_controller extends base_controller {
 			
 		#Run the query, storing the results in the variable $posts
 		$poems = DB::instance(DB_NAME)->select_rows($q);
-		
-		print_r("test");
-		
+				
 		#If $posts is empty, user hasn't made any posts yet
 		//if(empty($posts)) {
 		//	$template->show_no_posts_message = TRUE;
@@ -74,15 +74,11 @@ class poems_controller extends base_controller {
 		//}
 		
 		
-		
-		//need to send the poems variable back to the client side ajax!
-		//return $poems;
-		
 		#Pass data to the View
-		//$template->poems = $poems;
+		$template->poems = $poems;
 		
 		#Render view
-		//echo $template;
+		echo $template;
 	}
 	
 	

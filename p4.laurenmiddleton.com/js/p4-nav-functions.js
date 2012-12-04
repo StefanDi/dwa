@@ -10,14 +10,12 @@ function createTabs() {
 function setTabs() {
 	$("#my-poems-btn").click(function() {
 		console.log("you clicked my poems");
-		//$.ajax({
-    	//	type: 'POST',
-    	//	url: "/poems/my_poems",
-    	//	success: function(response) {
-    	//	},
-    	//	data: {
-    	//	},
-    		//dataType: 'xml',
-    	//});
+		$.ajax({
+    		type: 'POST',
+    		url: "/poems/my_poems",
+    		success: function(response) {
+    			$("#my-poems-content").html(response);
+    		},
+    	});
 	});
 }

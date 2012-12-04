@@ -140,10 +140,32 @@ $(document).ready(function() {
         $("#trash").show();           
     });
     
+    /*inits publish confirm dialog*/
+    $("#publish-confirm-dialog").dialog({
+    	resizable: false,
+    	modal: true,
+    	autoOpen: false,
+    	buttons: {
+    		"OK": function() {
+    			$(this).dialog("close");
+    		},
+    	},
+    });
+    
     /*sets publish button*/
     $("#publish-btn").click(function() {
     	//grab the canvas contents
     	var content = $("#canvas").html();
+    	
+    	//put the contents in a temp holder div
+    	$("#canvas-temp").html(content);
+    	
+    	//strip out the unnecessary stuff
+    	$("#canvas-temp > #trash").remove(); //removes trash
+    	$("#canvas-temp > .word").removeClass(); //removes all classes from words
+    	
+    	//store the stripped content
+    	var stripped = $("#canvas-temp").html();
     	
     	//send the content to the server via ajax
     	$.ajax({
@@ -153,9 +175,13 @@ $(document).ready(function() {
     			$("tabs-2").html(response);
     		},
     		data: {
-    			content: content,
+    			content: stripped,
     		},
     	});
+    	
+    	//give the user confirmation
+    	$("#publish-confirm-dialog").dialog("open");
+    	
     });
 
 }); //end document ready

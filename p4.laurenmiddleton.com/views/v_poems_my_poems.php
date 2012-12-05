@@ -17,7 +17,20 @@
 		</span>
 		<br><br>
 		<a id="view-btn-poem<?=$poem['poem_id']?>" class="btn view-poem-btn" href="#poem<?=$poem['poem_id']?>">View</a>
-		<div id="poem<?=$poem['poem_id']?>" class="poem-content hidden"><?=$poem['content']?></div>
+		<div id="poem<?=$poem['poem_id']?>" class="poem-content hidden">
+			<?=$poem['content']?>
+		</div>
+		<div>
+			comments for this poem go here.
+		</div>
+		<div>
+			<form method="POST" action="/poems/p_comment/<?=$poem['poem_id']?>">
+				<label for="comment-input-poem<?=$poem['poem_id']?>" class="off-screen">Enter a comment</label> <!--for accessibility-->
+				<textarea id="comment-input-poem<?=$poem['poem_id']?>" name="content"></textarea>
+				<label for="comment-submit-poem<?=$poem['poem_id']?>" class="off-screen">Submit your comment</label> <!--for accessibility-->
+				<input id="comment-submit-poem<?=$poem['poem_id']?>" type="submit" value="Comment" />
+			</form>
+		</div>
 	</div>
 	
 		

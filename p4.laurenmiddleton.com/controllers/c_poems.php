@@ -37,13 +37,11 @@ class poems_controller extends base_controller {
 	public function publish() {
 		#grab the poem data that was sent
 		$poem = $_POST['content'];
-		
-		#stip the content of most styling info, get rid of trash, etc.
-		
+				
 		#Associate this poem with this user
 		$_POST['user_id'] = $this->user->user_id;
 		
-		#Unix timestamp of when this post was created/modified
+		#Unix timestamp of when this poem was created/modified
 		$_POST['created']  = Time::now();
 		$_POST['modified'] = Time::now();
 		
@@ -79,6 +77,21 @@ class poems_controller extends base_controller {
 		
 		#Render view
 		echo $template;
+	}
+	
+	public function p_comment($id) {
+		#Associate this comment with the logged in user
+		$_POST['user_id'] = $this->user->user_id;
+		
+		#Associate this comment with the poem its about
+		$_POST['poem_id'] = $id;
+		
+		#Unix timestamp of when this comment was created/modified
+		$_POST['created']  = Time::now();
+		$_POST['modified'] = Time::now();
+		
+		#Insert
+		DB::instance(DB_NAME)->insert('comments', $_POST);
 	}
 	
 	

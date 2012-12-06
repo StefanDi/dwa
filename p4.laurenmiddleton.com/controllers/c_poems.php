@@ -11,6 +11,7 @@ class poems_controller extends base_controller {
 
 	}
 	
+	#displays poem builder
 	public function builder() {
 		#set up view
 		$this->template->content = View::instance('v_poems_builder');
@@ -34,6 +35,7 @@ class poems_controller extends base_controller {
 		echo $this->template;
 	}
 	
+	#publishes poem
 	public function publish() {
 		#grab the poem data that was sent
 		$poem = $_POST['content'];
@@ -50,6 +52,7 @@ class poems_controller extends base_controller {
 		DB::instance(DB_NAME)->insert('poems', $_POST);
 	}
 	
+	#displays poems of loggd in user
 	public function my_poems() {
 		#Set up view
 		$template = View::instance('v_poems_my_poems');
@@ -79,12 +82,13 @@ class poems_controller extends base_controller {
 		echo $template;
 	}
 	
-	public function p_comment($id) {
+	#adds a comment to a poem
+	public function p_comment($poem_id) {
 		#Associate this comment with the logged in user
 		$_POST['user_id'] = $this->user->user_id;
 		
 		#Associate this comment with the poem its about
-		$_POST['poem_id'] = $id;
+		$_POST['poem_id'] = $poem_id;
 		
 		#Unix timestamp of when this comment was created/modified
 		$_POST['created']  = Time::now();
@@ -92,6 +96,18 @@ class poems_controller extends base_controller {
 		
 		#Insert
 		DB::instance(DB_NAME)->insert('comments', $_POST);
+	}
+	
+	#deletes a poem
+	public function delete($poem_id) {
+		#Define the parameters for the query
+		$table = 'poems';
+		$where_condition = "WHERE poem_id = ".$poem_id;
+				
+		#Execute the query to delete the post
+		DB::instance(DB_NAME)->delete($table, $where_condition);
+		
+		#Give the user confirmation
 	}
 	
 	

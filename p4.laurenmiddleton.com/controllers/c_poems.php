@@ -11,7 +11,7 @@ class poems_controller extends base_controller {
 
 	}
 	
-	#displays poem builder
+	#displays poem builder tool
 	public function builder() {
 		#set up view
 		$this->template->content = View::instance('v_poems_builder');
@@ -23,6 +23,7 @@ class poems_controller extends base_controller {
 		$client_files = Array(
 						"/css/p4-main-styles.css",
 						"/css/poem-builder-styles.css",
+						"/css/poem-display-styles.css",
 						"/js/p4-main-functions.js",
 						"/js/p4-nav-functions.js",
 						"/js/poem-builder-main.js",
@@ -37,6 +38,9 @@ class poems_controller extends base_controller {
 	
 	#publishes poem
 	public function publish() {
+		#grab the poem name that was sent
+		$name = $_POST['name'];
+		
 		#grab the poem data that was sent
 		$poem = $_POST['content'];
 				
@@ -52,7 +56,7 @@ class poems_controller extends base_controller {
 		DB::instance(DB_NAME)->insert('poems', $_POST);
 	}
 	
-	#displays poems of loggd in user
+	#displays poems of current user
 	public function my_poems() {
 		#Set up view
 		$template = View::instance('v_poems_my_poems');
@@ -67,12 +71,19 @@ class poems_controller extends base_controller {
 		#Run the query, storing the results in the variable $posts
 		$poems = DB::instance(DB_NAME)->select_rows($q);
 				
-		#If $posts is empty, user hasn't made any posts yet
-		//if(empty($posts)) {
-		//	$template->show_no_posts_message = TRUE;
+		#If $poems is empty, user hasn't published any poems yet
+		//if(empty($poems)) {
+		//	$template->show_no_poems_message = TRUE;
 		//} else {
-		//	$template->show_no_posts_message = FALSE;
+		//	$template->show_no_poems_message = FALSE;
 		//}
+		
+		#Build another query to grab all the comments on the poems
+		//$r = "SELECT comments.*, users.user_id, users.first_name, users.last_name, poems.poem_id
+		//FROM comments
+		//JOIN users USING (user_id)
+		//JOIN poems USING (poem_id)
+		//WHERE poem_id ";
 		
 		
 		#Pass data to the View

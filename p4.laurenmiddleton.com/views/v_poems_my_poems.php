@@ -1,16 +1,17 @@
- <!--If the user hasn't made any posts yet, prevent a SQL error-->
+<div id="my-poems-list-parent">
+
+<!--If the user hasn't made any posts yet, prevent a SQL error-->
 <!--<? if($show_no_posts_message): ?>
 	You haven't posted anything yet!
 <? endif; ?>-->
 
 <? foreach($poems as $poem): ?>
-
 	<div class="my-poem-parent">
 		<span class="delete-poem-btn">
 			<a href="/poems/delete/<?=$poem['poem_id']?>" title="Delete poem">x</a>
 		</span>
 		<h3>
-			<?=$poem['first_name']?> <?=$poem['last_name']?>
+			<?=$poem['name']?> by <?=$poem['first_name']?> <?=$poem['last_name']?>
 		</h3>
 		<span class="poem-timestamp">
 			published <?=Time::display($poem['created'], "", "America/New_York")?>
@@ -20,7 +21,7 @@
 		<div id="poem<?=$poem['poem_id']?>" class="poem-content hidden">
 			<?=$poem['content']?>
 		</div>
-		<div>
+		<div id="comments-parent-poem<?=$poem['poem_id']?>" class="poem-comments">
 			comments for this poem go here.
 		</div>
 		<div>
@@ -32,6 +33,11 @@
 			</form>
 		</div>
 	</div>
-	
 		
 <? endforeach; ?>
+
+</div>
+
+<div id="delete-poem-dialog" class="hidden">
+	Are you sure you want to delete?
+</div>

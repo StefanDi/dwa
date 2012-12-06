@@ -1,0 +1,18 @@
+/*Poem Display Styles*/
+#my-poems-list-parent {
+  background-color: blue;
+  height: 500px;
+  overflow: auto;
+  width: 300px;
+}
+.my-poem-parent {
+  background-color: pink;
+  margin-bottom: 5px;
+}
+.poem-content {
+  background-color: yellow;
+  height: 10px;
+}
+.poem-comments {
+  background-color: green;
+}

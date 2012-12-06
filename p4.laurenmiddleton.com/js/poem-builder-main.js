@@ -111,6 +111,12 @@ $(document).ready(function() {
 	/*sets print button*/
 	//code modified from Card Generator
 	$("#print-btn").click(function() {
+		//make sure canvas isn't empty
+    	if(($("#canvas").find(".word").length) == 0) {
+    		alert("Please drag some words to the canvas.");
+    		return;
+    	}
+		
 		//remove all word elements in canvas that still have class temp
 		$(".temp").remove();
     	
@@ -154,6 +160,21 @@ $(document).ready(function() {
     
     /*sets publish button*/
     $("#publish-btn").click(function() {
+    	//make sure canvas isn't empty
+    	if(($("#canvas").find(".word").length) == 0) {
+    		alert("Please drag some words to the canvas.");
+    		return;
+    	}
+    	
+    	//make sure a name has been entered
+    	if($("#poem-name").val().length == 0) {
+    		alert("Please enter a name for your poem.");
+    		return;
+    	}
+    	
+    	//grab the poem name
+    	var name = $("#poem-name").val();
+    	
     	//grab the canvas contents
     	var content = $("#canvas").html();
     	
@@ -176,12 +197,15 @@ $(document).ready(function() {
     		},
     		data: {
     			content: stripped,
+    			name: name,
     		},
     	});
     	
     	//give the user confirmation
     	$("#publish-confirm-dialog").dialog("open");
     	
+    	//clear the canvas
+    	$(".placed").remove();
     });
 
 }); //end document ready

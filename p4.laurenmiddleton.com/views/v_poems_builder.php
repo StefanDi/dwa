@@ -31,6 +31,8 @@
 			</div>
 			<div id="canvas-temp" class="hidden"></div>
 			<a class="btn" id="print-btn">Print</a>
+			<label for="poem-name">Poem Name:</label>
+			<input id="poem-name" name="poem_name" type="text" />
 			<a class="btn" id="publish-btn">Publish</a>
 			<a class="btn" id="clear-btn">Clear Board</a>
 		</div>

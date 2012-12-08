@@ -1,5 +1,4 @@
-<span class="breadcrumb">All Users</span><br><br>
-
+<form method='POST' action='/posts/p_follow'>
 
 	<? foreach($users as $user): ?>
 	
@@ -8,13 +7,15 @@
 		
 		<!-- If there exists a connection with this user, show an unfollow link -->
 		<? if(isset($connections[$user['user_id']])): ?>
-			<a href='/posts/unfollow/<?=$user['user_id']?>' class='follow-link'>Unfollow</a>
+			<a href='/poems/unfollow/<?=$user['user_id']?>' class='follow-link'>Unfollow</a>
 			
 		<!-- Otherwise, show the follow link -->
 		<? else: ?>
-			<a href='/posts/follow/<?=$user['user_id']?>' class='follow-link'>Follow</a>
+			<a href='/poems/follow/<?=$user['user_id']?>' class='follow-link'>Follow</a>
 		<? endif; ?>
 		
 		<br><br>
 	
 	<? endforeach; ?>
+
+</form>

@@ -7,7 +7,8 @@
     <ul>
         <li><a href="#tabs-1">Poem Builder</a></li>
         <li><a href="#tabs-2" id="my-poems-btn">My Poems</a></li>
-        <li><a href="#tabs-3">Stream</a></li>
+        <li><a href="#tabs-3" id="">Stream</a></li>
+        <li><a href="#tabs-4" id="all-poets-btn">All Poets</a></li>
     </ul>
     <div id="tabs-1">
         <div id="container">
@@ -48,6 +49,10 @@
     
     <div id="tabs-3">
         <p>stream</p>
+    </div>
+    
+    <div id="tabs-4">
+        <div id="all-poets-content"></div>
     </div>
     
 </div>

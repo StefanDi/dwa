@@ -6,8 +6,20 @@ function createTabs() {
     });
 }
 
+/**/
+function loadAllUsers() {
+	$.ajax({
+    	type: 'POST',
+    	url: "/poems/users",
+    	success: function(response) {
+    		$("#all-poets-content").html(response);
+    	},
+    });
+}
+
 /*sets the main tabs*/
 function setTabs() {
+	
 	$("#my-poems-btn").click(function() {
 		console.log("you clicked my poems");
 		$.ajax({
@@ -18,4 +30,10 @@ function setTabs() {
     		},
     	});
 	});
+	
+	$("#all-poets-btn").click(function() {
+		console.log("you clicked all poets");
+		loadAllUsers();
+	});
+	
 }

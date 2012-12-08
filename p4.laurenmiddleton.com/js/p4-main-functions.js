@@ -54,5 +54,21 @@ $(document).ready(function() {
 		//ask if sure
 		$("#delete-poem-dialog").dialog("open");
 	});
+	
+	/*sets follow/unfollow btns*/
+	$(".follow-link").live("click", function(event) {
+		//prevent page reload
+		event.preventDefault();
+		//get the href attribute of the clicked btn
+		var href = $(this).attr("href");
+		//ajax request
+		$.ajax({
+			type: 'POST',
+			url: href,
+			success: function(response) {
+				loadAllUsers();
+			},
+		});
+	});
 
 }); //end document ready

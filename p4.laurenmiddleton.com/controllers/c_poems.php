@@ -72,11 +72,11 @@ class poems_controller extends base_controller {
 		$poems = DB::instance(DB_NAME)->select_rows($q);
 				
 		#If $poems is empty, user hasn't published any poems yet
-		//if(empty($poems)) {
-		//	$template->show_no_poems_message = TRUE;
-		//} else {
-		//	$template->show_no_poems_message = FALSE;
-		//}
+		if(empty($poems)) {
+			$template->show_no_poems_message = TRUE;
+		} else {
+			$template->show_no_poems_message = FALSE;
+		}
 		
 		#Build another query to grab all the comments on the poems
 		//$r = "SELECT comments.*, users.user_id, users.first_name, users.last_name, poems.poem_id
@@ -178,7 +178,63 @@ class poems_controller extends base_controller {
 		//Router::redirect("/poems/users");
 	}
 	
+	#returns the posts of the user's follows
+	public function stream() {
+		
+		#Set up view
+		$template = View::instance('v_poems_stream');
+		
+		#Build a query of the users this user is following
+		$q = "SELECT *
+			FROM users_users
+			WHERE user_id = ".$this->user->user_id;
+			
+		#Execute our query, storing the results in a variable $connections
+		$connections = DB::instance(DB_NAME)->select_rows($q);
+		
+		#In order to query for the posts we need, we're going to need a string of user id's, separated by commas
+		#To create this, loop through our connections array
+		$connections_string = "";
+		foreach($connections as $connection) {
+			$connections_string .=$connection['user_id_followed'].",";
+		}
+		
+		#Remove the final comma
+		$connections_string = substr($connections_string, 0, -1);
+		
+		#If user isn't following anyone yet, prevent a SQL error
+		if (empty($connections_string)) {
+			$template->show_no_follows_message = TRUE;
+		} else {
+			
+			$template->show_no_follows_message = FALSE;
+			
+			#Build our query to grab the posts
+			#Selects everything in 'posts' and select fields in 'users' (so 'created' is unambiguous)
+			$q = "SELECT poems.*, users.user_id, users.first_name, users.last_name
+				FROM poems
+				JOIN users USING (user_id)
+				WHERE poems.user_id IN (".$connections_string.")"; #This is where we use that string of user_ids we created
+		}
+			
+		#Run our query, store the results in the variable $poems
+		$poems = DB::instance(DB_NAME)->select_rows($q);
+		
+		#If $poems is empty, show a message
+		if(empty($poems)) {
+			$template->show_no_posts_message = TRUE;
+		} else {
+		
+			$template->show_no_posts_message = FALSE;
+		}
+		
+		#Pass data to the view
+		$template->poems = $poems;
+		
+		#Render view
+		echo $template;
 	
+	}
 	
 		
 } // end class

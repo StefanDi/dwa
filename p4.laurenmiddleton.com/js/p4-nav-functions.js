@@ -6,7 +6,7 @@ function createTabs() {
     });
 }
 
-/**/
+/*loads all users view*/
 function loadAllUsers() {
 	$.ajax({
     	type: 'POST',
@@ -27,6 +27,17 @@ function setTabs() {
     		url: "/poems/my_poems",
     		success: function(response) {
     			$("#my-poems-content").html(response);
+    		},
+    	});
+	});
+	
+	$("#stream-btn").click(function() {
+		console.log("you clicked stream");
+		$.ajax({
+    		type: 'POST',
+    		url: "/poems/stream",
+    		success: function(response) {
+    			$("#stream-content").html(response);
     		},
     	});
 	});

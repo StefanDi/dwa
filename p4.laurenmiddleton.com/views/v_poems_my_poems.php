@@ -1,9 +1,9 @@
 <div id="my-poems-list-parent">
 
 <!--If the user hasn't made any posts yet, prevent a SQL error-->
-<!--<? if($show_no_posts_message): ?>
-	You haven't posted anything yet!
-<? endif; ?>-->
+<? if($show_no_poems_message): ?>
+	You haven't published anything yet!
+<? endif; ?>
 
 <? foreach($poems as $poem): ?>
 	<div class="my-poem-parent">

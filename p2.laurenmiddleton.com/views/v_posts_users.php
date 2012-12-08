@@ -1,6 +1,8 @@
 <span class="breadcrumb">All Users</span><br><br>
 
 
+<form method='POST' action='/posts/p_follow'>
+
 	<? foreach($users as $user): ?>
 	
 		<!-- Print this user's name -->
@@ -18,3 +20,5 @@
 		<br><br>
 	
 	<? endforeach; ?>
+
+</form>

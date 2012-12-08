@@ -6,6 +6,8 @@ $(document).ready(function() {
 	generateAdj(adj);
 	generateHelpers(helpers);
 	generatePunctuation(punctuation);
+	//make the words draggable
+	makeDraggable();
 	
 	
 	/*sets accordion hover*/
@@ -42,38 +44,7 @@ $(document).ready(function() {
 		}
 	});
 	
-	/*sets dragging on accordion words*/
-	$(".draggable").draggable( {
-		containment: "#container",
-		helper: 'clone',
-		start: function(event, ui){
-			//remove all word elements in canvas that still have class temp
-			$(".temp").remove();
-			//add class temp to current clone
-			$(ui.helper).addClass('temp');
-		},
-		stop: function(event, ui) {
-			//place and append the cloned word
-			$(ui.helper).clone(true).removeClass('draggable').addClass('placed').appendTo('#canvas');
-			/*sets dragging on words placed on canvas*/
-			$(".placed").draggable( {
-				containment: "#canvas",
-				cursor: "move",
-				start: function() {
-					//remove all word elements in canvas that still have class temp
-					$(".temp").remove();
-					//make placed + dragged word trashable
-					$(this).addClass("trashable");
-				},
-				stop: function() {
-					$(this).removeClass("trashable");
-				},
-				opacity: 0.35,
-			});
-		},
-		revert: "invalid",
-		opacity: 0.35,
-	});
+	
 	
 	/*sets dropping on canvas*/
 	$("#canvas").droppable( {
@@ -100,6 +71,24 @@ $(document).ready(function() {
 			$(".trashable").remove();
 		},
 		tolerance: "pointer",
+	});
+	
+	/*sets add custom word btn*/
+	$("#add-word-btn").click(function() {
+		//make sure a name has been entered
+    	if($("#add-word-field").val().length == 0) {
+    		alert("Please enter custom word.");
+    		return;
+    	}
+		
+		//grab the entered word
+		var word = $("#add-word-field").val();
+		//generate it
+		generateCustom(word);
+		//make the new word draggable
+		makeDraggable();
+		//clear the input
+		$("#add-word-field").val("");
 	});
 	
 	/*sets clear btn*/
@@ -206,6 +195,7 @@ $(document).ready(function() {
     	
     	//clear the canvas
     	$(".placed").remove();
+    	$("#poem-name").val("");
     });
 
 }); //end document ready

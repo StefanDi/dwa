@@ -44,3 +44,44 @@ function generatePunctuation(wordList) {
 		$("#punctuation-content").append("<a id='" + value + "' class='word punctuation draggable'>" + this + "</a>");
 	});
 }
+
+/*generates custom draggables*/
+function generateCustom(word) {
+	$("#custom-content").append("<a id='" + word + "' class='word custom draggable'>" + word + "</a>");
+}
+
+
+/*sets dragging on accordion words*/
+function makeDraggable() {
+	$(".draggable").draggable( {
+		containment: "#container",
+		helper: 'clone',
+		start: function(event, ui){
+			//remove all word elements in canvas that still have class temp
+			$(".temp").remove();
+			//add class temp to current clone
+			$(ui.helper).addClass('temp');
+		},
+		stop: function(event, ui) {
+			//place and append the cloned word
+			$(ui.helper).clone(true).removeClass('draggable').addClass('placed').appendTo('#canvas');
+			/*sets dragging on words placed on canvas*/
+			$(".placed").draggable( {
+				containment: "#canvas",
+				cursor: "move",
+				start: function() {
+					//remove all word elements in canvas that still have class temp
+					$(".temp").remove();
+					//make placed + dragged word trashable
+					$(this).addClass("trashable");
+				},
+				stop: function() {
+					$(this).removeClass("trashable");
+				},
+				opacity: 0.35,
+			});
+		},
+		revert: "invalid",
+		opacity: 0.35,
+	});
+}

@@ -23,6 +23,13 @@
 			<div id="helpers-content" class="accordion-content hidden"></div>
 			<div id="punctuation" class="accordion-btn accordion-btn-default">Punctuation</div>
 			<div id="punctuation-content" class="accordion-content hidden"></div>
+			<div id="custom" class="accordion-btn accordion-btn-default">Custom</div>
+			<div id="custom-content" class="accordion-content hidden">
+				<label for="add-word-field" class="off-screen">Enter a word to add</label><!--for accessibility-->
+				<input id="add-word-field" type="text" />
+				<a id="add-word-btn" class="btn">Add</a>
+			</div>
+
 		</div>
 		<div id="right">
 			<div id="canvas">

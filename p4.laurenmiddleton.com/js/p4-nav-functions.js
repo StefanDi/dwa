@@ -47,4 +47,15 @@ function setTabs() {
 		loadAllUsers();
 	});
 	
+	$("#my-profile-btn").click(function() {
+		console.log("you clicked my profile");
+		$.ajax({
+    		type: 'POST',
+    		url: "/users/my_profile",
+    		success: function(response) {
+    			$("#my-profile-content").html(response);
+    		},
+    	});
+	});
+	
 }

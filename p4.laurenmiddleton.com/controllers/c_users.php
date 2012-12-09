@@ -128,6 +128,7 @@ class users_controller extends base_controller {
 		}
 	}
 	
+	#logs the user out
 	public function logout() {
 		#generate and save a new token for next login
 		$new_token = sha1(TOKEN_SALT.$this->user->email.Utils::generate_random_string());
@@ -146,6 +147,42 @@ class users_controller extends base_controller {
 		Router::redirect("/index/index");
 	}
 	
+	#shows the user's profile
+	public function my_profile() {
+		#set up blank template
+		$template = View::instance('v_users_my_profile');
+		
+		#determine the user's poem count
+		$poem_count = users_controller::poem_count($this->user->user_id);
+		
+		#pass it to the view
+		$template->poem_count = $poem_count;
+				
+		echo $template;
+	}
+	
+	#returns the number of poems a user has published
+	private function poem_count($user_id) {
+		#write a query to grab all the poems linked to the given user id
+		$q = "SELECT poems.*, users.user_id, users.first_name, users.last_name
+			FROM poems
+			JOIN users USING (user_id)
+			WHERE user_id = ".$user_id;
+			
+		#Run the query, storing the results in the variable $poems
+		$poems = DB::instance(DB_NAME)->select_rows($q); 
+				
+		#initialize a counter
+		$counter = 0;
+		
+		#loop through the results, incrementing the counter each time
+		foreach($poems as $poem) {
+			$counter = $counter + 1;
+		}
+		
+		#return the count
+		return $counter;
+	}
 	
 	
 		

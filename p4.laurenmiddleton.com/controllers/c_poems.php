@@ -68,7 +68,7 @@ class poems_controller extends base_controller {
 			JOIN users USING (user_id)
 			WHERE user_id = ".$this->user->user_id;
 			
-		#Run the query, storing the results in the variable $posts
+		#Run the query, storing the results in the variable $poems
 		$poems = DB::instance(DB_NAME)->select_rows($q);
 				
 		#If $poems is empty, user hasn't published any poems yet

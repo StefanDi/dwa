@@ -87,7 +87,7 @@ a.btn:hover {
   background-color: white;
   border: solid 1px grey;
   border-top: none;
-  height: 345px;
+  height: 300px;
   overflow: auto;
   padding: 5px;
 }

@@ -5,10 +5,11 @@
 
 <div id="tabs">
     <ul>
-        <li><a href="#tabs-1">Poem Builder</a></li>
+        <li><a href="#tabs-1" id="poem-builder-btn">Poem Builder</a></li>
         <li><a href="#tabs-2" id="my-poems-btn">My Poems</a></li>
         <li><a href="#tabs-3" id="stream-btn">Stream</a></li>
         <li><a href="#tabs-4" id="all-poets-btn">All Poets</a></li>
+        <li><a href="#tabs-5" id="my-profile-btn">My Profile</a></li>
     </ul>
     <div id="tabs-1">
         <div id="container">
@@ -28,6 +29,7 @@
 				<label for="add-word-field" class="off-screen">Enter a word to add</label><!--for accessibility-->
 				<input id="add-word-field" type="text" />
 				<a id="add-word-btn" class="btn">Add</a>
+				<br /><br />
 			</div>
 
 		</div>
@@ -60,6 +62,10 @@
     
     <div id="tabs-4">
         <div id="all-poets-content"></div>
+    </div>
+    
+    <div id="tabs-5">
+    	<div id="my-profile-content"></div>
     </div>
     
 </div>

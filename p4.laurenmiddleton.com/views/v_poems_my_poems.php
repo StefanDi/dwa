@@ -21,8 +21,12 @@
 		<div id="poem<?=$poem['poem_id']?>" class="poem-content hidden">
 			<?=$poem['content']?>
 		</div>
-		<div id="comments-parent-poem<?=$poem['poem_id']?>" class="poem-comments">
-			comments for this poem go here.
+		<a id="" class="btn show-comments-btn" href="<?=$poem['poem_id']?>">show comments</a>
+		<div id="poem<?=$poem['poem_id']?>-comments-parent" class="poem-comments hidden">
+			
+			comments will go here.
+			
+			
 		</div>
 		<div>
 			<form method="POST" action="/poems/p_comment/<?=$poem['poem_id']?>">

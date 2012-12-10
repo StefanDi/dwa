@@ -14,11 +14,30 @@ $(document).ready(function() {
 		//show the clicked content
 		var id = $(this).attr("href");
 		$(id).show();
-		//load poem comments
-		//$.ajax({
-		//	type: 'POST',
-		//	url: 
-		//});
+	});
+	
+	/*sets show comments btns*/
+	$(".show-comments-btn").live("click", function(event) {
+		//prevents anchor link page jumping
+		event.preventDefault();
+		//test
+		console.log("show comments");
+		//grab the id of the poem
+		var id = $(this).attr("href"); 
+		//store the id of the comments parent
+		var parent = "#poem" + id + "-comments-parent";
+		//store the url to be used for comment loading
+		var url = "/poems/_poem_comments/" + id;
+		//load the comments in the parent
+		$.ajax({
+			type: 'POST',
+			url: url,
+			success: function(response) {
+				$(parent).html(response);
+			},
+		});
+		//show comments parent
+		$(parent).show();  
 	});
 	
 	/*init delete poem dialog*/

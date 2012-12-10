@@ -77,20 +77,32 @@ class poems_controller extends base_controller {
 		} else {
 			$template->show_no_poems_message = FALSE;
 		}
-		
-		#Build another query to grab all the comments on the poems
-		//$r = "SELECT comments.*, users.user_id, users.first_name, users.last_name, poems.poem_id
-		//FROM comments
-		//JOIN users USING (user_id)
-		//JOIN poems USING (poem_id)
-		//WHERE poem_id ";
-		
-		
+				
 		#Pass data to the View
 		$template->poems = $poems;
 		
 		#Render view
 		echo $template;
+	}
+	
+	#returns the comments for a given poem
+	private function _poem_comments($poem_id) {
+		#set up view for stub
+		$template = View::instance('v__poem_comments');
+		
+		#build a query to grab the comments for the poem
+		$q = "SELECT comments.*
+			FROM comments
+			WHERE poem_id = ".$poem_id;
+			
+		#run the query, store result in variable $comments
+		$comments = DB::instance(DB_NAME)->select_rows($q);
+		
+		#pass data to the view
+		$template->comments = $comments;
+		
+		#rende view
+		echo $template;	
 	}
 	
 	#adds a comment to a poem

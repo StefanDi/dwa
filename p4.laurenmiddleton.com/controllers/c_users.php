@@ -153,16 +153,20 @@ class users_controller extends base_controller {
 		$template = View::instance('v_users_my_profile');
 		
 		#determine the user's poem count
-		$poem_count = users_controller::poem_count($this->user->user_id);
+		$poem_count = users_controller::_poem_count($this->user->user_id);
 		
-		#pass it to the view
+		#determine the user's avatar filename
+		$avatar = users_controller::_avatar_filename($this->user->user_id);
+		
+		#pass data to the view
 		$template->poem_count = $poem_count;
+		$template->avatar = $avatar;
 				
 		echo $template;
 	}
 	
 	#returns the number of poems a user has published
-	private function poem_count($user_id) {
+	private function _poem_count($user_id) {
 		#write a query to grab all the poems linked to the given user id
 		$q = "SELECT poems.*, users.user_id, users.first_name, users.last_name
 			FROM poems
@@ -182,6 +186,69 @@ class users_controller extends base_controller {
 		
 		#return the count
 		return $counter;
+	}
+	
+	#returns the filename of a user's avatar
+	private function _avatar_filename($user_id) {
+		#write a query to grab the filename
+		$q = "SELECT avatar
+			FROM users
+			WHERE user_id= ".$user_id;
+			
+		#run the query, storing the result in the variable $avatar_filename
+		$avatar_filename = DB::instance(DB_NAME)->select_row($q);
+		
+		return $avatar_filename;
+	}
+	
+	#uploads a profile picture
+	/*-------------------------------------------------------------------------------------------------
+	modified from
+	http://techstream.org/Web-Development/PHP/Single-File-Upload-With-PHP
+	-------------------------------------------------------------------------------------------------*/
+	public function p_edit_avatar() {
+
+		if(isset($_FILES['image'])){
+
+			$errors     = array();
+			$file_ext   = strtolower(strrchr($_FILES['image']['name'], '.'));
+			$file_name  = $this->user->user_id."-".$file_ext;			
+			$file_size  = $_FILES['image']['size'];
+			$file_tmp   = $_FILES['image']['tmp_name'];
+			$file_type  = $_FILES['image']['type'];   
+
+			$extensions = array(".jpeg",".jpg",".png",".gif"); 		
+
+			if(in_array($file_ext,$extensions) === false){
+				Router::redirect("/users/my_profile?error=Only jpg, png or gif images please.");
+			}
+
+			if($file_size > 2097152) {
+				Router::redirect("/users/my_profile?error=Your file size was too large; please choose an image smaller than 2mb");
+			}				
+			if(empty($errors)==true) {
+				move_uploaded_file($file_tmp, APP_PATH."/uploads/avatars/".$file_name);
+
+				# Save to database
+					DB::instance(DB_NAME)->update("users", Array("avatar" => $file_name), "WHERE user_id = ".$this->user->user_id);
+
+				# Create small (thumb)
+
+					$imgObj = new Image(APP_PATH."/uploads/avatars/".$file_name);
+
+					$small = Utils::postfix("_".SMALL_W."_".SMALL_H, APP_PATH.AVATAR_PATH.$file_name);
+
+					$imgObj->resize(SMALL_W, SMALL_H, 'crop');
+					$imgObj->save_image($small, 100);
+
+				# Send them back to their profile
+					Router::redirect("/users/my_profile/");
+
+			} else {
+				Router::redirect("/users/my_profile?error=There was an error uploading your image.");
+			}
+
+		}			
 	}
 	
 	

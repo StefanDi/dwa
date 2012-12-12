@@ -40,37 +40,41 @@ $(document).ready(function() {
 		$(parent).show();  
 	});
 	
-	/*init delete poem dialog*/
-	$("#delete-poem-dialog").dialog({
-    	resizable: false,
-    	modal: true,
-    	autoOpen: false,
-    	buttons: {
-    		"OK": function() {
-    			//grab url
-    			var url = $(this).attr("href");
-    			
-    			$.ajax({
-    				type: 'POST',
-    				url: url,
-    				success: function(response) {
-    				},
-    			});
-    			
-    			$(this).dialog("close");
-    		},
-    		"Cancel": function() {
-    			$(this).dialog("close");
-    		},
-    	},
-    });
-	
 	/*sets delete poem btns*/
 	$(".delete-poem-btn").live("click", function(event) {
 		//prevent page reload
 		event.preventDefault();
-		console.log("pink squirrel");
-		//ask if sure
+		//create warning dialog
+		//grab poem id
+    	var id = $(this).attr("href");
+    	console.log(id);
+		$("#delete-poem-dialog").dialog({
+    		resizable: false,
+    		modal: true,
+    		autoOpen: false,
+    		buttons: {
+    			"OK": function() {
+    				console.log("ok button clicked");
+    				//build poem url
+    				var url = "/poems/delete/" + id;
+    			
+    				$.ajax({
+    					type: 'POST',
+    					url: url,
+    					success: function(response) {
+    						//reload My Poems
+    						loadMyPoems();
+    					},
+    				});
+    			
+    				$(this).dialog("close");
+    			},
+    			"Cancel": function() {
+    				$(this).dialog("close");
+    			},
+    		},
+    	});
+    	//open warning dialog
 		$("#delete-poem-dialog").dialog("open");
 	});
 	

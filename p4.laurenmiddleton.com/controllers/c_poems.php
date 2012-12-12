@@ -98,10 +98,12 @@ class poems_controller extends base_controller {
 		#run the query, store result in variable $comments
 		$comments = DB::instance(DB_NAME)->select_rows($q);
 		
+		echo $comments;
+		
 		#pass data to the view
 		$template->comments = $comments;
 		
-		#rende view
+		#render view
 		echo $template;	
 	}
 	
@@ -128,9 +130,7 @@ class poems_controller extends base_controller {
 		$where_condition = "WHERE poem_id = ".$poem_id;
 				
 		#Execute the query to delete the post
-		DB::instance(DB_NAME)->delete($table, $where_condition);
-		
-		#Give the user confirmation
+		DB::instance(DB_NAME)->delete($table, $where_condition);	
 	}
 	
 	#generates a list of all users

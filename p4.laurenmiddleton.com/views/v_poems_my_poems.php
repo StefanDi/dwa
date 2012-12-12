@@ -7,9 +7,7 @@
 
 <? foreach($poems as $poem): ?>
 	<div class="my-poem-parent">
-		<span class="delete-poem-btn">
-			<a href="/poems/delete/<?=$poem['poem_id']?>" title="Delete poem">x</a>
-		</span>
+			<a class="delete-poem-btn" href="<?=$poem['poem_id']?>" title="Delete poem">x</a>
 		<h3>
 			<?=$poem['name']?> by <?=$poem['first_name']?> <?=$poem['last_name']?>
 		</h3>

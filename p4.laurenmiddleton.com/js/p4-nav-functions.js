@@ -17,18 +17,24 @@ function loadAllUsers() {
     });
 }
 
+/*loads my poems*/
+function loadMyPoems() {
+	console.log("loadmypoems was called");
+	$.ajax({
+    	type: 'POST',
+    	url: "/poems/my_poems",
+    	success: function(response) {
+    		$("#my-poems-content").html(response);
+    	},
+    });
+}
+
 /*sets the main tabs*/
 function setTabs() {
 	
 	$("#my-poems-btn").click(function() {
 		console.log("you clicked my poems");
-		$.ajax({
-    		type: 'POST',
-    		url: "/poems/my_poems",
-    		success: function(response) {
-    			$("#my-poems-content").html(response);
-    		},
-    	});
+		loadMyPoems();
 	});
 	
 	$("#stream-btn").click(function() {

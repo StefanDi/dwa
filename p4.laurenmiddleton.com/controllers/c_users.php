@@ -8,22 +8,13 @@ class users_controller extends base_controller {
 	
 	
 	public function index() {
-		# Any method that loads a view will commonly start with this
-		# First, set the content of the template with a view file
-			$this->template->content = View::instance('v_index_index');
+		#if user is blank, they're not logged in; redirect to login/registration page
+		if(!$this->user) {
+			Router::redirect("/users/login");
 			
-		# Now set the <title> tag
-			$this->template->title = "Hello World";
-	
-		# If this view needs any JS or CSS files, add their paths to this array so they will get loaded in the head
-			$client_files = Array(
-						""
-	                    );
-	    
-	    	$this->template->client_files = Utils::load_client_files($client_files);   
-	      		
-		# Render the view
-			echo $this->template;
+			#return will force this method to exit here so the rest of the code won't be executed and the profile view won't be displayed
+			return false;
+		}
 	}
 	
 	public function signup() {
@@ -85,7 +76,8 @@ class users_controller extends base_controller {
 		
 		#load client files
 		$client_files = Array(
-						"/css/p4-main-styles.css"
+						"/css/p4-main-styles.css",
+						"/js/p4-login-functions.js",
 	                    );
 	    
 	    	$this->template->client_files = Utils::load_client_files($client_files);
@@ -149,6 +141,14 @@ class users_controller extends base_controller {
 	
 	#shows the user's profile
 	public function my_profile() {
+		#if user is blank, they're not logged in; redirect to login/registration page
+		if(!$this->user) {
+			Router::redirect("/users/login");
+			
+			#return will force this method to exit here so the rest of the code won't be executed and the profile view won't be displayed
+			return false;
+		}
+		
 		#set up blank template
 		$template = View::instance('v_users_my_profile');
 		

@@ -31,19 +31,19 @@
 <form method="POST" action="/users/p_signup">
 
 	<label for="reg-first">First Name:</label>
-	<input id="reg-first" name="first_name" type="text" />
+	<input id="reg-first" class="reg-field" name="first_name" type="text" />
 	<br />
 	
 	<label for="reg-last">Last Name:</label>
-	<input id="reg-last" name="last_name" type="text" />
+	<input id="reg-last" class="reg-field" name="last_name" type="text" />
 	<br />
 	
 	<label for="reg-email">Email:</label>
-	<input id="reg-email" name="email" type="text" />
+	<input id="reg-email" class="reg-field" name="email" type="text" />
 	<br />
 	
 	<label for="reg-pw">Password:</label>
-	<input id="reg-pw" name="password" type="password" />
+	<input id="reg-pw" class="reg-field" name="password" type="password" />
 	<br />
 	
 	<!--<label for="reg-pw-confirm">Confirm Password:</label>
@@ -54,3 +54,7 @@
 	<input id="reg-submit" type="submit" value="Register" />
 	
 </form>
+
+<div id="reg-error" class="hidden">
+	Please fill out all fields.
+</div>

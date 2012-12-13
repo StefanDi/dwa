@@ -4,15 +4,30 @@ class poems_controller extends base_controller {
 
 	public function __construct() {
 		parent::__construct();
+		
+		#if user is blank, they're not logged in; redirect to login/registration page
+		if(!$this->user) {
+			Router::redirect("/users/login");
+			
+			#return will force this method to exit here so the rest of the code won't be executed and the profile view won't be displayed
+			return false;
+		}
 	} 
 	
 	
 	public function index() {
-
 	}
 	
 	#displays poem builder tool
 	public function builder() {
+		#if user is blank, they're not logged in; redirect to login/registration page
+		if(!$this->user) {
+			Router::redirect("/users/login");
+			
+			#return will force this method to exit here so the rest of the code won't be executed and the profile view won't be displayed
+			return false;
+		}
+		
 		#set up view
 		$this->template->content = View::instance('v_poems_builder');
 		
@@ -86,7 +101,7 @@ class poems_controller extends base_controller {
 	}
 	
 	#returns the comments for a given poem
-	private function _poem_comments($poem_id) {
+	public function _poem_comments($poem_id) {
 		#set up view for stub
 		$template = View::instance('v__poem_comments');
 		
@@ -97,9 +112,7 @@ class poems_controller extends base_controller {
 			
 		#run the query, store result in variable $comments
 		$comments = DB::instance(DB_NAME)->select_rows($q);
-		
-		echo $comments;
-		
+				
 		#pass data to the view
 		$template->comments = $comments;
 		

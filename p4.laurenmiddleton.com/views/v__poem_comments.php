@@ -1,5 +1,12 @@
+<!--add an message for "no comments to show"-->
+
 <? foreach($comments as $comment): ?>
 			
-	a comment
+	<?=$comment['content']?>
+	<br />
+	posted by <?=$comment['user_id']?>
+	at <?=$comment['created']?>
+	<br />
+	<br />
 				
 <? endforeach; ?>

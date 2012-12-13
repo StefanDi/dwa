@@ -101,7 +101,7 @@ class poems_controller extends base_controller {
 	}
 	
 	#returns the comments for a given poem
-	public function _poem_comments($poem_id) {
+	public function poem_comments($poem_id) {
 		#set up view for stub
 		$template = View::instance('v__poem_comments');
 		

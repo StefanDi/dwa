@@ -28,7 +28,7 @@ $(document).ready(function() {
 		var parent = "#poem" + id + "-comments-parent";
 		console.log(parent);
 		//build the url to be used for comment loading
-		var url = "/poems/_poem_comments/" + id;
+		var url = "/poems/poem_comments/" + id;
 		//load comments in the parent
 		$.ajax({
 			type: 'POST',

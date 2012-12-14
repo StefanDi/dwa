@@ -22,6 +22,11 @@
 	<label for="upload-avatar-submit" class="off-screen">Upload</label><!--for accessibility-->
 	<input id="upload-avatar-submit" type="submit" value="Upload" />
 	
+	<!--If the user hasn't made any posts yet, prevent a SQL error-->
+	<? if($no_avatar): ?>
+		<img id="avatar" src="/assets/generic_avatar.png" />
+	<? endif; ?>
+	
 	<? foreach($avatar as $avatar): ?>
 
 		<!--preview thumbnail-->

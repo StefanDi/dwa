@@ -27,8 +27,11 @@
 	
 </form>
 
+<div id="login-result" class="hidden">
+</div>
+
 <h2>Register</h2>
-<form method="POST" action="/users/p_signup">
+<form id="reg-form" method="POST" action="/users/p_signup">
 
 	<label for="reg-first">First Name:</label>
 	<input id="reg-first" class="reg-field" name="first_name" type="text" />
@@ -57,4 +60,7 @@
 
 <div id="reg-error" class="hidden">
 	Please fill out all fields.
+</div>
+
+<div id="reg-result" class="hidden">
 </div>

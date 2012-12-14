@@ -4,8 +4,8 @@
 			
 	<?=$comment['content']?>
 	<br />
-	posted by <?=$comment['user_id']?>
-	at <?=$comment['created']?>
+	posted by <?=$comment['first_name']?> <?=$comment['last_name']?>
+	on <?=Time::display($comment['created'], "", "America/New_York")?>
 	<br />
 	<br />
 				

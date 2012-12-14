@@ -106,8 +106,9 @@ class poems_controller extends base_controller {
 		$template = View::instance('v__poem_comments');
 		
 		#build a query to grab the comments for the poem
-		$q = "SELECT comments.*
+		$q = "SELECT comments.*, users.user_id, users.first_name, users.last_name
 			FROM comments
+			JOIN users USING (user_id)
 			WHERE poem_id = ".$poem_id;
 			
 		#run the query, store result in variable $comments

@@ -50,20 +50,12 @@ class users_controller extends base_controller {
 				#put the registration data in the database
 				$user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 			
-				#setup view
-				$this->template->content = "signup success";
-				
-				#render template
-				echo $this->template;
+				echo "Thank you for registering! Please log in above.";
 			
 			} else {
 				#Otherwise, there is a match and signup fails
 				
-				#setup view
-				$this->template->content = "signup failed";
-				
-				#render template
-				echo $this->template;
+				echo "Registration failed. This email address is already in use. Please try again.";
 			}
 	}
 	
@@ -78,6 +70,7 @@ class users_controller extends base_controller {
 		$client_files = Array(
 						"/css/p4-main-styles.css",
 						"/js/p4-login-functions.js",
+						"/js/jquery.form.js",
 	                    );
 	    
 	    	$this->template->client_files = Utils::load_client_files($client_files);
@@ -104,17 +97,14 @@ class users_controller extends base_controller {
 		
 		#if we didn't get a token back, login failed
 		if(!$token) {
-			#setup view
-			$this->template->content = "login failed";
-				
-			#render template
-			echo $this->template;
+		
+			//echo "Incorrect email and password combination. Please try again.";
 			
 		#but if we did, login succeeded!
 		} else {
 			#store this token in a cookie
 			@setcookie("token", $token, strtotime('+1 week'), '/');
-			
+						
 			#send them to their profile
 			Router::redirect("/poems/builder");
 		}
@@ -157,6 +147,14 @@ class users_controller extends base_controller {
 		
 		#determine the user's avatar filename
 		$avatar = users_controller::_avatar_filename($this->user->user_id);
+		
+		#print_r($avatar);
+		
+		#if(empty($avatar)) {
+		#	$template->no_avatar = TRUE;
+		#} else {
+		#	$template->no_avatar = FALSE;
+		#}
 		
 		#pass data to the view
 		$template->poem_count = $poem_count;

@@ -24,21 +24,46 @@ $(document).ready(function() {
 		console.log("show comments");
 		//grab the id of the poem
 		var id = $(this).attr("href"); 
+		//load the comments
+		loadComments(id);
+		//store the id of the comments container
+		var container = "#poem" + id + "-comments-container";
+		//show comments container
+		$(container).show();  
+	});
+	
+	/*sets comment submit btns on my poems page*/
+	$(".my-poem-comment-submit-btn").live("click", function(event) {
+		//prevent page reload
+		event.preventDefault();
+		
+		//grab poem id
+		var id = $(this).attr("href");
+		
+		//build url
+		var url = "/poems/p_comment/" + id;
+		
+		//grab id of comment input
+		var commentInputID = "#comment-input-poem" + id;
+		
 		//store the id of the comments parent
 		var parent = "#poem" + id + "-comments-parent";
-		console.log(parent);
-		//build the url to be used for comment loading
-		var url = "/poems/poem_comments/" + id;
-		//load comments in the parent
+		
 		$.ajax({
 			type: 'POST',
 			url: url,
 			success: function(response) {
-				$(parent).html(response);
+				//reload the comments
+				loadComments(id);
+				//show the comments parent (in case its closed)
+				$(parent).show();
+				//clear the input box
+				$(commentInputID).val("");
+			},
+			data: {
+				content: $(commentInputID).val(),
 			},
 		});
-		//show comments parent
-		$(parent).show();  
 	});
 	
 	/*sets delete poem btns*/
@@ -65,6 +90,8 @@ $(document).ready(function() {
     					success: function(response) {
     						//reload My Poems
     						loadMyPoems();
+    						//reset the dialog
+    						$("#delete-poem-dialog").dialog("destroy");
     					},
     				});
     			

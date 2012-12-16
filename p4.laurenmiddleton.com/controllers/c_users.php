@@ -97,8 +97,8 @@ class users_controller extends base_controller {
 		
 		#if we didn't get a token back, login failed
 		if(!$token) {
-		
-			//echo "Incorrect email and password combination. Please try again.";
+			
+			echo "Incorrect email and password combination. Please try again.";
 			
 		#but if we did, login succeeded!
 		} else {
@@ -143,7 +143,7 @@ class users_controller extends base_controller {
 		$template = View::instance('v_users_my_profile');
 		
 		#determine the user's poem count
-		$poem_count = users_controller::_poem_count($this->user->user_id);
+		$poem_count = users_controller::poem_count($this->user->user_id);
 		
 		#determine the user's avatar filename
 		$avatar = users_controller::_avatar_filename($this->user->user_id);
@@ -164,7 +164,7 @@ class users_controller extends base_controller {
 	}
 	
 	#returns the number of poems a user has published
-	private function _poem_count($user_id) {
+	public static function poem_count($user_id) {
 		#write a query to grab all the poems linked to the given user id
 		$q = "SELECT poems.*, users.user_id, users.first_name, users.last_name
 			FROM poems
@@ -187,7 +187,7 @@ class users_controller extends base_controller {
 	}
 	
 	#returns the filename of a user's avatar
-	private function _avatar_filename($user_id) {
+	public static function _avatar_filename($user_id) {
 		#write a query to grab the filename
 		$q = "SELECT avatar
 			FROM users

@@ -5,7 +5,7 @@ $(document).ready(function() {
 	/*set Log In btn*/
 	$("#login-submit").click(function() {
 		//prevent default
-		event.preventDefault();
+		//event.preventDefault();
 		$.ajax({
 			type: 'POST',
 			url: '/users/p_login',
@@ -51,15 +51,6 @@ $(document).ready(function() {
                    password: $('#reg-pw').val(),
                 },
 			});
-			
-			//var options = {
-			//	type: 'post',
-			//	url: '/users/p_signup',
-			//	success: function(response) {
-			//	}
-			//};
-			
-			//$('#reg-form').ajaxForm(options);
 		}
 		
 	});

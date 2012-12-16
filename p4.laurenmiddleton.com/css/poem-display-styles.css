@@ -1,15 +1,45 @@
 /*Poem Display Styles*/
-#my-poems-list-parent {
-  background-color: blue;
-  height: 500px;
+#my-poems-list-parent,
+#stream-list-parent {
+  border: solid 1px grey;
+  height: 550px;
   overflow: auto;
   width: 300px;
 }
+.no-poems-message {
+  font-size: .8em;
+  padding: 10px;
+}
+.my-poems-count {
+  background-color: #efefef;
+  border-bottom: solid 1px grey;
+  font-size: .7em;
+  padding: 5px;
+}
 .my-poem-parent {
-  background-color: pink;
-  margin-bottom: 5px;
+  background-color: #90ee90;
+  border-bottom: solid 1px grey;
+  font-size: .8em;
+  padding: 5px;
+}
+.other-poem-parent {
+  background-color: #c3e4ed;
+  border-bottom: solid 1px grey;
+  font-size: .8em;
+  padding: 5px;
+}
+.delete-poem-btn {
+  float: right;
+}
+.delete-poem-btn:hover {
+  color: white;
+}
+.poem-display-title {
+  font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
+  font-size: 1.5em;
 }
 .poem-content {
+  font-family: Times New Roman;
   background-color: yellow;
   height: 10px;
 }

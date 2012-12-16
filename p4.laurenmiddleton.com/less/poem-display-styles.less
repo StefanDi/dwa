@@ -2,19 +2,54 @@
 
 @import "colors";
 
-#my-poems-list-parent {
-	background-color: blue;
-	height: 500px;
+#my-poems-list-parent, #stream-list-parent {
+	border: solid 1px grey;
+	height: 550px;
 	overflow: auto;
 	width: 300px;
 }
 
+.no-poems-message {
+	font-size: .8em;
+	padding: 10px;
+}
+
+.my-poems-count {
+	background-color: @ef-grey;
+	border-bottom: solid 1px grey;
+	font-size: .7em;
+	padding: 5px;
+}
+
 .my-poem-parent {
-	background-color: pink;
-	margin-bottom: 5px;
+	background-color: @light-green;
+	border-bottom: solid 1px grey;
+	font-size: .8em;
+	padding: 5px;
+}
+
+.other-poem-parent {
+	background-color: @robins-egg;
+	border-bottom: solid 1px grey;
+	font-size: .8em;
+	padding: 5px;
+}
+
+.delete-poem-btn {
+	float: right;
+}
+
+.delete-poem-btn:hover {
+	color: white;
+}
+
+.poem-display-title {
+	font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
+	font-size: 1.5em;
 }
 
 .poem-content {
+	font-family: Times New Roman;
 	background-color: yellow;
 	height: 10px;
 }

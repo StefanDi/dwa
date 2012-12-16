@@ -39,12 +39,16 @@
 					<img src="../assets/trash.png" alt="Trashcan" />
 				</div>
 			</div>
-			<div id="canvas-temp" class="hidden"></div>
-			<a class="btn" id="print-btn">Print</a>
-			<label for="poem-name">Poem Name:</label>
+			
+			<div id="canvas-temp" class="hidden"></div><!--for storing temp canvas info-->
+			
+			<label for="poem-name" id="poem-name-label">Poem Name:</label>
 			<input id="poem-name" name="poem_name" type="text" />
 			<a class="btn" id="publish-btn">Publish</a>
+			
 			<a class="btn" id="clear-btn">Clear Board</a>
+			<a class="btn" id="print-btn">Print</a>
+			
 		</div>
 		</div>
 	<div id="publish-confirm-dialog" class="hidden">

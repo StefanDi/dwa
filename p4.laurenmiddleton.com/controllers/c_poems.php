@@ -92,9 +92,17 @@ class poems_controller extends base_controller {
 		} else {
 			$template->show_no_poems_message = FALSE;
 		}
-				
+		
+		#determine the user's poem count
+		$poem_count = users_controller::poem_count($this->user->user_id);
+		
+		#determine the user's avatar filename
+		$avatar = users_controller::_avatar_filename($this->user->user_id);
+		
 		#Pass data to the View
 		$template->poems = $poems;
+		$template->poem_count = $poem_count;
+		$template->avatar = $avatar;
 		
 		#Render view
 		echo $template;
@@ -113,6 +121,13 @@ class poems_controller extends base_controller {
 			
 		#run the query, store result in variable $comments
 		$comments = DB::instance(DB_NAME)->select_rows($q);
+		
+		#If $comments is empty, poem has no comments yet
+		if(empty($comments)) {
+			$template->show_no_comments_message = TRUE;
+		} else {
+			$template->show_no_comments_message = FALSE;
+		}
 				
 		#pass data to the view
 		$template->comments = $comments;

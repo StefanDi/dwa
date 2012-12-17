@@ -34,6 +34,14 @@
 .delete-poem-btn:hover {
   color: white;
 }
+.my-poem-avatar {
+  float: left;
+  margin-right: 5px;
+}
+.stream-avatar {
+  float: left;
+  margin-right: 5px;
+}
 .poem-display-title {
   font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
   font-size: 1.5em;
@@ -44,5 +52,13 @@
   height: 10px;
 }
 .poem-comments {
-  background-color: green;
+  background-color: #efefef;
+  border: solid 1px grey;
+  margin-top: 5px;
+  padding: 5px;
+}
+.comment-input {
+  height: 50px;
+  margin-top: 5px;
+  width: 269px;
 }

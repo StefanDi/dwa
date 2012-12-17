@@ -16,6 +16,17 @@ $(document).ready(function() {
 		$(id).show();
 	});
 	
+	/*sets stream view poem btns*/
+	$(".stream-view-poem-btn").live("click", function(event) {
+		//prevents anchor link page jumping
+		event.preventDefault();
+		//hide any open poem content
+		$(".poem-content").hide();
+		//show the clicked content
+		var id = $(this).attr("href");
+		$(id + "-stream").show();
+	});
+	
 	/*sets show comments btns*/
 	$(".show-comments-btn").live("click", function(event) {
 		//prevents anchor link page jumping
@@ -23,11 +34,31 @@ $(document).ready(function() {
 		//test
 		console.log("show comments");
 		//grab the id of the poem
-		var id = $(this).attr("href"); 
+		var id = $(this).attr("href");
+		//store the id of the comments parent
+		var parent = "#poem" + id + "-comments-parent";
 		//load the comments
-		loadComments(id);
+		loadComments(id, parent);
 		//store the id of the comments container
 		var container = "#poem" + id + "-comments-container";
+		//show comments container
+		$(container).show();  
+	});
+	
+	/*sets stream show comments btns*/
+	$(".show-comments-btn").live("click", function(event) {
+		//prevents anchor link page jumping
+		event.preventDefault();
+		//test
+		console.log("show comments");
+		//grab the id of the poem
+		var id = $(this).attr("href");
+		//store the id of the comments parent
+		var parent = "#stream-poem" + id + "-comments-parent";
+		//load the comments
+		loadComments(id, parent);
+		//store the id of the comments container
+		var container = "#stream-poem" + id + "-comments-container";
 		//show comments container
 		$(container).show();  
 	});
@@ -121,5 +152,25 @@ $(document).ready(function() {
 			},
 		});
 	});
+	
+	/*sets upload avatar btn*/
+	//$("#upload-avatar-submit").live("click", function(event) {
+	//	//prevents page reload
+	//	event.preventDefault();
+		
+	//	console.log("you clicked upload");
+		
+	//	//ajax request
+	//	$.ajax({
+	//		type: 'POST',
+	//		url: '/users/p_edit_avatar',
+	//		success: function(response) {
+	//			//reload my profile
+	//		},
+	//		data: {
+	//			image: $("#upload-avatar").val(),
+	//		},
+	//	});
+	//});
 
 }); //end document ready

@@ -2,7 +2,7 @@
 
 <!--If the user isn't following anyone yet, prevent a SQL error-->
 <? if($show_no_follows_message): ?>
-	<div class="no-poems-message">You aren't following anyone's poems yet.</div>
+	<div class="no-poems-message">You aren't following anyone yet.</div>
 <? endif; ?>
 
 <!--If the user's followers haven't made any poems, show a message-->
@@ -15,7 +15,9 @@
 	<!-- if the poem was created by this user, put it in a div with one class--> 
 	<? if($poem['user_id'] == $user->user_id): ?>
 		<div class="my-poem-parent">
-		
+			
+			<img src="/uploads/avatars/<?=$poem['avatar']?>" class="stream-avatar" />
+			
 			<span class="poem-display-title"><?=$poem['name']?></span>
 			<br />
 			
@@ -23,17 +25,17 @@
 			<?=Time::display($poem['created'], "", "America/New_York")?>
 			<br /><br />
 			
-			<a id="stream-view-btn-poem<?=$poem['poem_id']?>" class="btn view-poem-btn" href="#poem<?=$poem['poem_id']?>">View</a>
+			<a id="stream-view-btn-poem<?=$poem['poem_id']?>" class="btn stream-view-poem-btn" href="#poem<?=$poem['poem_id']?>">View</a>
 			
-			<div id="poem<?=$poem['poem_id']?>" class="poem-content hidden">
+			<div id="poem<?=$poem['poem_id']?>-stream" class="poem-content hidden">
 				<?=$poem['content']?>
 			</div>
 			
 			<a id="" class="btn show-comments-btn" href="<?=$poem['poem_id']?>">Show Comments</a>
 		
-	<div id="poem<?=$poem['poem_id']?>-comments-container" class="hidden">	
+	<div id="stream-poem<?=$poem['poem_id']?>-comments-container" class="hidden">	
 		
-		<div id="poem<?=$poem['poem_id']?>-comments-parent" class="poem-comments">
+		<div id="stream-poem<?=$poem['poem_id']?>-comments-parent" class="poem-comments">
 			<!--comments will go here.-->
 			<? if($show_no_comments_message): ?>
 				<div class="no-comments-message">This poem has no comments yet.</div>
@@ -56,6 +58,8 @@
 	<!-- otherwise, put it in a div with another class-->
 	<? else: ?>
 		<div class="other-poem-parent">
+		
+		<img src="/uploads/avatars/<?=$poem['avatar']?>" class="stream-avatar" />
 			
 			<span class="poem-display-title"><?=$poem['name']?></span>
 		<br />

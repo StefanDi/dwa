@@ -31,6 +31,7 @@ class users_controller extends base_controller {
 		$_POST['created'] = Time::now(); //this returns the current timestamp
 		$_POST['modified'] = Time::now();
 		$_POST['token'] = sha1(TOKEN_SALT.$_POST['email'].Utils::generate_random_string());
+		$_POST['avatar'] = "generic_avatar.png";
 		
 		#sanitize the user entered data
 		$_POST = DB::instance(DB_NAME)->sanitize($_POST);
@@ -145,20 +146,8 @@ class users_controller extends base_controller {
 		#determine the user's poem count
 		$poem_count = users_controller::poem_count($this->user->user_id);
 		
-		#determine the user's avatar filename
-		$avatar = users_controller::_avatar_filename($this->user->user_id);
-		
-		#print_r($avatar);
-		
-		#if(empty($avatar)) {
-		#	$template->no_avatar = TRUE;
-		#} else {
-		#	$template->no_avatar = FALSE;
-		#}
-		
 		#pass data to the view
 		$template->poem_count = $poem_count;
-		$template->avatar = $avatar;
 				
 		echo $template;
 	}
@@ -210,7 +199,7 @@ class users_controller extends base_controller {
 
 			$errors     = array();
 			$file_ext   = strtolower(strrchr($_FILES['image']['name'], '.'));
-			$file_name  = $this->user->user_id."-".$file_ext;			
+			$file_name  = $this->user->user_id."_50_50".$file_ext;			
 			$file_size  = $_FILES['image']['size'];
 			$file_tmp   = $_FILES['image']['tmp_name'];
 			$file_type  = $_FILES['image']['type'];   
@@ -234,9 +223,9 @@ class users_controller extends base_controller {
 
 					$imgObj = new Image(APP_PATH."/uploads/avatars/".$file_name);
 
-					$small = Utils::postfix("_".SMALL_W."_".SMALL_H, APP_PATH.AVATAR_PATH.$file_name);
+					$small = Utils::postfix("", APP_PATH.AVATAR_PATH.$file_name);
 
-					$imgObj->resize(SMALL_W, SMALL_H, 'crop');
+					$imgObj->resize(50, 50, 'crop');
 					$imgObj->save_image($small, 100);
 
 				# Send them back to their profile

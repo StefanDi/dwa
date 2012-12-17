@@ -68,12 +68,9 @@ function setTabs() {
 
 /*loads a poem's comments*/
 
-function loadComments(id) {
+function loadComments(id, parent) {
 	//build the url to be used for comment loading
 	var url = "/poems/poem_comments/" + id;
-	
-	//store the id of the comments parent
-	var parent = "#poem" + id + "-comments-parent";
 	
 	//load comments in the parent
 		$.ajax({

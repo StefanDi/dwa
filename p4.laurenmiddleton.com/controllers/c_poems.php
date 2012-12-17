@@ -85,24 +85,13 @@ class poems_controller extends base_controller {
 			
 		#Run the query, storing the results in the variable $poems
 		$poems = DB::instance(DB_NAME)->select_rows($q);
-				
-		#If $poems is empty, user hasn't published any poems yet
-		if(empty($poems)) {
-			$template->show_no_poems_message = TRUE;
-		} else {
-			$template->show_no_poems_message = FALSE;
-		}
 		
 		#determine the user's poem count
 		$poem_count = users_controller::poem_count($this->user->user_id);
 		
-		#determine the user's avatar filename
-		$avatar = users_controller::_avatar_filename($this->user->user_id);
-		
 		#Pass data to the View
 		$template->poems = $poems;
 		$template->poem_count = $poem_count;
-		$template->avatar = $avatar;
 		
 		#Render view
 		echo $template;
@@ -252,7 +241,7 @@ class poems_controller extends base_controller {
 			
 			#Build our query to grab the posts
 			#Selects everything in 'posts' and select fields in 'users' (so 'created' is unambiguous)
-			$q = "SELECT poems.*, users.user_id, users.first_name, users.last_name
+			$q = "SELECT poems.*, users.user_id, users.first_name, users.last_name, users.avatar
 				FROM poems
 				JOIN users USING (user_id)
 				WHERE poems.user_id IN (".$connections_string.")"; #This is where we use that string of user_ids we created

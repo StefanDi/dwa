@@ -1,10 +1,5 @@
 <div id="my-poems-list-parent">
 
-<!--If the user hasn't made any posts yet, prevent a SQL error-->
-<? if($show_no_poems_message): ?>
-	<div class="no-poems-message">You haven't published any poems yet.</div>
-<? endif; ?>
-
 <div class="my-poems-count">
 	You've published <?=$poem_count?> poems.
 </div>
@@ -15,9 +10,7 @@
 		<br />
 		
 		<div class="my-poem-avatar">
-			<? foreach($avatar as $avatar): ?>
-				<img id="avatar" src="/uploads/avatars/<?=$avatar?>" />
-			<? endforeach; ?>
+			<img src="<?=$user->avatar?>" />
 		</div>
 		
 		<span class="poem-display-title"><?=$poem['name']?></span>
@@ -47,9 +40,9 @@
 		<div>
 			<form method="POST" action="/poems/p_comment/<?=$poem['poem_id']?>">
 				<label for="comment-input-poem<?=$poem['poem_id']?>" class="off-screen">Enter a comment</label> <!--for accessibility-->
-				<textarea id="comment-input-poem<?=$poem['poem_id']?>" name="content"></textarea>
+				<textarea id="comment-input-poem<?=$poem['poem_id']?>" name="content" class="comment-input"></textarea>
 				<label for="comment-submit-poem<?=$poem['poem_id']?>" class="off-screen">Submit your comment</label> <!--for accessibility-->
-				<a id="comment-submit-poem<?=$poem['poem_id']?>" class="btn my-poem-comment-submit-btn" href="<?=$poem['poem_id']?>">Comment</a>
+				<a id="comment-submit-poem<?=$poem['poem_id']?>" class="btn my-poem-comment-submit-btn" href="<?=$poem['poem_id']?>">Post</a>
 			</form>
 		</div>
 		

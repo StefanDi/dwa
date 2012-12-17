@@ -45,9 +45,9 @@
 		<div>
 			<form method="POST" action="/poems/p_comment/<?=$poem['poem_id']?>">
 				<label for="stream-comment-input-poem<?=$poem['poem_id']?>" class="off-screen">Enter a comment</label> <!--for accessibility-->
-				<textarea id="stream-comment-input-poem<?=$poem['poem_id']?>" name="content"></textarea>
+				<textarea id="stream-comment-input-poem<?=$poem['poem_id']?>" name="content" class="comment-input"></textarea>
 				<label for="stream-comment-submit-poem<?=$poem['poem_id']?>" class="off-screen">Submit your comment</label> <!--for accessibility-->
-				<a id="stream-comment-submit-poem<?=$poem['poem_id']?>" class="btn my-poem-comment-submit-btn-stream" href="<?=$poem['poem_id']?>">Comment</a>
+				<a id="stream-comment-submit-poem<?=$poem['poem_id']?>" class="btn my-poem-comment-submit-btn-stream" href="<?=$poem['poem_id']?>">Post</a>
 			</form>
 		</div>
 		
@@ -88,9 +88,9 @@
 		<div>
 			<form method="POST" action="/poems/p_comment/<?=$poem['poem_id']?>">
 				<label for="comment-input-poem<?=$poem['poem_id']?>" class="off-screen">Enter a comment</label> <!--for accessibility-->
-				<textarea id="comment-input-poem<?=$poem['poem_id']?>" name="content"></textarea>
+				<textarea id="comment-input-poem<?=$poem['poem_id']?>" name="content" class="comment-input"></textarea>
 				<label for="comment-submit-poem<?=$poem['poem_id']?>" class="off-screen">Submit your comment</label> <!--for accessibility-->
-				<a id="comment-submit-poem<?=$poem['poem_id']?>" class="btn my-poem-comment-submit-btn" href="<?=$poem['poem_id']?>">Comment</a>
+				<a id="comment-submit-poem<?=$poem['poem_id']?>" class="btn my-poem-comment-submit-btn" href="<?=$poem['poem_id']?>">Post</a>
 			</form>
 		</div>
 		

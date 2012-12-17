@@ -10,7 +10,7 @@ $(document).ready(function() {
 			type: 'POST',
 			url: '/users/p_login',
 			success: function(response) {
-				//show a success message
+				//show an error message
 				$("#login-result").html(response).show();
 			},
 			data: {

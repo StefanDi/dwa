@@ -5,6 +5,8 @@ $(document).ready(function() {
 	createTabs();
 	setTabs();
 	
+	initAlert();
+	
 	/*sets view poem btns*/
 	$(".view-poem-btn").live("click", function(event) {
 		//prevents anchor link page jumping
@@ -31,8 +33,8 @@ $(document).ready(function() {
 	$(".show-comments-btn").live("click", function(event) {
 		//prevents anchor link page jumping
 		event.preventDefault();
-		//test
-		console.log("show comments");
+		//hide any open comments
+		$(".poem-comments-container").hide();
 		//grab the id of the poem
 		var id = $(this).attr("href");
 		//store the id of the comments parent
@@ -49,8 +51,6 @@ $(document).ready(function() {
 	$(".show-comments-btn").live("click", function(event) {
 		//prevents anchor link page jumping
 		event.preventDefault();
-		//test
-		console.log("show comments");
 		//grab the id of the poem
 		var id = $(this).attr("href");
 		//store the id of the comments parent
@@ -71,6 +71,14 @@ $(document).ready(function() {
 		//grab poem id
 		var id = $(this).attr("href");
 		
+		//check for valid input
+		//get value of input
+		var val = $("#comment-input-poem" + id).val();
+		
+		if(val == "") {
+			doAlert("Please enter a comment.");
+		}else {
+		
 		//build url
 		var url = "/poems/p_comment/" + id;
 		
@@ -85,7 +93,7 @@ $(document).ready(function() {
 			url: url,
 			success: function(response) {
 				//reload the comments
-				loadComments(id);
+				loadComments(id, parent);
 				//show the comments parent (in case its closed)
 				$(parent).show();
 				//clear the input box
@@ -95,6 +103,52 @@ $(document).ready(function() {
 				content: $(commentInputID).val(),
 			},
 		});
+		
+		}
+	});
+	
+	/*sets comment submit btns on stream page*/
+	$(".my-poem-comment-submit-btn-stream").live("click", function(event) {
+		//prevent page reload
+		event.preventDefault();
+		
+		//grab poem id
+		var id = $(this).attr("href");
+		
+		//check for valid input
+		//get value of input
+		var val = $("#stream-comment-input-poem" + id).val();
+		
+		if(val == "") {
+			doAlert("Please enter a comment.");
+		}else {
+		
+		//build url
+		var url = "/poems/p_comment/" + id;
+		
+		//grab id of comment input
+		var commentInputID = "#stream-comment-input-poem" + id;
+		
+		//store the id of the comments parent
+		var parent = "#stream-poem" + id + "-comments-parent";
+		
+		$.ajax({
+			type: 'POST',
+			url: url,
+			success: function(response) {
+				//reload the comments
+				loadComments(id, parent);
+				//show the comments parent (in case its closed)
+				$(parent).show();
+				//clear the input box
+				$(commentInputID).val("");
+			},
+			data: {
+				content: $(commentInputID).val(),
+			},
+		});
+		
+		}
 	});
 	
 	/*sets delete poem btns*/

@@ -81,3 +81,23 @@ function loadComments(id, parent) {
 			},
 		});
 }
+
+/*inits generic alert modal*/
+function initAlert() {
+	$("#alert-dialog").dialog({
+    		resizable: false,
+    		modal: true,
+    		autoOpen: false,
+    		buttons: {
+    			"OK": function() {
+    				$(this).dialog("close");
+    			},
+    		},
+    	});
+}
+
+/*displays alert*/
+function doAlert(message) {
+	$("#alert-dialog").html(message);
+	$("#alert-dialog").dialog("open");
+}

@@ -54,7 +54,6 @@ $(document).ready(function() {
 		drop: function() {
 			//replace class temp with drop for dropped word
 			$(".temp").addClass("dropped").removeClass("temp");
-			//alert("dropped!");
 		},
 		tolerance: "fit",
 	});
@@ -77,7 +76,7 @@ $(document).ready(function() {
 	$("#add-word-btn").click(function() {
 		//make sure a name has been entered
     	if($("#add-word-field").val().length == 0) {
-    		alert("Please enter custom word.");
+    		doAlert("Please enter a custom word.");
     		return;
     	}
 		
@@ -102,7 +101,7 @@ $(document).ready(function() {
 	$("#print-btn").click(function() {
 		//make sure canvas isn't empty
     	if(($("#canvas").find(".word").length) == 0) {
-    		alert("Please drag some words to the canvas.");
+    		doAlert("Please drag some words to the canvas.");
     		return;
     	}
 		
@@ -151,13 +150,13 @@ $(document).ready(function() {
     $("#publish-btn").click(function() {
     	//make sure canvas isn't empty
     	if(($("#canvas").find(".word").length) == 0) {
-    		alert("Please drag some words to the canvas.");
+    		doAlert("Please drag some words to the canvas.");
     		return;
     	}
     	
     	//make sure a name has been entered
     	if($("#poem-name").val().length == 0) {
-    		alert("Please enter a name for your poem.");
+    		doAlert("Please enter a name for your poem.");
     		return;
     	}
     	

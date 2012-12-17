@@ -28,7 +28,7 @@
 		
 		<a id="" class="btn show-comments-btn" href="<?=$poem['poem_id']?>">Show Comments</a>
 		
-	<div id="poem<?=$poem['poem_id']?>-comments-container" class="hidden">	
+	<div id="poem<?=$poem['poem_id']?>-comments-container" class="poem-comments-container hidden">	
 		
 		<div id="poem<?=$poem['poem_id']?>-comments-parent" class="poem-comments">
 			<!--comments will go here.-->

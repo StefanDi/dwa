@@ -4,6 +4,10 @@
   padding: 0;
   margin: 0;
 }
+.ul-bullets {
+  list-style-type: disc;
+  padding-left: 20px;
+}
 .hidden {
   /*hides elements*/
 

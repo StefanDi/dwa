@@ -42,7 +42,8 @@ class poems_controller extends base_controller {
 						"/js/p4-main-functions.js",
 						"/js/p4-nav-functions.js",
 						"/js/poem-builder-main.js",
-						"/js/poem-builder-words.js"
+						"/js/poem-builder-words.js",
+						"/js/jquery.form.js",
 	                    );
 	    
 	    	$this->template->client_files = Utils::load_client_files($client_files);

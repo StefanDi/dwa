@@ -16,7 +16,7 @@
 	<span class="alert"><?=$_GET['alert']?></span><br />
 <? endif; ?>
 
-<form method="POST" enctype="multipart/form-data" action="/users/p_edit_avatar">
+<form method="POST" enctype="multipart/form-data" action="/users/p_edit_avatar" id="upload-avatar-form">
 	
 	<label for="upload-avatar">Choose an image:</label>
 	<input id="upload-avatar" type="file" name="image" /><br />

@@ -29,6 +29,18 @@ function loadMyPoems() {
     });
 }
 
+/*loads my profile*/
+function loadMyProfile() {
+	console.log("you clicked my profile");
+		$.ajax({
+    		type: 'POST',
+    		url: "/users/my_profile",
+    		success: function(response) {
+    			$("#my-profile-content").html(response);
+    		},
+    	});
+}
+
 /*sets the main tabs*/
 function setTabs() {
 	
@@ -54,14 +66,8 @@ function setTabs() {
 	});
 	
 	$("#my-profile-btn").click(function() {
-		console.log("you clicked my profile");
-		$.ajax({
-    		type: 'POST',
-    		url: "/users/my_profile",
-    		success: function(response) {
-    			$("#my-profile-content").html(response);
-    		},
-    	});
+		loadMyProfile();
+		
 	});
 	
 }

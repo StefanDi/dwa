@@ -214,17 +214,17 @@ $(document).ready(function() {
 		
 		console.log("you clicked upload");
 		
-		//ajax request
-		$.ajax({
+		var options = {
 			type: 'POST',
 			url: '/users/p_edit_avatar',
 			success: function(response) {
 				//reload my profile
+				loadMyProfile();
 			},
-			data: {
-				image: $("#upload-avatar").val(),
-			},
-		});
+		}
+		
+		//ajax request
+		$('#upload-avatar-form').ajaxForm(options);
 	});
 
 }); //end document ready

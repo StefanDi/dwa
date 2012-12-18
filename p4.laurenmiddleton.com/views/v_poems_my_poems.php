@@ -22,11 +22,14 @@
 		
 		<a id="view-btn-poem<?=$poem['poem_id']?>" class="btn view-poem-btn" href="#poem<?=$poem['poem_id']?>">View</a>
 		
+		<a id="" class="btn show-comments-btn" href="<?=$poem['poem_id']?>">Show Comments</a>
+		
 		<div id="poem<?=$poem['poem_id']?>" class="poem-content hidden">
+			<div class="poem-view-title">'<?=$poem['name']?>' by <?=$poem['first_name']?> <?=$poem['last_name']?></div>
 			<?=$poem['content']?>
 		</div>
 		
-		<a id="" class="btn show-comments-btn" href="<?=$poem['poem_id']?>">Show Comments</a>
+		
 		
 	<div id="poem<?=$poem['poem_id']?>-comments-container" class="poem-comments-container hidden">	
 		

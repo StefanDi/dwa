@@ -208,23 +208,23 @@ $(document).ready(function() {
 	});
 	
 	/*sets upload avatar btn*/
-	//$("#upload-avatar-submit").live("click", function(event) {
-	//	//prevents page reload
-	//	event.preventDefault();
+	$("#upload-avatar-submit").live("click", function(event) {
+		//prevents page reload
+		event.preventDefault();
 		
-	//	console.log("you clicked upload");
+		console.log("you clicked upload");
 		
-	//	//ajax request
-	//	$.ajax({
-	//		type: 'POST',
-	//		url: '/users/p_edit_avatar',
-	//		success: function(response) {
-	//			//reload my profile
-	//		},
-	//		data: {
-	//			image: $("#upload-avatar").val(),
-	//		},
-	//	});
-	//});
+		//ajax request
+		$.ajax({
+			type: 'POST',
+			url: '/users/p_edit_avatar',
+			success: function(response) {
+				//reload my profile
+			},
+			data: {
+				image: $("#upload-avatar").val(),
+			},
+		});
+	});
 
 }); //end document ready

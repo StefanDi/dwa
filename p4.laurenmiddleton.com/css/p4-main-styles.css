@@ -18,6 +18,9 @@ h3 {
 a {
   text-decoration: none;
 }
+a:focus {
+  outline: none;
+}
 #tabs {
   height: 630px;
   margin-left: auto;

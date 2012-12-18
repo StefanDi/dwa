@@ -5,19 +5,23 @@ $(document).ready(function() {
 	/*set Log In btn*/
 	$("#login-submit").click(function() {
 		//prevent default
-		//event.preventDefault();
+		event.preventDefault();
 		$.ajax({
 			type: 'POST',
 			url: '/users/p_login',
 			success: function(response) {
-				//show an error message
-				$("#login-result").html(response).show();
+				console.log(response);
+				if(response == "fail") {
+					var msg = "Incorrect email and password combination. Please try again.";
+					$("#login-result").html(msg).show();
+				}
+				else if(response == "pass") {
+					location.href = "/poems/builder";
+				}
 			},
 			data: {
-                first_name: $('#reg-first').val(),
-                last_name: $('#reg-last').val(),
-                email: $('#reg-email').val(),
-                password: $('#reg-pw').val(),
+                email: $('#login-email').val(),
+                password: $('#login-pw').val(),
             },
 		});
 	});

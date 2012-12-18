@@ -99,7 +99,7 @@ class users_controller extends base_controller {
 		#if we didn't get a token back, login failed
 		if(!$token) {
 			
-			echo "Incorrect email and password combination. Please try again.";
+			echo "fail";
 			
 		#but if we did, login succeeded!
 		} else {
@@ -107,7 +107,8 @@ class users_controller extends base_controller {
 			@setcookie("token", $token, strtotime('+1 week'), '/');
 						
 			#send them to their profile
-			Router::redirect("/poems/builder");
+			//Router::redirect("/poems/builder");
+			echo "pass";
 		}
 	}
 	

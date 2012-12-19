@@ -21,7 +21,7 @@ $(document).ready(function() {
 					$("#login-result").html(msg).show();
 				}
 				else if(response == "pass") {
-					location.href = "/poems/index";
+					window.location.href = "/poems/index";
 				}
 			},
 			data: {

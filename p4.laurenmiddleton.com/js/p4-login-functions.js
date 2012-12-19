@@ -12,11 +12,16 @@ $(document).ready(function() {
 			success: function(response) {
 				console.log(response);
 				if(response == "fail") {
+					//hide any other messages
+					$("#reg-result").hide();
+					$("#reg-error").hide();
+					//clear reg inputs
+					$("#reg-field").val("");
 					var msg = "Incorrect email and password combination. Please try again.";
 					$("#login-result").html(msg).show();
 				}
 				else if(response == "pass") {
-					location.href = "/poems/builder";
+					location.href = "/poems/index";
 				}
 			},
 			data: {
@@ -37,6 +42,12 @@ $(document).ready(function() {
 		var emailVal = $("#reg-email").val();
 		var passVal = $("#reg-pw").val();
 		if((firstVal == "") || (lastVal == "") || (emailVal == "") || (passVal == "")) {
+			//hide any errors
+			$("#reg-error").hide();
+			$("#login-result").hide();
+			//clear login inputs
+			$(".login-input").val("");
+			//show the reg error
 			$("#reg-error").show();
 		}else {
 			console.log("else statement entered");
@@ -45,6 +56,12 @@ $(document).ready(function() {
 				url: '/users/p_signup',
 				success: function(response) {
 					//clear the inputs
+					$(".reg-field").val("");
+					//hide any errors
+					$("#reg-error").hide();
+					$("#login-result").hide();
+					//clear login inputs
+					$(".login-input").val("");
 					//show a success message
 					$("#reg-result").html(response).show();
 				},

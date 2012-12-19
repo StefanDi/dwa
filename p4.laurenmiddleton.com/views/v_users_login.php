@@ -1,8 +1,16 @@
+<div id="login-container">
+
+<div id="login-header">
+
 <h1>Here. In My Head</h1>
 <h3>Create and share poetry based on the lyrics of Tori Amos.</h3>
 
-<h2>Features</h2>
-<ul class="ul-bullets">
+</div>
+
+<div id="login-left">
+
+<h2 class="login">Features</h2>
+<ul id="features" class="ul-bullets">
 	<li>Create your own account</li>
 	<li>Upload a profile picture</li>
 	<li>Create and save poems using a stylish drag and drop interface</li>
@@ -11,15 +19,19 @@
 	<li>Write and receive feedback</li>
 </ul>
 
-<h2>Log In</h2>
+</div>
+
+<div id="login-right">
+
+<h2 class="login">Log In</h2>
 <form method="POST" action="/users/p_login">
 
-	<label for="login-email">Email:</label>
-	<input id="login-email" name="email" type="text" />
+	<label for="login-email" class="login-label">Email:</label>
+	<input id="login-email" class="login-input" name="email" type="text" />
 	<br />
 	
-	<label for="login-pw">Password:</label>
-	<input id="login-pw" name="password" type="password" />
+	<label for="login-pw" class="login-label">Password:</label>
+	<input id="login-pw" class="login-input" name="password" type="password" />
 	<br />
 	
 	<label for="login-submit" class="off-screen">Log In</label> <!--for accessibility-->
@@ -30,22 +42,22 @@
 <div id="login-result" class="hidden">
 </div>
 
-<h2>Register</h2>
+<h2 class="login">Register</h2>
 <form id="reg-form" method="POST" action="/users/p_signup">
 
-	<label for="reg-first">First Name:</label>
+	<label for="reg-first" class="login-label">First Name:</label>
 	<input id="reg-first" class="reg-field" name="first_name" type="text" />
 	<br />
 	
-	<label for="reg-last">Last Name:</label>
+	<label for="reg-last" class="login-label">Last Name:</label>
 	<input id="reg-last" class="reg-field" name="last_name" type="text" />
 	<br />
 	
-	<label for="reg-email">Email:</label>
+	<label for="reg-email" class="login-label">Email:</label>
 	<input id="reg-email" class="reg-field" name="email" type="text" />
 	<br />
 	
-	<label for="reg-pw">Password:</label>
+	<label for="reg-pw" class="login-label">Password:</label>
 	<input id="reg-pw" class="reg-field" name="password" type="password" />
 	<br />
 	
@@ -63,4 +75,8 @@
 </div>
 
 <div id="reg-result" class="hidden">
+</div>
+
+</div>
+
 </div>

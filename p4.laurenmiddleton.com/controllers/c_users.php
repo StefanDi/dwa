@@ -51,12 +51,12 @@ class users_controller extends base_controller {
 				#put the registration data in the database
 				$user_id = DB::instance(DB_NAME)->insert('users', $_POST);
 			
-				echo "Thank you for registering! Please log in above.";
+				echo "<span class='reg-pass'>Registration successful! Please log in above.</span>";
 			
 			} else {
 				#Otherwise, there is a match and signup fails
 				
-				echo "Registration failed. This email address is already in use. Please try again.";
+				echo "<span class='reg-fail'>Registration failed. This email address is already in use. Please try again.</span>";
 			}
 	}
 	
@@ -107,7 +107,7 @@ class users_controller extends base_controller {
 			@setcookie("token", $token, strtotime('+1 week'), '/');
 						
 			#send them to their profile
-			//Router::redirect("/poems/builder");
+			//Router::redirect("/poems/index");
 			echo "pass";
 		}
 	}
@@ -208,11 +208,11 @@ class users_controller extends base_controller {
 			$extensions = array(".jpeg",".jpg",".png",".gif"); 		
 
 			if(in_array($file_ext,$extensions) === false){
-				Router::redirect("/users/my_profile?error=Only jpg, png or gif images please.");
+				Router::redirect("/users/edit_avatar?error=Only .jpg, .png or .gif images.  Please try again:");
 			}
 
 			if($file_size > 2097152) {
-				Router::redirect("/users/my_profile?error=Your file size was too large; please choose an image smaller than 2mb");
+				Router::redirect("/users/edit_avatar?error=Your file size was too large; please choose an image smaller than 2mb");
 			}				
 			if(empty($errors)==true) {
 				move_uploaded_file($file_tmp, APP_PATH."/uploads/avatars/".$file_name);
@@ -230,13 +230,33 @@ class users_controller extends base_controller {
 					$imgObj->save_image($small, 100);
 
 				# Send them back to their profile
-					Router::redirect("/users/my_profile/");
+					Router::redirect("/users/edit_avatar?alert=Your avatar was successfully uploaded! <a href='/poems/index'>Continue creating.</a>");
 
 			} else {
-				Router::redirect("/users/my_profile?error=There was an error uploading your image.");
+				Router::redirect("/users/edit_avatar?error=There was an error uploading your image.");
 			}
 
 		}			
+	}
+	
+	public function edit_avatar() {
+		#set up view
+		$this->template->content = View::instance('v_users_edit_avatar');
+		
+		#set the title
+		$this->template->title = "Here. In My Head";
+		
+		#load client files
+		$client_files = Array(
+						"/css/p4-main-styles.css",
+						"/js/p4-login-functions.js",
+						"/js/jquery.form.js",
+	                    );
+	    
+	    	$this->template->client_files = Utils::load_client_files($client_files);
+		
+		#render template
+		echo $this->template;
 	}
 	
 	

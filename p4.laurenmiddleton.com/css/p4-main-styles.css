@@ -11,15 +11,68 @@ h2 {
   font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
   font-size: 1.6em;
 }
+h2.login {
+  color: #499df5;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
 h3 {
   font-family: "Century Gothic", "Arial", "Helvetica", sans-serif;
   font-size: 1.1em;
 }
 a {
+  color: #499df5;
   text-decoration: none;
+}
+a:hover {
+  color: #333333;
 }
 a:focus {
   outline: none;
+}
+#login-container {
+  border-bottom: dotted 1px #333333;
+  height: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  width: 800px;
+}
+#login-header {
+  border-bottom: dotted 1px #333333;
+}
+#login-left {
+  float: left;
+  margin-top: 5px;
+}
+#login-right {
+  float: left;
+  margin-top: 5px;
+  margin-left: 100px;
+}
+#features {
+  line-height: 25px;
+  width: 275px;
+}
+.login-label {
+  display: inline-block;
+  width: 90px;
+}
+#login-result,
+#reg-error {
+  color: red;
+  font-size: .8em;
+  margin-top: 10px;
+}
+.reg-pass {
+  color: green;
+  font-size: .8em;
+  margin-top: 10px;
+}
+.reg-fail {
+  color: red;
+  font-size: .8em;
+  margin-top: 10px;
 }
 #tabs {
   height: 630px;
@@ -48,4 +101,18 @@ a:focus {
   border: solid 1px #efefef;
   float: left;
   margin-right: 5px;
+}
+#edit-avatar-container {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+  width: 1000px;
+}
+.upload-error {
+  color: red;
+  font-size: .8em;
+}
+.upload-alert {
+  color: green;
+  font-size: .8em;
 }

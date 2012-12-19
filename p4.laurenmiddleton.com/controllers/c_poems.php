@@ -15,11 +15,9 @@ class poems_controller extends base_controller {
 	} 
 	
 	
-	public function index() {
-	}
-	
 	#displays poem builder tool
-	public function builder() {
+	public function index() {
+	
 		#if user is blank, they're not logged in; redirect to login/registration page
 		if(!$this->user) {
 			Router::redirect("/users/login");

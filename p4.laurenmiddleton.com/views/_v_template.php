@@ -11,8 +11,8 @@
 	<link rel="stylesheet" type="text/css" href="/css/lkm-styles.css">
 	
 	<!-- JS -->
-	<script src="http://code.jquery.com/jquery-1.8.3.js"></script>
-	<script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
 				
 	<!-- Controller Specific JS/CSS -->
 	<?php echo @$client_files; ?>

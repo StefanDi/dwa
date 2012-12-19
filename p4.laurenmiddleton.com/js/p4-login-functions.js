@@ -3,7 +3,7 @@ $(document).ready(function() {
 	console.log("login js works!");
 	
 	/*set Log In btn*/
-	$("#login-submit").click(function() {
+	$("#login-submit").click(function(event) {
 		//prevent default
 		event.preventDefault();
 		$.ajax({

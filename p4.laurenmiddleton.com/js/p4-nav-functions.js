@@ -1,6 +1,6 @@
 /*initializes the main tabs*/
 function createTabs() {
-	console.log("create the tabs");
+	//console.log("create the tabs");
 	$(function() {
         $("#tabs").tabs();
     });
@@ -19,7 +19,7 @@ function loadAllUsers() {
 
 /*loads my poems*/
 function loadMyPoems() {
-	console.log("loadmypoems was called");
+	//console.log("loadmypoems was called");
 	$.ajax({
     	type: 'POST',
     	url: "/poems/my_poems",
@@ -31,7 +31,7 @@ function loadMyPoems() {
 
 /*loads my profile*/
 function loadMyProfile() {
-	console.log("you clicked my profile");
+	//console.log("you clicked my profile");
 		$.ajax({
     		type: 'POST',
     		url: "/users/my_profile",
@@ -45,12 +45,12 @@ function loadMyProfile() {
 function setTabs() {
 	
 	$("#my-poems-btn").click(function() {
-		console.log("you clicked my poems");
+		//console.log("you clicked my poems");
 		loadMyPoems();
 	});
 	
 	$("#stream-btn").click(function() {
-		console.log("you clicked stream");
+		//console.log("you clicked stream");
 		$.ajax({
     		type: 'POST',
     		url: "/poems/stream",
@@ -61,7 +61,7 @@ function setTabs() {
 	});
 	
 	$("#all-poets-btn").click(function() {
-		console.log("you clicked all poets");
+		//console.log("you clicked all poets");
 		loadAllUsers();
 	});
 	

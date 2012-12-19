@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	console.log("login js works!");
+	//console.log("login js works!");
 	
 	/*set Log In btn*/
 	$("#login-submit").click(function(event) {
@@ -10,7 +10,7 @@ $(document).ready(function() {
 			type: 'POST',
 			url: '/users/p_login',
 			success: function(response) {
-				console.log(response);
+				//console.log(response);
 				if(response == "fail") {
 					//hide any other messages
 					$("#reg-result").hide();
@@ -33,7 +33,7 @@ $(document).ready(function() {
 	
 	/*set Register btn*/
 	$("#reg-submit").click(function() {
-		console.log("you clicked register");
+		//console.log("you clicked register");
 		//prevent default
 		event.preventDefault();
 		//check for valid input
@@ -50,7 +50,7 @@ $(document).ready(function() {
 			//show the reg error
 			$("#reg-error").show();
 		}else {
-			console.log("else statement entered");
+			//console.log("else statement entered");
 			$.ajax({
 				type: 'POST',
 				url: '/users/p_signup',

@@ -61,10 +61,6 @@
 	<input id="reg-pw" class="reg-field" name="password" type="password" />
 	<br />
 	
-	<!--<label for="reg-pw-confirm">Confirm Password:</label>
-	<input id="reg-pw-confirm" name="" type="" />
-	<br />-->
-	
 	<label for="reg-submit" class="off-screen">Register</label> <!--for accessibility-->
 	<input id="reg-submit" type="submit" value="Register" />
 	

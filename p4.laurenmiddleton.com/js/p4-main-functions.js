@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	console.log("it works!");
+	//console.log("it works!");
 	
 	createTabs();
 	setTabs();
@@ -158,14 +158,14 @@ $(document).ready(function() {
 		//create warning dialog
 		//grab poem id
     	var id = $(this).attr("href");
-    	console.log(id);
+    	//console.log(id);
 		$("#delete-poem-dialog").dialog({
     		resizable: false,
     		modal: true,
     		autoOpen: false,
     		buttons: {
     			"OK": function() {
-    				console.log("ok button clicked");
+    				//console.log("ok button clicked");
     				//build poem url
     				var url = "/poems/delete/" + id;
     			
@@ -206,25 +206,5 @@ $(document).ready(function() {
 			},
 		});
 	});
-	
-	/*sets upload avatar btn*/
-	//$("#upload-avatar-submit").live("click", function(event) {
-	//	//prevents page reload
-	//	event.preventDefault();
-		
-	//	console.log("you clicked upload");
-		
-	//	var options = {
-	//		type: 'POST',
-	//		url: '/users/p_edit_avatar',
-	//		success: function(response) {
-				//reload my profile
-	//			loadMyProfile();
-	//		},
-	//	}
-		
-		//ajax request
-	//	$('#upload-avatar-form').ajaxForm(options);
-	//});
 
 }); //end document ready
